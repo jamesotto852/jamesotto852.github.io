@@ -2,6 +2,7 @@
 layout: archive
 title: "Publications"
 permalink: /publications/
+read_more: "disabled"
 author_profile: true
 ---
 
