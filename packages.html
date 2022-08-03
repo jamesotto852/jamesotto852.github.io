@@ -134,11 +134,21 @@ a {
   text-decoration: none;
 }
 
+li{
+  margin: 25px 0;
+}
+
 body {
   width: 100%;
   margin: 0;
   background: white;
-  color: black
+  color: black;
+  overflow: hidden;
+}
+
+div .mobile-blurb {
+  margin-left: 10%;
+  margin-top: 5%;
 }
 
 body .content::-webkit-scrollbar {
@@ -205,9 +215,6 @@ body .content section {
     margin-left: 86px;
 }
 
-li{
-  margin: 25px 0;
-}
 
 @media all {
     
@@ -245,19 +252,8 @@ li{
 <!-- Padding -->
 <section id="hide-small" style="scroll-snap-align: none; height: 5%">
 </section>
-<!-- Data Visualization (tall)-->
+<!-- Data Visualization -->
 <section id="hide-short">
-<!-- <div class="container" style="width:250px;margin-left:15%;"> -->
-<!-- <div class='hex'>     -->
-<!-- [![](hex-logos/ggdensity.svg){fig-alt="ggdensity"}](https://google.com) -->
-<!-- </div> -->
-<!-- <div class='hex hex-gap'>     -->
-<!-- [![](hex-logos/TDAvis.svg){fig-alt="TDAvis"}](https://google.com) -->
-<!-- </div>    -->
-<!-- <div class='hex'>     -->
-<!-- [![](hex-logos/ggspatreg.svg){fig-alt="ggspatreg"}](https://google.com) -->
-<!-- </div> -->
-<!-- </div> -->
 <div class="container" style="width:400px;margin-left:15%;">
 <div class="hex hex-gap">
 <a href="https://jamesotto852.github.io/ggdensity/"><img src="hex-logos/ggdensity.svg" class="img-fluid" alt="ggdensity"></a>
@@ -277,22 +273,7 @@ li{
 Data Visualization
 </h2>
 </div>
-<!-- <div id="hide-small" style = "margin-top:2%;margin-left:13%;margin-right:5%"> -->
 <div id="hide-small" style="margin-top:2%;margin-left:5%;margin-right:5%">
-<h2 class="anchored">
-Data Visualization
-</h2>
-<ul>
-<li><a href="https://jamesotto852.github.io/ggdensity/"><strong>ggdensity</strong></a>: Improved density visualization in <strong>ggplot2</strong></li>
-<li><a href="https://github.com/jamesotto852/TDAvis"><strong>TDAvis</strong></a>: Visualizing topological data analysis tools</li>
-<li><a href="https://github.com/jamesotto852/ggspatreg"><strong>ggspatreg</strong></a>: Plotting spatial regression model predictions</li>
-<li><a href="https://github.com/jamesotto852/ggrrr"><strong>ggrrr</strong></a>: Functional programming with <strong>ggplot2</strong> and <strong>patchwork</strong></li>
-</ul>
-</div>
-</section>
-<!-- Data Visualization (short) -->
-<section id="hide-tall" style="scroll-snap-align: none;height:280px;">
-<div style="margin-top:4%;margin-left:13%;margin-right:5%;">
 <h2 class="anchored">
 Data Visualization
 </h2>
@@ -307,7 +288,7 @@ Data Visualization
 <!-- Padding -->
 <section id="hide-large" style="scroll-snap-align: none; height: 15%">
 </section>
-<!-- Documentation (tall) -->
+<!-- Documentation -->
 <section id="hide-short" style="height:35vh; flex-direction:row-reverse;">
 <div class="container" style="width:250px;margin-right:15%;">
 <div class="hex hex-gap">
@@ -332,22 +313,10 @@ Documentation
 </ul>
 </div>
 </section>
-<!-- Documentation (short) -->
-<section id="hide-tall" style="scroll-snap-align: none;height:180px;">
-<div style="margin-top:4%;margin-left:13%;margin-right:5%;">
-<h2 class="anchored">
-Documentation
-</h2>
-<ul>
-<li><a href="https://github.com/jamesotto852/tldr"><strong>tldr</strong></a>: Short-form documentation in the R console</li>
-<li><a href="https://github.com/jamesotto852/tldrDocs"><strong>tldrDocs</strong></a>: <strong>tldr</strong> documentation for base R objects</li>
-</ul>
-</div>
-</section>
 <!-- Padding -->
 <section id="hide-large" style="scroll-snap-align: none; height: 10%">
 </section>
-<!-- Misc (tall) -->
+<!-- Misc -->
 <section id="hide-short">
 <div class="container" style="width:250px;margin-left:15%;">
 <div class="hex">
@@ -367,23 +336,43 @@ Miscellaneous
 Miscellaneous
 </h2>
 <ul>
-<li><a href="https://github.com/jamesotto852/goodreadR"><strong>goodreadR</strong></a>: Scrape user data from <a href="https://goodreads.com/" class="link-dim">goodreads.com</a></li>
+<li><a href="https://github.com/jamesotto852/goodreadR"><strong>goodreadR</strong></a>: Scrape user data from <a href="https://goodreads.com/">goodreads.com</a></li>
 <li><a href="https://github.com/jamesotto852/fRiend"><strong>fRiend</strong></a>: An octopus greeting in each new R session</li>
 </ul>
 </div>
 </section>
-<!-- Misc. (short) -->
-<section id="hide-tall" style="scroll-snap-align: none;height:180px;">
-<div style="margin-top:4%;margin-left:13%;margin-right:5%;">
+<p><!-- Short version, for mobile: --> <!-- <section id="hide-tall" style="scroll-snap-align:none;height:60%;"> --></p>
+<div id="hide-tall">
+<div class="mobile-blurb">
+<h2 class="anchored">
+Data Visualization
+</h2>
+<ul>
+<li><a href="https://jamesotto852.github.io/ggdensity/"><strong>ggdensity</strong></a>: Improved density visualization in <strong>ggplot2</strong></li>
+<li><a href="https://github.com/jamesotto852/TDAvis"><strong>TDAvis</strong></a>: Visualizing topological data analysis tools</li>
+<li><a href="https://github.com/jamesotto852/ggspatreg"><strong>ggspatreg</strong></a>: Plotting spatial regression model predictions</li>
+<li><a href="https://github.com/jamesotto852/ggrrr"><strong>ggrrr</strong></a>: Functional programming with <strong>ggplot2</strong> and <strong>patchwork</strong></li>
+</ul>
+</div>
+<div class="mobile-blurb">
+<h2 class="anchored">
+Documentation
+</h2>
+<ul>
+<li><a href="https://github.com/jamesotto852/tldr"><strong>tldr</strong></a>: Short-form documentation in the R console</li>
+<li><a href="https://github.com/jamesotto852/tldrDocs"><strong>tldrDocs</strong></a>: <strong>tldr</strong> documentation for base R objects</li>
+</ul>
+</div>
+<div class="mobile-blurb">
 <h2 class="anchored">
 Miscellaneous
 </h2>
 <ul>
-<li><a href="https://github.com/jamesotto852/goodreadR"><strong>goodreadR</strong></a>: Scrape user data from <a href="https://goodreads.com/" class="link-dim">goodreads.com</a></li>
+<li><a href="https://github.com/jamesotto852/goodreadR"><strong>goodreadR</strong></a>: Scrape user data from <a href="https://goodreads.com/">goodreads.com</a></li>
 <li><a href="https://github.com/jamesotto852/fRiend"><strong>fRiend</strong></a>: An octopus greeting in each new R session</li>
 </ul>
 </div>
-</section>
+</div>
 <!-- Padding -->
 <section style="scroll-snap-align: none; height: 40%">
 </section>
