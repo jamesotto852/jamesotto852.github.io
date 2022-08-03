@@ -10,6 +10,6 @@ image: "images/2022-SDSS.png"
 
 This presentation was not recorded.
 
--   Event: [SDSS 2022](https://ww2.amstat.org/meetings/sdss/2022/onlineprogram/AbstractDetails.cfm?AbstractID=310116)
+-   Event: [SDSS 2022](https://ww2.amstat.org/meetings/sdss/2022/onlineprogram/AbstractDetails.cfm?AbstractID=310116){target="_blank" rel="noopener noreferrer"}
 
--   [Slides](https://beatrizmilz.github.io/CODATASP18_knitr/)
+-   [Slides](slides/2022-useR.pdf){target="_blank" rel="noopener noreferrer"}

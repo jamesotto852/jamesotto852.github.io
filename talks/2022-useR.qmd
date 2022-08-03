@@ -11,6 +11,6 @@ resources: "slides/2022-useR.pdf"
 
 This presentation was not recorded.
 
--   Event: [useR! 2022](https://user2022.r-project.org/)
+-   Event: [useR! 2022](https://user2022.r-project.org/){target="_blank" rel="noopener noreferrer"}
 
--   [Slides](slides/2022-useR.pdf):
+-   [Slides](slides/2022-useR.pdf){target="_blank" rel="noopener noreferrer"}

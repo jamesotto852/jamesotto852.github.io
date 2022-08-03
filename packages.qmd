@@ -1,5 +1,6 @@
 ---
 toc: false
+anchor-sections: false
 ---
 
 <style>
@@ -130,19 +131,19 @@ body .content section {
   <div class="container" style="width:400px;margin-left:15%;">
 
   <div class='hex hex-gap'>	
-  [![](hex-logos/ggdensity.svg){fig-alt="ggdensity"}](https://jamesotto852.github.io/ggdensity/)
+  [![](hex-logos/ggdensity.svg){fig-alt="ggdensity"}](https://jamesotto852.github.io/ggdensity/){target="_blank" rel="noopener noreferrer"}
   </div>
   
   <div class='hex'>	
-  [![](hex-logos/ggspatreg.svg){fig-alt="ggspatreg"}](https://github.com/jamesotto852/ggspatreg)
+  [![](hex-logos/ggspatreg.svg){fig-alt="ggspatreg"}](https://github.com/jamesotto852/ggspatreg){target="_blank" rel="noopener noreferrer"}
   </div>	
   
   <div class='hex'>	
-  [![](hex-logos/TDAvis.svg){fig-alt="TDAvis"}](https://github.com/jamesotto852/TDAvis)
+  [![](hex-logos/TDAvis.svg){fig-alt="TDAvis"}](https://github.com/jamesotto852/TDAvis){target="_blank" rel="noopener noreferrer"}
   </div>
   
   <div class='hex hex-gap'>	
-  [![](hex-logos/ggrrr.svg){fig-alt="ggrrr"}](https://github.com/jamesotto852/ggrrr)
+  [![](hex-logos/ggrrr.svg){fig-alt="ggrrr"}](https://github.com/jamesotto852/ggrrr){target="_blank" rel="noopener noreferrer"}
   </div>
   
   </div>
@@ -156,10 +157,10 @@ body .content section {
   
   <h2> Data Visualization </h2>
   <ul>
-  <li class = "pkg"> [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Improved density visualization in **ggplot2**  </li>
-  <li class = "pkg"> [**TDAvis**](https://github.com/jamesotto852/TDAvis): Visualizing topological data analysis tools </li>
-  <li class = "pkg"> [**ggspatreg**](https://github.com/jamesotto852/ggspatreg): Plotting spatial regression model predictions </li>
-  <li class = "pkg"> [**ggrrr**](https://github.com/jamesotto852/ggrrr): Functional programming with **ggplot2** and **patchwork** </li>
+  <li class = "pkg"> [**ggdensity**](https://jamesotto852.github.io/ggdensity/){target="_blank" rel="noopener noreferrer"}: Improved density visualization in **ggplot2**  </li>
+  <li class = "pkg"> [**TDAvis**](https://github.com/jamesotto852/TDAvis){target="_blank" rel="noopener noreferrer"}: Visualizing topological data analysis tools </li>
+  <li class = "pkg"> [**ggspatreg**](https://github.com/jamesotto852/ggspatreg){target="_blank" rel="noopener noreferrer"}: Plotting spatial regression model predictions </li>
+  <li class = "pkg"> [**ggrrr**](https://github.com/jamesotto852/ggrrr){target="_blank" rel="noopener noreferrer"}: Functional programming with **ggplot2** and **patchwork** </li>
   </ul>
   
   </div>
@@ -174,11 +175,11 @@ body .content section {
   <div class="container" style="width:250px;margin-right:15%;">
 
   <div class='hex hex-gap'>	
-  [![](hex-logos/tldr.svg){fig-alt="tldr"}](https://github.com/jamesotto852/tldr)
+  [![](hex-logos/tldr.svg){fig-alt="tldr"}](https://github.com/jamesotto852/tldr){target="_blank" rel="noopener noreferrer"}
   </div>	
   
   <div class='hex'>	
-  [![](hex-logos/tldrDocs.svg){fig-alt="tldrDocs"}](https://github.com/jamesotto852/tldrDocs)
+  [![](hex-logos/tldrDocs.svg){fig-alt="tldrDocs"}](https://github.com/jamesotto852/tldrDocs){target="_blank" rel="noopener noreferrer"}
   </div>
   
   </div>
@@ -192,8 +193,8 @@ body .content section {
   
   <h2> Documentation </h2>
   <ul>
-  <li class = "pkg"> [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console </li>
-  <li class = "pkg"> [**tldrDocs**](https://github.com/jamesotto852/tldrDocs): **tldr** documentation for base R objects </li>
+  <li class = "pkg"> [**tldr**](https://github.com/jamesotto852/tldr){target="_blank" rel="noopener noreferrer"}: Short-form documentation in the R console </li>
+  <li class = "pkg"> [**tldrDocs**](https://github.com/jamesotto852/tldrDocs){target="_blank" rel="noopener noreferrer"}: **tldr** documentation for base R objects </li>
   </ul>
   
   </div>
@@ -206,11 +207,11 @@ body .content section {
   <div class="container" style="width:250px;margin-left:15%;">
 
   <div class='hex'>	
-  [![](hex-logos/goodreadR.svg){fig-alt="goodreadR"}](https://github.com/jamesotto852/goodreadR)
+  [![](hex-logos/goodreadR.svg){fig-alt="goodreadR"}](https://github.com/jamesotto852/goodreadR){target="_blank" rel="noopener noreferrer"}
   </div>
   
   <div class='hex hex-gap'>	
-  [![](hex-logos/fRiend.svg){fig-alt="fRiend"}](https://github.com/jamesotto852/fRiend)
+  [![](hex-logos/fRiend.svg){fig-alt="fRiend"}](https://github.com/jamesotto852/fRiend){target="_blank" rel="noopener noreferrer"}
   </div>	
   
   
@@ -225,8 +226,8 @@ body .content section {
   
   <h2> Miscellaneous </h2>
   <ul>
-  <li class = "pkg"> [**goodreadR**](https://github.com/jamesotto852/goodreadR): Scrape user data from [goodreads.com](https://goodreads.com/) </li>
-  <li class = "pkg"> [**fRiend**](https://github.com/jamesotto852/fRiend): An octopus greeting in each new R session </li>
+  <li class = "pkg"> [**goodreadR**](https://github.com/jamesotto852/goodreadR){target="_blank" rel="noopener noreferrer"}: Scrape user data from [goodreads.com](https://goodreads.com/) </li>
+  <li class = "pkg"> [**fRiend**](https://github.com/jamesotto852/fRiend){target="_blank" rel="noopener noreferrer"}: An octopus greeting in each new R session </li>
   </ul>
 
   </div>
@@ -248,10 +249,10 @@ body .content section {
   <h2> Data Visualization </h2>
   
   <ul>
-  <li class = "pkg"> [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Improved density visualization in **ggplot2**  </li>
-  <li class = "pkg"> [**TDAvis**](https://github.com/jamesotto852/TDAvis): Visualizing topological data analysis tools </li>
-  <li class = "pkg"> [**ggspatreg**](https://github.com/jamesotto852/ggspatreg): Plotting spatial regression model predictions </li>
-  <li class = "pkg"> [**ggrrr**](https://github.com/jamesotto852/ggrrr): Functional programming with **ggplot2** and **patchwork** </li>
+  <li class = "pkg"> [**ggdensity**](https://jamesotto852.github.io/ggdensity/){target="_blank" rel="noopener noreferrer"}: Improved density visualization in **ggplot2**  </li>
+  <li class = "pkg"> [**TDAvis**](https://github.com/jamesotto852/TDAvis){target="_blank" rel="noopener noreferrer"}: Visualizing topological data analysis tools </li>
+  <li class = "pkg"> [**ggspatreg**](https://github.com/jamesotto852/ggspatreg){target="_blank" rel="noopener noreferrer"}: Plotting spatial regression model predictions </li>
+  <li class = "pkg"> [**ggrrr**](https://github.com/jamesotto852/ggrrr){target="_blank" rel="noopener noreferrer"}: Functional programming with **ggplot2** and **patchwork** </li>
   </ul>
   
   </div>
@@ -263,8 +264,8 @@ body .content section {
   <h2> Documentation </h2>
 
   <ul>
-  <li class = "pkg"> [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console </li>
-  <li class = "pkg"> [**tldrDocs**](https://github.com/jamesotto852/tldrDocs): **tldr** documentation for base R objects </li>
+  <li class = "pkg"> [**tldr**](https://github.com/jamesotto852/tldr){target="_blank" rel="noopener noreferrer"}: Short-form documentation in the R console </li>
+  <li class = "pkg"> [**tldrDocs**](https://github.com/jamesotto852/tldrDocs){target="_blank" rel="noopener noreferrer"}: **tldr** documentation for base R objects </li>
   </ul>
   
   </div>
@@ -276,8 +277,8 @@ body .content section {
   <h2> Miscellaneous </h2>
 
   <ul>
-  <li class = "pkg"> [**goodreadR**](https://github.com/jamesotto852/goodreadR): Scrape user data from [goodreads.com](https://goodreads.com/) </li>
-  <li class = "pkg"> [**fRiend**](https://github.com/jamesotto852/fRiend): An octopus greeting in each new R session </li>
+  <li class = "pkg"> [**goodreadR**](https://github.com/jamesotto852/goodreadR){target="_blank" rel="noopener noreferrer"}: Scrape user data from [goodreads.com](https://goodreads.com/){target="_blank" rel="noopener noreferrer"} </li>
+  <li class = "pkg"> [**fRiend**](https://github.com/jamesotto852/fRiend){target="_blank" rel="noopener noreferrer"}: An octopus greeting in each new R session </li>
   </ul>
   
   </div>
