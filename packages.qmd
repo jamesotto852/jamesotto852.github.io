@@ -23,7 +23,7 @@ body {
 
 div .mobile-blurb {
   margin-left: 10%;
-  margin-top: 5%;
+  margin-bottom: 11%;
 }
 
 body .content::-webkit-scrollbar {
@@ -173,10 +173,6 @@ body .content section {
     
   
   
-  <!-- Padding -->
-  <section id="hide-large" style="scroll-snap-align: none; height: 15%"></section>
-  
-  
   <!-- Documentation -->
   <section id="hide-short"  style="height:35vh; flex-direction:row-reverse;">
   
@@ -206,9 +202,6 @@ body .content section {
   
   </section>
   
-  <!-- Padding -->
-  <section id="hide-large" style="scroll-snap-align: none; height: 10%"></section>
-  
   
   <!-- Misc -->
   <section id="hide-short">
@@ -237,12 +230,15 @@ body .content section {
   </div>
   </section>
   
-  
+  <!-- Padding -->
+  <section id="hide-short" style="scroll-snap-align: none; height: 40%"></section>
   
   <!-- Short version, for mobile: -->
   <!-- <section id="hide-tall" style="scroll-snap-align:none;height:60%;"> -->
   
   <div id="hide-tall">
+  
+  <section style="scroll-snap-align: none; height: 13%"></section>
   
   <div class="mobile-blurb">
   
@@ -280,9 +276,10 @@ body .content section {
   </div>
 
   
-  
   <!-- Padding -->
-  <section style="scroll-snap-align: none; height: 40%"></section>
+  <section style="scroll-snap-align: none; height: 10%"></section>
+  
+  
   
 </div>
 :::
