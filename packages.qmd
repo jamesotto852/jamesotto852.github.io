@@ -9,16 +9,21 @@ a {
   text-decoration: none;
 }
 
-<!-- a:link { text-decoration: none; } -->
-<!-- a:visited { text-decoration: none; } -->
-<!-- a:hover { text-decoration: underline; } -->
-<!-- a:active { text-decoration: underline; } -->
+li{
+  margin: 25px 0;
+}
 
 body {
   width: 100%;
   margin: 0;
   background: white;
-  color: black
+  color: black;
+  overflow: hidden;
+}
+
+div .mobile-blurb {
+  margin-left: 10%;
+  margin-top: 5%;
 }
 
 body .content::-webkit-scrollbar {
@@ -85,9 +90,6 @@ body .content section {
 	margin-left: 86px;
 }
 
-li{
-  margin: 25px 0;
-}
 
 @media all {
     
@@ -131,23 +133,8 @@ li{
   <section id="hide-small" style="scroll-snap-align: none; height: 5%"></section>
   
   
-  <!-- Data Visualization (tall)-->
+  <!-- Data Visualization -->
   <section id="hide-short">
-  <!-- <div class="container" style="width:250px;margin-left:15%;"> -->
-
-  <!-- <div class='hex'>	 -->
-  <!-- [![](hex-logos/ggdensity.svg){fig-alt="ggdensity"}](https://google.com) -->
-  <!-- </div> -->
-
-  <!-- <div class='hex hex-gap'>	 -->
-  <!-- [![](hex-logos/TDAvis.svg){fig-alt="TDAvis"}](https://google.com) -->
-  <!-- </div>	 -->
-
-  <!-- <div class='hex'>	 -->
-  <!-- [![](hex-logos/ggspatreg.svg){fig-alt="ggspatreg"}](https://google.com) -->
-  <!-- </div> -->
-
-  <!-- </div> -->
   
   <div class="container" style="width:400px;margin-left:15%;">
 
@@ -173,7 +160,6 @@ li{
   <h2> Data Visualization </h2>
   </div>
   
-  <!-- <div id="hide-small" style = "margin-top:2%;margin-left:13%;margin-right:5%"> -->
   <div id="hide-small" style = "margin-top:2%;margin-left:5%;margin-right:5%">
   <h2> Data Visualization </h2>
   - [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Improved density visualization in **ggplot2**
@@ -183,29 +169,15 @@ li{
   
   </div>
   
-  
   </section>
     
-  <!-- Data Visualization (short) -->
-  <section id="hide-tall"  style="scroll-snap-align: none;height:200px;">
   
-  <div style = "margin-top:4%;margin-left:13%;margin-right:5%;">
-  
-  <h2> Data Visualization </h2>
-  - [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Improved density visualization in **ggplot2**
-  - [**TDAvis**](https://github.com/jamesotto852/TDAvis): Visualizing topological data analysis tools
-  - [**ggspatreg**](https://github.com/jamesotto852/ggspatreg): Plotting spatial regression model predictions
-  - [**ggrrr**](https://github.com/jamesotto852/ggrrr): Functional programming with **ggplot2** and **patchwork**
-  
-  </div>
-  
-  </section>
   
   <!-- Padding -->
   <section id="hide-large" style="scroll-snap-align: none; height: 15%"></section>
   
   
-  <!-- Documentation (tall) -->
+  <!-- Documentation -->
   <section id="hide-short"  style="height:35vh; flex-direction:row-reverse;">
   
   <div class="container" style="width:250px;margin-right:15%;">
@@ -234,26 +206,11 @@ li{
   
   </section>
   
-  <!-- Documentation (short) -->
-  <section id="hide-tall"  style="scroll-snap-align: none;height:180px;">
-  
-  <div style = "margin-top:4%;margin-left:13%;margin-right:5%;">
-  
-  <h2> Documentation </h2>
-  - [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console
-  - [**tldrDocs**](https://github.com/jamesotto852/tldrDocs): **tldr** documentation for base R objects
-  
-  </div>
-  
-  
-  </section>
-  
-  
   <!-- Padding -->
   <section id="hide-large" style="scroll-snap-align: none; height: 10%"></section>
   
   
-  <!-- Misc (tall) -->
+  <!-- Misc -->
   <section id="hide-short">
   <div class="container" style="width:250px;margin-left:15%;">
 
@@ -274,23 +231,54 @@ li{
   
   <div id="hide-small" style = "margin-top:4%;margin-left:13%;margin-right:5%;">
   <h2> Miscellaneous </h2>
-  - [**goodreadR**](https://github.com/jamesotto852/goodreadR): Scrape user data from [goodreads.com](https://goodreads.com/){.link-dim}
+  - [**goodreadR**](https://github.com/jamesotto852/goodreadR): Scrape user data from [goodreads.com](https://goodreads.com/)
   - [**fRiend**](https://github.com/jamesotto852/fRiend): An octopus greeting in each new R session
 
   </div>
   </section>
   
-  <!-- Misc. (short) -->
-  <section id="hide-tall"  style="scroll-snap-align: none;height:180px;">
   
-  <div style = "margin-top:4%;margin-left:13%;margin-right:5%;">
   
-  <h2> Miscellaneous </h2>
-  - **goodreadR**: Scrape user-data from goodreads.com
-  - [**fRiend**](: Octopus
+  <!-- Short version, for mobile: -->
+  <!-- <section id="hide-tall" style="scroll-snap-align:none;height:60%;"> -->
+  
+  <div id="hide-tall">
+  
+  <div class="mobile-blurb">
+  
+  <h2> Data Visualization </h2>
+  
+  - [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Improved density visualization in **ggplot2**
+  - [**TDAvis**](https://github.com/jamesotto852/TDAvis): Visualizing topological data analysis tools
+  - [**ggspatreg**](https://github.com/jamesotto852/ggspatreg): Plotting spatial regression model predictions
+  - [**ggrrr**](https://github.com/jamesotto852/ggrrr): Functional programming with **ggplot2** and **patchwork**
   
   </div>
-  </section>
+  
+
+
+  <div class="mobile-blurb">
+
+  <h2> Documentation </h2>
+
+  - [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console
+  - [**tldrDocs**](https://github.com/jamesotto852/tldrDocs): **tldr** documentation for base R objects
+  
+  </div>
+
+
+
+  <div class="mobile-blurb">
+
+  <h2> Miscellaneous </h2>
+
+  - [**goodreadR**](https://github.com/jamesotto852/goodreadR): Scrape user data from [goodreads.com](https://goodreads.com/)
+  - [**fRiend**](https://github.com/jamesotto852/fRiend): An octopus greeting in each new R session
+  
+  </div>
+  
+  </div>
+
   
   
   <!-- Padding -->
