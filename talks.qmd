@@ -1,0 +1,10 @@
+---
+title: "Talks"
+listing:
+  contents: talks
+  type: default
+  fields: [image, date, title, subtitle, author]
+  sort:
+    - "date desc"
+    - "title desc"
+---

@@ -1,0 +1,15 @@
+---
+title: "**ggdensity**: Improved Bivariate Density Visualization in R"
+subtitle: "SDSS 2022"
+author: 
+  - "**James Otto**"
+  - "David Kahle"
+date: "2022-06-08"
+image: "images/2022-SDSS.png"
+---
+
+This presentation was not recorded.
+
+-   Event: [SDSS 2022](https://ww2.amstat.org/meetings/sdss/2022/onlineprogram/AbstractDetails.cfm?AbstractID=310116)
+
+-   [Slides](https://beatrizmilz.github.io/CODATASP18_knitr/)

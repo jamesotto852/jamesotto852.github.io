@@ -1,0 +1,283 @@
+---
+title: "Understanding base documentation functions"
+author: "James Otto"
+date: "1/24/2022"
+image: images/Understanding-base-documentation-functions.png
+output: 
+  html:
+    highlight: tango
+---
+
+## Introduction
+
+<!-- I am working on a <a href="https://github.com/jamesotto852/tldr">project</a> dealing with documentation in R -->
+
+I am working on a project dealing with documentation in R and recently did a deep-dive into how `?` and `help()` work. This post summarizes what I've learned about these functions, first briefly discussing how they "work" in a general sense, then going through their implementations line-by-line to understand the functions at a low-level.
+
+## How they "work"
+
+The `?` operator is just a convenience function, allowing users to retrieve documentation on objects specified in a variety of ways. Below I've included a few examples which all do the same thing, showcasing how flexible `?` is:
+
+```{r showcasing_q_arg, eval = FALSE}
+?anova
+?anova()
+?anova(lm(speed ~ dist, cars))
+?anova(stop())
+?"anova"
+?stats::anova
+```
+
+It achieves this flexibility by using functions like `substitute()` and `eval()` to parse its input, eventually leading to a call to `help()`, `help.search()`, `.helpForCall()`, or `.tryHelp()`.
+
+These are all very similar, and it is sufficient to look into the `help()` function to understand what is going on. The main way `help()` works is by using the functions `loadedNamespaces()`, `find.package()`, and `utils:::index.search()` to find the relevant package files and documentation. Again `help()` has been implemented to be very flexible, accepting arguments in a variety of forms.
+
+## How they work: the nitty-gritty
+
+### `?`
+
+First, let's look at the definition of `?`:
+
+```{r q_deparse, include = FALSE}
+q_body <- deparse(body(`?`))
+# Want function call w/ formals
+q_body <- c("function (e1, e2)", q_body)
+
+message_q_body <- function(lines) {
+  q_body[lines] |>
+    cat(sep = "\n")
+}
+```
+
+```{r q_body, comment="", attr.output='.numberLines', class.output = "r"}
+`?`
+```
+
+That's a big wall of code. We're going to go through the definition in chunks to better understand what is going on.
+
+------------------------------------------------------------------------
+
+Immediately, there's something I didn't know before: `?` is a function of two arguments! After reading through the documentation, it looks like the optional second argument, `e2`, allows for documentation of S4 methods. <!-- For use-cases relevant to `tldr()` (at least at present), `e2` would never be specified, and the `if (missing(e2))` condition will always evaluate to `TRUE`. --> For most use-cases, `e2` will never be specified and the `if (missing(e2))` condition will always evaluate to `TRUE`. This means `type` will almost always be `NULL`, and `topicExpr` will always be `e1` (the only argument supplied to `?`).
+
+```{r q_body_1, echo = FALSE, comment="", attr.output='.numberLines startFrom="1"', class.output = "r"}
+message_q_body(1:10)
+```
+
+Above, note the use of `substitute()`. <a href="https://adv-r.hadley.nz/quasiquotation.html?q=substitute#substitution">Advanced R</a> covers how `substitute()` is used for quoting. This is exactly what's going on here---it is being used to capture the unevaluated argument, `e1`, assigning it to the variable `topicExpr` (technically, `substitute()` returns a "parse tree"). The rest of the code is going to deal with picking apart `topicExpr` to determine what documentation to serve up.
+
+------------------------------------------------------------------------
+
+Next up, we're defining a Boolean variable: `search`:
+
+```{r q_body_11, echo = FALSE, comment="", attr.output='.numberLines startFrom="11"', class.output = "r"}
+message_q_body(11)
+```
+
+See that `search` is `TRUE` whenever 1.) `topicExpr` is an unevaluated function call and 2.) the first element of the parse tree returned by `substitute()` is the function `?`. Why does this matter? It turns out, `??` is **not** a function--- it is the composition of two `?` operators! For example: when you run `??tibble` you are actually executing \``` ?`(?tibble) ``.
+
+So, `search` is `TRUE` when the double question mark has been used. This makes sense, as `??` is used for a more general search of the documentation (using the `help.search()` function, as we'll see later).
+
+------------------------------------------------------------------------
+
+Next up is an Easter Egg. Yup, an Easter Egg. But first, if `search` is `TRUE`, we remove the additional `?` function (the first element of `topicExpr`) on line 13:
+
+```{r q_body_12, echo = FALSE, comment="", attr.output='.numberLines startFrom="12"', class.output = "r"}
+message_q_body(12:22)
+```
+
+Now, the Easter Egg. The conditional on lines 14-15 evaluates to `TRUE` if there were four nested `?` functions. In this case, a message about the Oracle of Delphi is printed at the console.
+
+```{r oracle_message, echo = TRUE, collapse = TRUE}
+????sum
+```
+
+------------------------------------------------------------------------
+
+Moving on, we now deal with the double and triple colon operators (`::` and `:::`):
+
+```{r q_body_23, echo = FALSE, comment="", attr.output='.numberLines startFrom="23"', class.output = "r"}
+message_q_body(23:28)
+```
+
+In the presence of these operators, we assign the relavent package to the `package` variable and the function to the `topicExpr` variable. Below, we have included an example of how this works:
+
+```{r colon_operators, echo = TRUE, collapse = TRUE}
+topicExpr <- substitute(ggplot2::geom_point)
+
+topicExpr[[1]]
+topicExpr[[2]]
+topicExpr[[3]]
+```
+
+If there is no colon operator designating the desired package, `package` is set to `NULL` on line 28.
+
+------------------------------------------------------------------------
+
+Finally, it's time to actually access the documentation. First, the case of `search` being `TRUE` (`??`) is taken care of:
+
+```{r q_body_29, echo = FALSE, comment="", attr.output='.numberLines startFrom="29"', class.output = "r"}
+message_q_body(29:36)
+```
+
+We see that the function searching through the documentation is `help.search()` -- the variables we have specified thusfar are provided as arguments and we're done.
+
+------------------------------------------------------------------------
+
+Now we take care of the case where `search` is `FALSE` and `type` is `NULL`. Remember, `type` is `NULL` whenever the argument `e2` is not supplied--- <!-- this is the only use case we care about for `tldr()`. --> the most common use-case.
+
+```{r q_body_37, echo = FALSE, comment="", attr.output='.numberLines startFrom="37"', class.output = "r"}
+message_q_body(37:46)
+```
+
+A few interesting things to note. First, we deal with the scenario where `topicExpr` is a call, in which case the function being used to access documentation is the unexported `utils:::.helpforCall()`. I haven't dug through its body, but it looks like this is to allow users to execute code like `?sum()` (instead of the more typical `?sum`). But, I've noticed that it doesn't work for everything---for an example run `?c()` .
+
+<!-- Starting on line 41, we have the code which is most directly relevant to `tldr()`. -->
+
+Starting on line 41, we have the main way `?` leads to documentation. This is how code like `?sum` is evaluated, via a call to `help()` on line 44. Notice that `substitute()` is being used in a slightly different way than before, substituting the values in the "environment" defined on line 45 before `eval()` is run. (It is used the same way in the previous code chunk, on lines 31 and 33.)
+
+------------------------------------------------------------------------
+
+The rest of the code is just dealing with the case where `type` and `topic` was specified by `e1` and `e2` arguments, respectively. It's really just repeating what we've seen already, with the small addition of using `utils:::.tryHelp()` and `utils:::topicName()` functions.
+
+```{r q_body_47, echo = FALSE, comment="", attr.output='.numberLines startFrom="47"', class.output = "r"}
+message_q_body(47:71)
+```
+
+------------------------------------------------------------------------
+
+So, what have we learned? `?` is a convenience function wrapping around functions like `help()` and `help.search()`. It's main purpose is to parse the different ways a user might refer to an object (e.g. `?ggplot2::geom_point`, `??knn`, `?sum()`, `?sum`).
+
+<!-- To implement `tldr()` in a way similar to `?`, we may want to research more modern methods of quoting (i.e. `expr()`). -->
+
+### `help()`
+
+Now that we have a good grasp on what's going on with `?`, let's see how `help()` works. Let's start by echoing the body of the function:
+
+```{r help_deparse, include = FALSE}
+help_body <- deparse(body(help))
+# Want function call w/ formals
+help_body <- c(
+  'function (topic, package = NULL, lib.loc = NULL, verbose = getOption("verbose"),',
+  '  try.all.packages = getOption("help.try.all.packages"), help_type = getOption("help_type")) ', 
+  help_body
+  )
+
+message_help_body <- function(lines) {
+  help_body[lines] |>
+    cat(sep = "\n")
+}
+```
+
+```{r help_body, comment="", attr.output='.numberLines', class.output = "r"}
+help
+```
+
+Of course, we'll break this down into more digestible chunks.
+
+------------------------------------------------------------------------
+
+First, we are determining what format of documentation to get. There's weird argument matching going on, but the main idea is that help can be served up in three forms: text, html, and pdf. By default, `help()` looks at the global option `"help_type"` for this.
+
+```{r help_body_1, echo = FALSE, comment="", attr.output='.numberLines startFrom="1"', class.output = "r"}
+message_help_body(1:7)
+```
+
+------------------------------------------------------------------------
+
+<!-- Next, we have some base R shenanigans. -->
+
+<!-- The fact that `<-` retur -->
+
+Next, if the `package` argument is specified, we check that it is a name after it's been quoted. If it is, the quoted argument is coerced into a string for later.
+
+```{r help_body_8, echo = FALSE, comment="", attr.output='.numberLines startFrom="8"', class.output = "r"}
+message_help_body(8:10)
+```
+
+------------------------------------------------------------------------
+
+Now, we deal with the case where `topic` is not specified. This is not the typical case, `topic` is the first formal of `help`. For example, when you run `help(geom_point)` you're setting `topic = geom_point`. However, this allows for things like `help(package = ggplot2)`.
+
+This is what's going on in lines 13-27, `help()` is figuring out how to call `library()` correctly, given the user's environment. It turns out that in addition to loading/attaching packages, when the `help` argument of `library()` is specified it returns information regarding the specified package (in an object of class `"packageInfo"`).
+
+```{r help_body_11, echo = FALSE, comment="", attr.output='.numberLines startFrom="11"', class.output = "r"}
+message_help_body(11:34)
+```
+
+Note, we're making use of the `lib.loc` argument. It specifies the location of the `R` library trees on the user's machine. By default, its value is `NULL`---this corresponds to the libraries according to `.libPaths()`.
+
+------------------------------------------------------------------------
+
+Next is some simple cleaning-up of `topic` (which, at this point, we know was specified). Lines 35 and 36 are interesting, note the wrapping of the conditional in a `TryCatch()`.
+
+```{r help_body_35, echo = FALSE, comment="", attr.output='.numberLines startFrom="35"', class.output = "r"}
+message_help_body(35:44)
+```
+
+After this chunk, we know that `topic` is a string of length 1.
+
+------------------------------------------------------------------------
+
+The next step is to use the unexported function `utils:::index.search()` to search through relevant package for `topic`. This involves either searching through the entire set of packages in `loadedNamespaces()` or the specified `package`.
+
+```{r help_body_45, echo = FALSE, comment="", attr.output='.numberLines startFrom="45"', class.output = "r"}
+message_help_body(45:47)
+```
+
+Below, I've included (truncated) output from a few of these functions so that you can see what's going on:
+
+```{r index.search_ex, echo = TRUE, collapse = TRUE}
+loadedNamespaces()[1:4]
+
+find.package(loadedNamespaces())[1:4]
+
+utils:::index.search("anova", find.package(loadedNamespaces()))
+```
+
+------------------------------------------------------------------------
+
+Next, we're cleaning up the `try.all.packages` argument. This sequence of logical operators works together to 1.) coerce `try.all.packages` into a logical and 2.) ensure `try.all.packages` is `FALSE` if at all possible (according to the documentation, if `try.all.packages` is `TRUE` there might be performance issues).
+
+By default (and when it is called from `?`), `try.all.packages` is `FALSE`, so this isn't of much consequence.
+
+```{r help_body_48, echo = FALSE, comment="", attr.output='.numberLines startFrom="48"', class.output = "r"}
+message_help_body(48:50)
+```
+
+------------------------------------------------------------------------
+
+Here is where `try.all.packages` is used. If it is `TRUE`, an `index.search()` is performed for `topic` in every package in the`.libPaths()` directory with results being included in `paths`.
+
+```{r help_body_51, echo = FALSE, comment="", attr.output='.numberLines startFrom="51"', class.output = "r"}
+message_help_body(51:59)
+```
+
+------------------------------------------------------------------------
+
+Finally, we have the end of `help()`. This is the code that fetches/loads the relevant documentation. If everything has gone correctly, R will try to find a way to show you the corresponding documentation. (If `try.all.packages` is `TRUE`, a search results page will be shown instead). In Rstudio, for example, the documentation file will appear in the "Help" pane.
+
+```{r help_body_60, echo = FALSE, comment="", attr.output='.numberLines startFrom="60"', class.output = "r"}
+message_help_body(60:63)
+```
+
+Why does this `structure()` call result in the documentation being displayed? I have no idea. I imagine it has something to do with the print method of the `"help_files_with_topic"` class--- I haven't been able to find great documentation on these details.
+
+------------------------------------------------------------------------
+
+Try it for yourself! Run the following code, it should bring up the documentation for `stats::anova()`:
+
+```{r help_ex, eval = FALSE}
+temp_pkgs <- find.package(
+  if (TRUE) loadedNamespaces() else "stats", 
+  lib.loc = NULL, verbose = getOption("verbose")
+)
+
+temp_path <- utils:::index.search("anova", temp_pkgs)
+
+structure(temp_path, call = match.call(), topic = "anova", 
+    tried_all_packages = FALSE, type = "html", 
+    class = "help_files_with_topic")
+```
+
+------------------------------------------------------------------------
+
+So, what have we learned? Documentation for functions of **loaded** packages are accessed via a combination of the functions `loadedNamespaces()`, `find.package()`, and `utils:::index.search()`. If we want to access documentation of functions for packages that are not loaded, we need to use the functions `.libPaths()`, `.packages()`, and `utils:::index.search()`.

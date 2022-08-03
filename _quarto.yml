@@ -1,0 +1,44 @@
+project:
+  type: website
+
+website:
+  title: "James Otto"
+  navbar:
+    background: primary
+    search: false
+    left:
+      - text: "Home"
+        file: index.qmd
+      - sidebar:portfolio
+      - talks.qmd
+      - blog.qmd
+    right:
+      - icon: github
+        href: https://github.com/jamesotto852
+      - icon: twitter
+        href: https://twitter.com/jamesotto852
+  sidebar:
+    - id: portfolio
+      title: "Portfolio"
+      style: "docked"
+      background: light
+      collapse-level: 2
+      contents: 
+        - text: "R Packages"
+          file: packages.qmd
+        - text: "Shiny Apps"
+          file: shiny.qmd
+  page-footer: "Copyright 2022, James Otto" 
+
+format:
+  html:
+    highlight-style: arrow
+    theme:
+      light: [flatly, custom-light.scss]
+      dark: [darkly, custom-dark.scss]
+    css: styles.css
+    toc: true
+    sidebar: false
+
+editor: visual
+

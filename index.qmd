@@ -1,0 +1,23 @@
+---
+title: "James Otto"
+about:
+  template: trestles
+  image: images/profile_picture_tall.jpg
+  links:
+    - icon: twitter
+      text: twitter
+      href: https://twitter.com/jamesotto852
+    - icon: github
+      text: Github
+      href: https://github.com/jamesotto852
+---
+
+I am a doctoral candidate studying Statistics at Baylor University. I have an MS in Statistics as well as undergraduate degrees in Statistics, Mathematics, Economics, and Management of Information Systems.
+
+I am interested in the studies of computational statistics and density estimation, and enjoy exploring the connections between theoretical mathematics and statistics (especially applications of functional analysis). When not working on research, I'm probably bouldering, practicing aerial silks, or reading.
+
+Here are a few of my current projects that I'm excited to be working on:
+
+-   [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Interpretable visualizations of bivariate density estimates
+-   [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console
+-   [An Interactive History of Magic the Gathering](https://jamesotto.app/MTG-History)

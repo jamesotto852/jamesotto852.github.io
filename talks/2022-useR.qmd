@@ -1,0 +1,16 @@
+---
+title: "**ggdensity**: Improved Bivariate Density Visualization in R"
+subtitle: "useR! 2022"
+author: 
+  - "**James Otto**"
+  - "David Kahle"
+date: "2022-06-21"
+image: "images/2022-useR.png"
+resources: "slides/2022-useR.pdf"
+---
+
+This presentation was not recorded.
+
+-   Event: [useR! 2022](https://user2022.r-project.org/)
+
+-   [Slides](slides/2022-useR.pdf):

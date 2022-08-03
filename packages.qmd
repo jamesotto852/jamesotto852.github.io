@@ -1,0 +1,300 @@
+---
+toc: false
+---
+
+<style>
+
+a {
+  color: #000294;
+  text-decoration: none;
+}
+
+<!-- a:link { text-decoration: none; } -->
+<!-- a:visited { text-decoration: none; } -->
+<!-- a:hover { text-decoration: underline; } -->
+<!-- a:active { text-decoration: underline; } -->
+
+body {
+  width: 100%;
+  margin: 0;
+  background: white;
+  color: black
+}
+
+body .content::-webkit-scrollbar {
+  display: none;
+}
+
+body .content {
+  width: 100%;
+  height: 100%;
+  scroll-snap-type: y mandatory;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.column-screen::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1111;
+  background-image: linear-gradient(#FFFFFF, transparent);
+  height: 100px;
+}
+
+.column-screen::after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 1111;
+  background-image: linear-gradient(transparent, #FFFFFF);
+  height: 100px;
+}
+
+body .content section {
+  display: flex;
+  width: 100%;
+  height: 45vh;
+  scroll-snap-align: center;
+}
+
+
+.container {
+	height:100%;
+}
+
+.hex {
+	width:150px;
+	height:86px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;			
+	-webkit-background-size: auto 173px;							
+	-moz-background-size: auto 173px;							
+	-ms-background-size: auto 173px;							
+	-o-background-size: auto 173px;							
+	position: relative;
+	float:left;
+	margin:25px 5px;
+	text-align:center;
+	zoom:1;
+}
+		
+.hex.hex-gap {
+	margin-left: 86px;
+}
+
+li{
+  margin: 25px 0;
+}
+
+@media all {
+    
+    @media (max-height: 700px)  {
+      #hide-short {
+          display: none;
+      }
+    }
+    
+
+    @media (min-height: 701px)  {
+      #hide-tall {
+          display: none;
+      }
+    }
+    
+    @media (max-width: 900px)  {
+      #hide-small {
+          display: none;
+      }
+    }
+    
+    @media (min-width: 901px)  {
+      #hide-large {
+          display: none;
+      }
+    }
+    
+}
+
+</style>
+
+
+
+<!-- Hex css adapted from https://codepen.io/YerToffeeRoll/pen/npRrVK -->
+
+:::{.column-screen style="height: 70vh;"}
+<div class='content'>
+
+  <!-- Padding -->
+  <section id="hide-small" style="scroll-snap-align: none; height: 5%"></section>
+  
+  
+  <!-- Data Visualization (tall)-->
+  <section id="hide-short">
+  <!-- <div class="container" style="width:250px;margin-left:15%;"> -->
+
+  <!-- <div class='hex'>	 -->
+  <!-- [![](hex-logos/ggdensity.svg){fig-alt="ggdensity"}](https://google.com) -->
+  <!-- </div> -->
+
+  <!-- <div class='hex hex-gap'>	 -->
+  <!-- [![](hex-logos/TDAvis.svg){fig-alt="TDAvis"}](https://google.com) -->
+  <!-- </div>	 -->
+
+  <!-- <div class='hex'>	 -->
+  <!-- [![](hex-logos/ggspatreg.svg){fig-alt="ggspatreg"}](https://google.com) -->
+  <!-- </div> -->
+
+  <!-- </div> -->
+  
+  <div class="container" style="width:400px;margin-left:15%;">
+
+  <div class='hex hex-gap'>	
+  [![](hex-logos/ggdensity.svg){fig-alt="ggdensity"}](https://jamesotto852.github.io/ggdensity/)
+  </div>
+  
+  <div class='hex'>	
+  [![](hex-logos/ggspatreg.svg){fig-alt="ggspatreg"}](https://github.com/jamesotto852/ggspatreg)
+  </div>	
+  
+  <div class='hex'>	
+  [![](hex-logos/TDAvis.svg){fig-alt="TDAvis"}](https://github.com/jamesotto852/TDAvis)
+  </div>
+  
+  <div class='hex hex-gap'>	
+  [![](hex-logos/ggrrr.svg){fig-alt="ggrrr"}](https://github.com/jamesotto852/ggrrr)
+  </div>
+  
+  </div>
+  
+  <div id="hide-large" style = "margin-top:10%;">
+  <h2> Data Visualization </h2>
+  </div>
+  
+  <!-- <div id="hide-small" style = "margin-top:2%;margin-left:13%;margin-right:5%"> -->
+  <div id="hide-small" style = "margin-top:2%;margin-left:5%;margin-right:5%">
+  <h2> Data Visualization </h2>
+  - [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Improved density visualization in **ggplot2**
+  - [**TDAvis**](https://github.com/jamesotto852/TDAvis): Visualizing topological data analysis tools
+  - [**ggspatreg**](https://github.com/jamesotto852/ggspatreg): Plotting spatial regression model predictions
+  - [**ggrrr**](https://github.com/jamesotto852/ggrrr): Functional programming with **ggplot2** and **patchwork**
+  
+  </div>
+  
+  
+  </section>
+    
+  <!-- Data Visualization (short) -->
+  <section id="hide-tall"  style="scroll-snap-align: none;height:200px;">
+  
+  <div style = "margin-top:4%;margin-left:13%;margin-right:5%;">
+  
+  <h2> Data Visualization </h2>
+  - [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Improved density visualization in **ggplot2**
+  - [**TDAvis**](https://github.com/jamesotto852/TDAvis): Visualizing topological data analysis tools
+  - [**ggspatreg**](https://github.com/jamesotto852/ggspatreg): Plotting spatial regression model predictions
+  - [**ggrrr**](https://github.com/jamesotto852/ggrrr): Functional programming with **ggplot2** and **patchwork**
+  
+  </div>
+  
+  </section>
+  
+  <!-- Padding -->
+  <section id="hide-large" style="scroll-snap-align: none; height: 15%"></section>
+  
+  
+  <!-- Documentation (tall) -->
+  <section id="hide-short"  style="height:35vh; flex-direction:row-reverse;">
+  
+  <div class="container" style="width:250px;margin-right:15%;">
+
+  <div class='hex hex-gap'>	
+  [![](hex-logos/tldr.svg){fig-alt="tldr"}](https://github.com/jamesotto852/tldr)
+  </div>	
+  
+  <div class='hex'>	
+  [![](hex-logos/tldrDocs.svg){fig-alt="tldrDocs"}](https://github.com/jamesotto852/tldrDocs)
+  </div>
+  
+  </div>
+  
+  <div id="hide-large" style = "margin-top:10%;">
+  <h2> Documentation </h2>
+  </div>
+  
+  <div id="hide-small" class = "container" style = "margin-top:2%;margin-left:5%;margin-right:20%">
+  
+  <h2> Documentation </h2>
+  - [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console
+  - [**tldrDocs**](https://github.com/jamesotto852/tldrDocs): **tldr** documentation for base R objects
+  
+  </div>
+  
+  </section>
+  
+  <!-- Documentation (short) -->
+  <section id="hide-tall"  style="scroll-snap-align: none;height:180px;">
+  
+  <div style = "margin-top:4%;margin-left:13%;margin-right:5%;">
+  
+  <h2> Documentation </h2>
+  - [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console
+  - [**tldrDocs**](https://github.com/jamesotto852/tldrDocs): **tldr** documentation for base R objects
+  
+  </div>
+  
+  
+  </section>
+  
+  
+  <!-- Padding -->
+  <section id="hide-large" style="scroll-snap-align: none; height: 10%"></section>
+  
+  
+  <!-- Misc (tall) -->
+  <section id="hide-short">
+  <div class="container" style="width:250px;margin-left:15%;">
+
+  <div class='hex'>	
+  [![](hex-logos/goodreadR.svg){fig-alt="goodreadR"}](https://github.com/jamesotto852/goodreadR)
+  </div>
+  
+  <div class='hex hex-gap'>	
+  [![](hex-logos/fRiend.svg){fig-alt="fRiend"}](https://github.com/jamesotto852/fRiend)
+  </div>	
+  
+  
+  </div>
+  
+  <div id="hide-large" style = "margin-top:10%;">
+  <h2> Miscellaneous </h2>
+  </div>
+  
+  <div id="hide-small" style = "margin-top:4%;margin-left:13%;margin-right:5%;">
+  <h2> Miscellaneous </h2>
+  - [**goodreadR**](https://github.com/jamesotto852/goodreadR): Scrape user data from [goodreads.com](https://goodreads.com/){.link-dim}
+  - [**fRiend**](https://github.com/jamesotto852/fRiend): An octopus greeting in each new R session
+
+  </div>
+  </section>
+  
+  <!-- Misc. (short) -->
+  <section id="hide-tall"  style="scroll-snap-align: none;height:180px;">
+  
+  <div style = "margin-top:4%;margin-left:13%;margin-right:5%;">
+  
+  <h2> Miscellaneous </h2>
+  - **goodreadR**: Scrape user-data from goodreads.com
+  - [**fRiend**](: Octopus
+  
+  </div>
+  </section>
+  
+  
+  <!-- Padding -->
+  <section style="scroll-snap-align: none; height: 40%"></section>
+  
+</div>
+:::
