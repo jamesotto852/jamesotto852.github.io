@@ -14,10 +14,13 @@ about:
 
 I am a doctoral candidate studying Statistics at Baylor University. I have an MS in Statistics as well as undergraduate degrees in Statistics, Mathematics, Economics, and Management of Information Systems.
 
-I am interested in the studies of computational statistics and density estimation, and enjoy exploring the connections between theoretical mathematics and statistics (especially applications of functional analysis). When not working on research, I'm probably bouldering, practicing aerial silks, or reading.
+I am very interested in the computational statistics and have developed [several R packages](packages.qmd).
+I also enjoy exploring the connections between theoretical mathematics and statistics---especially applications of algebraic topology and functional analysis.
 
-Here are a few of my current projects that I'm excited to be working on:
+When not working on research, I'm probably practicing aerial silks, bouldering, or reading.
 
--   [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Interpretable visualizations of bivariate density estimates
--   [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console
--   [An Interactive History of Magic the Gathering](https://jamesotto.app/MTG-History)
+<!-- Here are a few of my current projects that I'm excited to be working on: -->
+
+<!-- -   [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Interpretable visualizations of bivariate density estimates -->
+<!-- -   [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console -->
+<!-- -   [An Interactive History of Magic the Gathering](https://jamesotto.app/MTG-History) -->

@@ -1,3 +1,30 @@
 ---
 toc: false
 ---
+
+<style>
+
+a {
+  color: #000294;
+  text-decoration: none;
+}
+
+body {
+  background: white;
+  color: black;
+}
+
+</style>
+
+## [An Interactive History of Magic: The Gathering](https://jamesotto.app/MTG-History/){target="_blank" rel="noopener noreferrer"}
+
+Explore the history of the most popular Magic: the Gathering formats.
+An interactive timeline cataloging major events such as card printings and bannings,
+accompanied with a plot displaying the monthly metagame breakdown.
+Includes tournament data beginning October 2010 onwards, from [MTGTOP8](https://MTGTOP8.com).
+
+- [jamesotto.app/MTG-History](https://jamesotto.app/MTG-History/){target="_blank" rel="noopener noreferrer"}
+
+:::{.column-screen-inset}
+![](shiny-images/An-Interactive-History-of-MTG.png){fig-align="center"}
+:::

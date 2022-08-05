@@ -29,6 +29,8 @@ website:
         - text: "Shiny Apps"
           file: shiny.qmd
   page-footer: "Copyright 2022, James Otto" 
+  resources: 
+    - "slides/*.pdf"
 
 format:
   html:
@@ -36,9 +38,8 @@ format:
     theme:
       light: [flatly, custom-light.scss]
       dark: [darkly, custom-dark.scss]
-    css: styles.css
     toc: true
     sidebar: false
 
-editor: visual
+editor: source
 
