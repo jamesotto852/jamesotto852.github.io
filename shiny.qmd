@@ -16,15 +16,44 @@ body {
 
 </style>
 
+:::{.column-page-left}
 ## [An Interactive History of Magic: The Gathering](https://jamesotto.app/MTG-History/){target="_blank" rel="noopener noreferrer"}
 
 Explore the history of the most popular Magic: the Gathering formats.
 An interactive timeline cataloging major events such as card printings and bannings,
 accompanied with a plot displaying the monthly metagame breakdown.
-Includes tournament data beginning October 2010 onwards, from [MTGTOP8](https://MTGTOP8.com).
+Includes tournament data from October 2010 onwards, from [MTGTOP8](https://MTGTOP8.com){target="_blank" rel="noopener noreferrer"}.
 
 - [jamesotto.app/MTG-History](https://jamesotto.app/MTG-History/){target="_blank" rel="noopener noreferrer"}
+:::
 
 :::{.column-screen-inset}
 ![](shiny-images/An-Interactive-History-of-MTG.png){fig-align="center"}
 :::
+
+
+
+:::{.column-page-left}
+## [Goodreads Dashboard](https://jamesotto.app/Goodreads-Dashboard/){target="_blank" rel="noopener noreferrer"}
+
+Explore data from any [goodreads.com](https://goodreads.com){target="_blank" rel="noopener noreferrer"} user profile.
+See which of the the winners and nominees of various awards you have read (Hugo, Nebula, etc.). 
+Visual summaries of data coming soon!
+
+- [jamesotto.app/Goodreads-Dashboard](https://jamesotto.app/Goodreads-Dashboard/){target="_blank" rel="noopener noreferrer"}
+- Data scraped with [**goodreadR**](https://github.com/jamesotto852/goodreadR){target="_blank" rel="noopener noreferrer"}
+:::
+
+:::{.column-screen-inset}
+<!-- ![](shiny-images/Goodreads-Dashboard-Detailed-Data.png){fig-align="center"} -->
+![](shiny-images/Goodreads-Dashboard-Hugo.png){fig-align="center"}
+:::
+
+
+
+
+
+
+
+
+
