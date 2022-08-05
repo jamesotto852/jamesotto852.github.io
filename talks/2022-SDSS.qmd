@@ -8,8 +8,9 @@ date: "2022-06-08"
 image: "images/2022-SDSS.png"
 ---
 
-This presentation was not recorded.
+<!-- This presentation was not recorded. -->
 
 -   Event: [SDSS 2022](https://ww2.amstat.org/meetings/sdss/2022/onlineprogram/AbstractDetails.cfm?AbstractID=310116){target="_blank" rel="noopener noreferrer"}
+-   [Slides](slides/2022-SDSS.pdf){target="_blank" rel="noopener noreferrer"}
 
--   [Slides](slides/2022-useR.pdf){target="_blank" rel="noopener noreferrer"}
+<object data= "slides/2022-SDSS.pdf#view=FitV&toolbar=0" width="100%" height="500">  </object>
