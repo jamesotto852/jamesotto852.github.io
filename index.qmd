@@ -14,7 +14,7 @@ about:
 
 I am a doctoral candidate studying Statistics at Baylor University. I have an MS in Statistics as well as undergraduate degrees in Statistics, Mathematics, Economics, and Management of Information Systems.
 
-I am very interested in the computational statistics and have developed [several R packages](packages.qmd).
+I am very interested in computational statistics and have developed [several R packages](packages.qmd).
 I also enjoy exploring the connections between theoretical mathematics and statistics---especially applications of algebraic topology and functional analysis.
 
 When not working on research, I'm probably practicing aerial silks, bouldering, or reading.

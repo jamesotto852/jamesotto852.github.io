@@ -158,7 +158,7 @@ body .content section {
   <h2> Data Visualization </h2>
   <ul>
   <li class = "pkg"> [**ggdensity**](https://jamesotto852.github.io/ggdensity/){target="_blank" rel="noopener noreferrer"}: Improved density visualization in **ggplot2**  </li>
-  <li class = "pkg"> [**TDAvis**](https://github.com/jamesotto852/TDAvis){target="_blank" rel="noopener noreferrer"}: Visualizing topological data analysis tools </li>
+  <li class = "pkg"> [**TDAvis**](https://github.com/jamesotto852/TDAvis){target="_blank" rel="noopener noreferrer"}: Visualizing tools from topological data analysis </li>
   <li class = "pkg"> [**ggspatreg**](https://github.com/jamesotto852/ggspatreg){target="_blank" rel="noopener noreferrer"}: Plotting spatial regression model predictions </li>
   <li class = "pkg"> [**ggrrr**](https://github.com/jamesotto852/ggrrr){target="_blank" rel="noopener noreferrer"}: Functional programming with **ggplot2** and **patchwork** </li>
   </ul>
@@ -250,7 +250,7 @@ body .content section {
   
   <ul>
   <li class = "pkg"> [**ggdensity**](https://jamesotto852.github.io/ggdensity/){target="_blank" rel="noopener noreferrer"}: Improved density visualization in **ggplot2**  </li>
-  <li class = "pkg"> [**TDAvis**](https://github.com/jamesotto852/TDAvis){target="_blank" rel="noopener noreferrer"}: Visualizing topological data analysis tools </li>
+  <li class = "pkg"> [**TDAvis**](https://github.com/jamesotto852/TDAvis){target="_blank" rel="noopener noreferrer"}: Visualizing tools from topological data analysis </li>
   <li class = "pkg"> [**ggspatreg**](https://github.com/jamesotto852/ggspatreg){target="_blank" rel="noopener noreferrer"}: Plotting spatial regression model predictions </li>
   <li class = "pkg"> [**ggrrr**](https://github.com/jamesotto852/ggrrr){target="_blank" rel="noopener noreferrer"}: Functional programming with **ggplot2** and **patchwork** </li>
   </ul>
