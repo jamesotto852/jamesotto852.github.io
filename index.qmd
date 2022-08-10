@@ -10,6 +10,8 @@ about:
     - icon: github
       text: Github
       href: https://github.com/jamesotto852
+resources: 
+  - "James-Otto-Resume.pdf"
 ---
 
 I am a doctoral candidate studying Statistics at Baylor University. I have an MS in Statistics as well as undergraduate degrees in Statistics, Mathematics, Economics, and Management of Information Systems.
