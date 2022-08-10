@@ -41,6 +41,9 @@ format:
       dark: [darkly, custom-dark.scss]
     toc: true
     sidebar: false
+    
+execute: 
+  freeze: auto
 
 editor: source
 
