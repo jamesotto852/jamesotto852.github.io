@@ -2,7 +2,7 @@
 title: "Understanding base documentation functions"
 author: "James Otto"
 date: "1/24/2022"
-image: images/Understanding-base-documentation-functions.png
+image: Understanding-base-documentation-functions.png
 output: 
   html:
     highlight: tango

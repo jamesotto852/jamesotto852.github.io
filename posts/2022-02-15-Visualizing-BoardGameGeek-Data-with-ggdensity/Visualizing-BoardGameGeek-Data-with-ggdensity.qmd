@@ -2,7 +2,7 @@
 title: "Visualizing BoardGameGeek data with **ggdensity**"
 author: "James Otto"
 date: "2/15/2022"
-image: images/bgg_ggdensity.png
+image: bgg_ggdensity.png
 format: 
    html:
      df-print: kable
