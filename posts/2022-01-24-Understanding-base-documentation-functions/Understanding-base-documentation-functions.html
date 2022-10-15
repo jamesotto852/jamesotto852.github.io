@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.649">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="James Otto">
+<meta name="dcterms.date" content="2022-01-24">
+
+<title>James Otto - Understanding base documentation functions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">James Otto</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-portfolio" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-portfolio">    
+        <li>
+    <a class="dropdown-item" href="../../packages.html">
+ <span class="dropdown-text">R Packages</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../shiny.html">
+ <span class="dropdown-text">Shiny Apps</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks.html">Talks</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">Blog</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jamesotto852"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/jamesotto852"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#how-they-work" id="toc-how-they-work" class="nav-link" data-scroll-target="#how-they-work">How they “work”</a></li>
+  <li><a href="#how-they-work-the-nitty-gritty" id="toc-how-they-work-the-nitty-gritty" class="nav-link" data-scroll-target="#how-they-work-the-nitty-gritty">How they work: the nitty-gritty</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><code>?</code></a></li>
+  <li><a href="#help" id="toc-help" class="nav-link" data-scroll-target="#help"><code>help()</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Understanding base documentation functions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>James Otto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 24, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<!-- I am working on a <a href="https://github.com/jamesotto852/tldr">project</a> dealing with documentation in R -->
+<p>I am working on a project dealing with documentation in R and recently did a deep-dive into how <code>?</code> and <code>help()</code> work. This post summarizes what I’ve learned about these functions, first briefly discussing how they “work” in a general sense, then going through their implementations line-by-line to understand the functions at a low-level.</p>
+</section>
+<section id="how-they-work" class="level2">
+<h2 class="anchored" data-anchor-id="how-they-work">How they “work”</h2>
+<p>The <code>?</code> operator is just a convenience function, allowing users to retrieve documentation on objects specified in a variety of ways. Below I’ve included a few examples which all do the same thing, showcasing how flexible <code>?</code> is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>?anova</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?<span class="fu">anova</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>?<span class="fu">anova</span>(<span class="fu">lm</span>(speed <span class="sc">~</span> dist, cars))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>?<span class="fu">anova</span>(<span class="fu">stop</span>())</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>?<span class="st">"anova"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>?stats<span class="sc">::</span>anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It achieves this flexibility by using functions like <code>substitute()</code> and <code>eval()</code> to parse its input, eventually leading to a call to <code>help()</code>, <code>help.search()</code>, <code>.helpForCall()</code>, or <code>.tryHelp()</code>.</p>
+<p>These are all very similar, and it is sufficient to look into the <code>help()</code> function to understand what is going on. The main way <code>help()</code> works is by using the functions <code>loadedNamespaces()</code>, <code>find.package()</code>, and <code>utils:::index.search()</code> to find the relevant package files and documentation. Again <code>help()</code> has been implemented to be very flexible, accepting arguments in a variety of forms.</p>
+</section>
+<section id="how-they-work-the-nitty-gritty" class="level2">
+<h2 class="anchored" data-anchor-id="how-they-work-the-nitty-gritty">How they work: the nitty-gritty</h2>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section"><code>?</code></h3>
+<p>First, let’s look at the definition of <code>?</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">function</span> (e1, e2) </span>
+<span id="cb3-2"><a href="#cb3-2"></a>{</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="cf">if</span> (<span class="fu">missing</span>(e2)) {</span>
+<span id="cb3-4"><a href="#cb3-4"></a>        type <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>        topicExpr <span class="ot">&lt;-</span> <span class="fu">substitute</span>(e1)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    }</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="cf">else</span> {</span>
+<span id="cb3-8"><a href="#cb3-8"></a>        type <span class="ot">&lt;-</span> <span class="fu">substitute</span>(e1)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>        topicExpr <span class="ot">&lt;-</span> <span class="fu">substitute</span>(e2)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    }</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    search <span class="ot">&lt;-</span> (<span class="fu">is.call</span>(topicExpr) <span class="sc">&amp;&amp;</span> topicExpr[[1L]] <span class="sc">==</span> <span class="st">"?"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="cf">if</span> (search) {</span>
+<span id="cb3-13"><a href="#cb3-13"></a>        topicExpr <span class="ot">&lt;-</span> topicExpr[[2L]]</span>
+<span id="cb3-14"><a href="#cb3-14"></a>        <span class="cf">if</span> (<span class="fu">is.call</span>(te <span class="ot">&lt;-</span> topicExpr) <span class="sc">&amp;&amp;</span> te[[1L]] <span class="sc">==</span> <span class="st">"?"</span> <span class="sc">&amp;&amp;</span> <span class="fu">is.call</span>(te <span class="ot">&lt;-</span> topicExpr[[2L]]) <span class="sc">&amp;&amp;</span> </span>
+<span id="cb3-15"><a href="#cb3-15"></a>            te[[1L]] <span class="sc">==</span> <span class="st">"?"</span>) {</span>
+<span id="cb3-16"><a href="#cb3-16"></a>            <span class="fu">cat</span>(<span class="st">"Contacting Delphi..."</span>)</span>
+<span id="cb3-17"><a href="#cb3-17"></a>            <span class="fu">flush.console</span>()</span>
+<span id="cb3-18"><a href="#cb3-18"></a>            <span class="fu">Sys.sleep</span>(<span class="dv">2</span> <span class="sc">+</span> stats<span class="sc">::</span><span class="fu">rpois</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb3-19"><a href="#cb3-19"></a>            <span class="fu">cat</span>(<span class="st">"the oracle is unavailable.</span><span class="sc">\n</span><span class="st">We apologize for any inconvenience.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20"></a>            <span class="fu">return</span>(<span class="fu">invisible</span>())</span>
+<span id="cb3-21"><a href="#cb3-21"></a>        }</span>
+<span id="cb3-22"><a href="#cb3-22"></a>    }</span>
+<span id="cb3-23"><a href="#cb3-23"></a>    <span class="cf">if</span> (<span class="fu">is.call</span>(topicExpr) <span class="sc">&amp;&amp;</span> (topicExpr[[1L]] <span class="sc">==</span> <span class="st">"::"</span> <span class="sc">||</span> topicExpr[[1L]] <span class="sc">==</span> </span>
+<span id="cb3-24"><a href="#cb3-24"></a>        <span class="st">":::"</span>)) {</span>
+<span id="cb3-25"><a href="#cb3-25"></a>        package <span class="ot">&lt;-</span> <span class="fu">as.character</span>(topicExpr[[2L]])</span>
+<span id="cb3-26"><a href="#cb3-26"></a>        topicExpr <span class="ot">&lt;-</span> topicExpr[[3L]]</span>
+<span id="cb3-27"><a href="#cb3-27"></a>    }</span>
+<span id="cb3-28"><a href="#cb3-28"></a>    <span class="cf">else</span> package <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a>    <span class="cf">if</span> (search) {</span>
+<span id="cb3-30"><a href="#cb3-30"></a>        <span class="cf">if</span> (<span class="fu">is.null</span>(type)) </span>
+<span id="cb3-31"><a href="#cb3-31"></a>            <span class="fu">return</span>(<span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">help.search</span>(TOPIC, <span class="at">package =</span> PACKAGE), </span>
+<span id="cb3-32"><a href="#cb3-32"></a>                <span class="fu">list</span>(<span class="at">TOPIC =</span> <span class="fu">as.character</span>(topicExpr), <span class="at">PACKAGE =</span> package))))</span>
+<span id="cb3-33"><a href="#cb3-33"></a>        <span class="cf">else</span> <span class="fu">return</span>(<span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">help.search</span>(TOPIC, <span class="at">fields =</span> FIELD, </span>
+<span id="cb3-34"><a href="#cb3-34"></a>            <span class="at">package =</span> PACKAGE), <span class="fu">list</span>(<span class="at">TOPIC =</span> <span class="fu">as.character</span>(topicExpr), </span>
+<span id="cb3-35"><a href="#cb3-35"></a>            <span class="at">FIELD =</span> <span class="fu">as.character</span>(type), <span class="at">PACKAGE =</span> package))))</span>
+<span id="cb3-36"><a href="#cb3-36"></a>    }</span>
+<span id="cb3-37"><a href="#cb3-37"></a>    <span class="cf">else</span> {</span>
+<span id="cb3-38"><a href="#cb3-38"></a>        <span class="cf">if</span> (<span class="fu">is.null</span>(type)) {</span>
+<span id="cb3-39"><a href="#cb3-39"></a>            <span class="cf">if</span> (<span class="fu">is.call</span>(topicExpr)) </span>
+<span id="cb3-40"><a href="#cb3-40"></a>                <span class="fu">return</span>(<span class="fu">.helpForCall</span>(topicExpr, <span class="fu">parent.frame</span>()))</span>
+<span id="cb3-41"><a href="#cb3-41"></a>            topic <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.name</span>(topicExpr)) </span>
+<span id="cb3-42"><a href="#cb3-42"></a>                <span class="fu">as.character</span>(topicExpr)</span>
+<span id="cb3-43"><a href="#cb3-43"></a>            <span class="cf">else</span> e1</span>
+<span id="cb3-44"><a href="#cb3-44"></a>            <span class="fu">return</span>(<span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">help</span>(TOPIC, <span class="at">package =</span> PACKAGE), </span>
+<span id="cb3-45"><a href="#cb3-45"></a>                <span class="fu">list</span>(<span class="at">TOPIC =</span> topic, <span class="at">PACKAGE =</span> package))))</span>
+<span id="cb3-46"><a href="#cb3-46"></a>        }</span>
+<span id="cb3-47"><a href="#cb3-47"></a>        <span class="cf">else</span> {</span>
+<span id="cb3-48"><a href="#cb3-48"></a>            type <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.name</span>(type)) </span>
+<span id="cb3-49"><a href="#cb3-49"></a>                <span class="fu">as.character</span>(type)</span>
+<span id="cb3-50"><a href="#cb3-50"></a>            <span class="cf">else</span> e1</span>
+<span id="cb3-51"><a href="#cb3-51"></a>            topic <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.name</span>(topicExpr)) </span>
+<span id="cb3-52"><a href="#cb3-52"></a>                <span class="fu">as.character</span>(topicExpr)</span>
+<span id="cb3-53"><a href="#cb3-53"></a>            <span class="cf">else</span> {</span>
+<span id="cb3-54"><a href="#cb3-54"></a>                <span class="cf">if</span> (<span class="fu">is.call</span>(topicExpr) <span class="sc">&amp;&amp;</span> <span class="fu">identical</span>(type, <span class="st">"method"</span>)) </span>
+<span id="cb3-55"><a href="#cb3-55"></a>                  <span class="fu">return</span>(<span class="fu">.helpForCall</span>(topicExpr, <span class="fu">parent.frame</span>(), </span>
+<span id="cb3-56"><a href="#cb3-56"></a>                    <span class="cn">FALSE</span>))</span>
+<span id="cb3-57"><a href="#cb3-57"></a>                e2</span>
+<span id="cb3-58"><a href="#cb3-58"></a>            }</span>
+<span id="cb3-59"><a href="#cb3-59"></a>            <span class="cf">if</span> (type <span class="sc">==</span> <span class="st">"package"</span>) </span>
+<span id="cb3-60"><a href="#cb3-60"></a>                package <span class="ot">&lt;-</span> topic</span>
+<span id="cb3-61"><a href="#cb3-61"></a>            h <span class="ot">&lt;-</span> <span class="fu">.tryHelp</span>(<span class="fu">topicName</span>(type, topic), <span class="at">package =</span> package)</span>
+<span id="cb3-62"><a href="#cb3-62"></a>            <span class="cf">if</span> (<span class="fu">is.null</span>(h)) {</span>
+<span id="cb3-63"><a href="#cb3-63"></a>                <span class="cf">if</span> (<span class="fu">is.language</span>(topicExpr)) </span>
+<span id="cb3-64"><a href="#cb3-64"></a>                  topicExpr <span class="ot">&lt;-</span> <span class="fu">deparse</span>(topicExpr)</span>
+<span id="cb3-65"><a href="#cb3-65"></a>                <span class="fu">stop</span>(<span class="fu">gettextf</span>(<span class="st">"no documentation of type %s and topic %s (or error in processing help)"</span>, </span>
+<span id="cb3-66"><a href="#cb3-66"></a>                  <span class="fu">sQuote</span>(type), <span class="fu">sQuote</span>(topicExpr)), <span class="at">domain =</span> <span class="cn">NA</span>)</span>
+<span id="cb3-67"><a href="#cb3-67"></a>            }</span>
+<span id="cb3-68"><a href="#cb3-68"></a>            h</span>
+<span id="cb3-69"><a href="#cb3-69"></a>        }</span>
+<span id="cb3-70"><a href="#cb3-70"></a>    }</span>
+<span id="cb3-71"><a href="#cb3-71"></a>}</span>
+<span id="cb3-72"><a href="#cb3-72"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x55cf73a1f258</span><span class="sc">&gt;</span></span>
+<span id="cb3-73"><a href="#cb3-73"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>utils<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>That’s a big wall of code. We’re going to go through the definition in chunks to better understand what is going on.</p>
+<hr>
+<p>Immediately, there’s something I didn’t know before: <code>?</code> is a function of two arguments! After reading through the documentation, it looks like the optional second argument, <code>e2</code>, allows for documentation of S4 methods. <!-- For use-cases relevant to `tldr()` (at least at present), `e2` would never be specified, and the `if (missing(e2))` condition will always evaluate to `TRUE`. --> For most use-cases, <code>e2</code> will never be specified and the <code>if (missing(e2))</code> condition will always evaluate to <code>TRUE</code>. This means <code>type</code> will almost always be <code>NULL</code>, and <code>topicExpr</code> will always be <code>e1</code> (the only argument supplied to <code>?</code>).</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb4" data-startfrom="1"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="cf">function</span> (e1, e2)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>{</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="cf">if</span> (<span class="fu">missing</span>(e2)) {</span>
+<span id="cb4-4"><a href="#cb4-4"></a>        type <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>        topicExpr <span class="ot">&lt;-</span> <span class="fu">substitute</span>(e1)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    }</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="cf">else</span> {</span>
+<span id="cb4-8"><a href="#cb4-8"></a>        type <span class="ot">&lt;-</span> <span class="fu">substitute</span>(e1)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>        topicExpr <span class="ot">&lt;-</span> <span class="fu">substitute</span>(e2)</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Above, note the use of <code>substitute()</code>. <a href="https://adv-r.hadley.nz/quasiquotation.html?q=substitute#substitution">Advanced R</a> covers how <code>substitute()</code> is used for quoting. This is exactly what’s going on here—it is being used to capture the unevaluated argument, <code>e1</code>, assigning it to the variable <code>topicExpr</code> (technically, <code>substitute()</code> returns a “parse tree”). The rest of the code is going to deal with picking apart <code>topicExpr</code> to determine what documentation to serve up.</p>
+<hr>
+<p>Next up, we’re defining a Boolean variable: <code>search</code>:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb5" data-startfrom="11"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 10;"><span id="cb5-11"><a href="#cb5-11"></a>    search <span class="ot">&lt;-</span> (<span class="fu">is.call</span>(topicExpr) <span class="sc">&amp;&amp;</span> topicExpr[[1L]] <span class="sc">==</span> <span class="st">"?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>See that <code>search</code> is <code>TRUE</code> whenever 1.) <code>topicExpr</code> is an unevaluated function call and 2.) the first element of the parse tree returned by <code>substitute()</code> is the function <code>?</code>. Why does this matter? It turns out, <code>??</code> is <strong>not</strong> a function— it is the composition of two <code>?</code> operators! For example: when you run <code>??tibble</code> you are actually executing `<code>?`(?tibble)</code>.</p>
+<p>So, <code>search</code> is <code>TRUE</code> when the double question mark has been used. This makes sense, as <code>??</code> is used for a more general search of the documentation (using the <code>help.search()</code> function, as we’ll see later).</p>
+<hr>
+<p>Next up is an Easter Egg. Yup, an Easter Egg. But first, if <code>search</code> is <code>TRUE</code>, we remove the additional <code>?</code> function (the first element of <code>topicExpr</code>) on line 13:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb6" data-startfrom="12"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 11;"><span id="cb6-12"><a href="#cb6-12"></a>    <span class="cf">if</span> (search) {</span>
+<span id="cb6-13"><a href="#cb6-13"></a>        topicExpr <span class="ot">&lt;-</span> topicExpr[[2L]]</span>
+<span id="cb6-14"><a href="#cb6-14"></a>        <span class="cf">if</span> (<span class="fu">is.call</span>(te <span class="ot">&lt;-</span> topicExpr) <span class="sc">&amp;&amp;</span> te[[1L]] <span class="sc">==</span> <span class="st">"?"</span> <span class="sc">&amp;&amp;</span> <span class="fu">is.call</span>(te <span class="ot">&lt;-</span> topicExpr[[2L]]) <span class="sc">&amp;&amp;</span> </span>
+<span id="cb6-15"><a href="#cb6-15"></a>            te[[1L]] <span class="sc">==</span> <span class="st">"?"</span>) {</span>
+<span id="cb6-16"><a href="#cb6-16"></a>            <span class="fu">cat</span>(<span class="st">"Contacting Delphi..."</span>)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>            <span class="fu">flush.console</span>()</span>
+<span id="cb6-18"><a href="#cb6-18"></a>            <span class="fu">Sys.sleep</span>(<span class="dv">2</span> <span class="sc">+</span> stats<span class="sc">::</span><span class="fu">rpois</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb6-19"><a href="#cb6-19"></a>            <span class="fu">cat</span>(<span class="st">"the oracle is unavailable.</span><span class="sc">\n</span><span class="st">We apologize for any inconvenience.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20"></a>            <span class="fu">return</span>(<span class="fu">invisible</span>())</span>
+<span id="cb6-21"><a href="#cb6-21"></a>        }</span>
+<span id="cb6-22"><a href="#cb6-22"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Now, the Easter Egg. The conditional on lines 14-15 evaluates to <code>TRUE</code> if there were four nested <code>?</code> functions. In this case, a message about the Oracle of Delphi is printed at the console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>????sum</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Contacting Delphi...the oracle is unavailable.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## We apologize for any inconvenience.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p>Moving on, we now deal with the double and triple colon operators (<code>::</code> and <code>:::</code>):</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb8" data-startfrom="23"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 22;"><span id="cb8-23"><a href="#cb8-23"></a>    <span class="cf">if</span> (<span class="fu">is.call</span>(topicExpr) <span class="sc">&amp;&amp;</span> (topicExpr[[1L]] <span class="sc">==</span> <span class="st">"::"</span> <span class="sc">||</span> topicExpr[[1L]] <span class="sc">==</span> </span>
+<span id="cb8-24"><a href="#cb8-24"></a>        <span class="st">":::"</span>)) {</span>
+<span id="cb8-25"><a href="#cb8-25"></a>        package <span class="ot">&lt;-</span> <span class="fu">as.character</span>(topicExpr[[2L]])</span>
+<span id="cb8-26"><a href="#cb8-26"></a>        topicExpr <span class="ot">&lt;-</span> topicExpr[[3L]]</span>
+<span id="cb8-27"><a href="#cb8-27"></a>    }</span>
+<span id="cb8-28"><a href="#cb8-28"></a>    <span class="cf">else</span> package <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>In the presence of these operators, we assign the relavent package to the <code>package</code> variable and the function to the <code>topicExpr</code> variable. Below, we have included an example of how this works:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>topicExpr <span class="ot">&lt;-</span> <span class="fu">substitute</span>(ggplot2<span class="sc">::</span>geom_point)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>topicExpr[[<span class="dv">1</span>]]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## `::`</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>topicExpr[[<span class="dv">2</span>]]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">## ggplot2</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>topicExpr[[<span class="dv">3</span>]]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="do">## geom_point</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If there is no colon operator designating the desired package, <code>package</code> is set to <code>NULL</code> on line 28.</p>
+<hr>
+<p>Finally, it’s time to actually access the documentation. First, the case of <code>search</code> being <code>TRUE</code> (<code>??</code>) is taken care of:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb10" data-startfrom="29"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 28;"><span id="cb10-29"><a href="#cb10-29"></a>    <span class="cf">if</span> (search) {</span>
+<span id="cb10-30"><a href="#cb10-30"></a>        <span class="cf">if</span> (<span class="fu">is.null</span>(type)) </span>
+<span id="cb10-31"><a href="#cb10-31"></a>            <span class="fu">return</span>(<span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">help.search</span>(TOPIC, <span class="at">package =</span> PACKAGE), </span>
+<span id="cb10-32"><a href="#cb10-32"></a>                <span class="fu">list</span>(<span class="at">TOPIC =</span> <span class="fu">as.character</span>(topicExpr), <span class="at">PACKAGE =</span> package))))</span>
+<span id="cb10-33"><a href="#cb10-33"></a>        <span class="cf">else</span> <span class="fu">return</span>(<span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">help.search</span>(TOPIC, <span class="at">fields =</span> FIELD, </span>
+<span id="cb10-34"><a href="#cb10-34"></a>            <span class="at">package =</span> PACKAGE), <span class="fu">list</span>(<span class="at">TOPIC =</span> <span class="fu">as.character</span>(topicExpr), </span>
+<span id="cb10-35"><a href="#cb10-35"></a>            <span class="at">FIELD =</span> <span class="fu">as.character</span>(type), <span class="at">PACKAGE =</span> package))))</span>
+<span id="cb10-36"><a href="#cb10-36"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>We see that the function searching through the documentation is <code>help.search()</code> – the variables we have specified thusfar are provided as arguments and we’re done.</p>
+<hr>
+<p>Now we take care of the case where <code>search</code> is <code>FALSE</code> and <code>type</code> is <code>NULL</code>. Remember, <code>type</code> is <code>NULL</code> whenever the argument <code>e2</code> is not supplied— <!-- this is the only use case we care about for `tldr()`. --> the most common use-case.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb11" data-startfrom="37"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 36;"><span id="cb11-37"><a href="#cb11-37"></a>    <span class="cf">else</span> {</span>
+<span id="cb11-38"><a href="#cb11-38"></a>        <span class="cf">if</span> (<span class="fu">is.null</span>(type)) {</span>
+<span id="cb11-39"><a href="#cb11-39"></a>            <span class="cf">if</span> (<span class="fu">is.call</span>(topicExpr)) </span>
+<span id="cb11-40"><a href="#cb11-40"></a>                <span class="fu">return</span>(<span class="fu">.helpForCall</span>(topicExpr, <span class="fu">parent.frame</span>()))</span>
+<span id="cb11-41"><a href="#cb11-41"></a>            topic <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.name</span>(topicExpr)) </span>
+<span id="cb11-42"><a href="#cb11-42"></a>                <span class="fu">as.character</span>(topicExpr)</span>
+<span id="cb11-43"><a href="#cb11-43"></a>            <span class="cf">else</span> e1</span>
+<span id="cb11-44"><a href="#cb11-44"></a>            <span class="fu">return</span>(<span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">help</span>(TOPIC, <span class="at">package =</span> PACKAGE), </span>
+<span id="cb11-45"><a href="#cb11-45"></a>                <span class="fu">list</span>(<span class="at">TOPIC =</span> topic, <span class="at">PACKAGE =</span> package))))</span>
+<span id="cb11-46"><a href="#cb11-46"></a>        }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>A few interesting things to note. First, we deal with the scenario where <code>topicExpr</code> is a call, in which case the function being used to access documentation is the unexported <code>utils:::.helpforCall()</code>. I haven’t dug through its body, but it looks like this is to allow users to execute code like <code>?sum()</code> (instead of the more typical <code>?sum</code>). But, I’ve noticed that it doesn’t work for everything—for an example run <code>?c()</code> .</p>
+<!-- Starting on line 41, we have the code which is most directly relevant to `tldr()`. -->
+<p>Starting on line 41, we have the main way <code>?</code> leads to documentation. This is how code like <code>?sum</code> is evaluated, via a call to <code>help()</code> on line 44. Notice that <code>substitute()</code> is being used in a slightly different way than before, substituting the values in the “environment” defined on line 45 before <code>eval()</code> is run. (It is used the same way in the previous code chunk, on lines 31 and 33.)</p>
+<hr>
+<p>The rest of the code is just dealing with the case where <code>type</code> and <code>topic</code> was specified by <code>e1</code> and <code>e2</code> arguments, respectively. It’s really just repeating what we’ve seen already, with the small addition of using <code>utils:::.tryHelp()</code> and <code>utils:::topicName()</code> functions.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb12" data-startfrom="47"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 46;"><span id="cb12-47"><a href="#cb12-47"></a>        <span class="cf">else</span> {</span>
+<span id="cb12-48"><a href="#cb12-48"></a>            type <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.name</span>(type)) </span>
+<span id="cb12-49"><a href="#cb12-49"></a>                <span class="fu">as.character</span>(type)</span>
+<span id="cb12-50"><a href="#cb12-50"></a>            <span class="cf">else</span> e1</span>
+<span id="cb12-51"><a href="#cb12-51"></a>            topic <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.name</span>(topicExpr)) </span>
+<span id="cb12-52"><a href="#cb12-52"></a>                <span class="fu">as.character</span>(topicExpr)</span>
+<span id="cb12-53"><a href="#cb12-53"></a>            <span class="cf">else</span> {</span>
+<span id="cb12-54"><a href="#cb12-54"></a>                <span class="cf">if</span> (<span class="fu">is.call</span>(topicExpr) <span class="sc">&amp;&amp;</span> <span class="fu">identical</span>(type, <span class="st">"method"</span>)) </span>
+<span id="cb12-55"><a href="#cb12-55"></a>                  <span class="fu">return</span>(<span class="fu">.helpForCall</span>(topicExpr, <span class="fu">parent.frame</span>(), </span>
+<span id="cb12-56"><a href="#cb12-56"></a>                    <span class="cn">FALSE</span>))</span>
+<span id="cb12-57"><a href="#cb12-57"></a>                e2</span>
+<span id="cb12-58"><a href="#cb12-58"></a>            }</span>
+<span id="cb12-59"><a href="#cb12-59"></a>            <span class="cf">if</span> (type <span class="sc">==</span> <span class="st">"package"</span>) </span>
+<span id="cb12-60"><a href="#cb12-60"></a>                package <span class="ot">&lt;-</span> topic</span>
+<span id="cb12-61"><a href="#cb12-61"></a>            h <span class="ot">&lt;-</span> <span class="fu">.tryHelp</span>(<span class="fu">topicName</span>(type, topic), <span class="at">package =</span> package)</span>
+<span id="cb12-62"><a href="#cb12-62"></a>            <span class="cf">if</span> (<span class="fu">is.null</span>(h)) {</span>
+<span id="cb12-63"><a href="#cb12-63"></a>                <span class="cf">if</span> (<span class="fu">is.language</span>(topicExpr)) </span>
+<span id="cb12-64"><a href="#cb12-64"></a>                  topicExpr <span class="ot">&lt;-</span> <span class="fu">deparse</span>(topicExpr)</span>
+<span id="cb12-65"><a href="#cb12-65"></a>                <span class="fu">stop</span>(<span class="fu">gettextf</span>(<span class="st">"no documentation of type %s and topic %s (or error in processing help)"</span>, </span>
+<span id="cb12-66"><a href="#cb12-66"></a>                  <span class="fu">sQuote</span>(type), <span class="fu">sQuote</span>(topicExpr)), <span class="at">domain =</span> <span class="cn">NA</span>)</span>
+<span id="cb12-67"><a href="#cb12-67"></a>            }</span>
+<span id="cb12-68"><a href="#cb12-68"></a>            h</span>
+<span id="cb12-69"><a href="#cb12-69"></a>        }</span>
+<span id="cb12-70"><a href="#cb12-70"></a>    <span class="er">}</span></span>
+<span id="cb12-71"><a href="#cb12-71"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+<p>So, what have we learned? <code>?</code> is a convenience function wrapping around functions like <code>help()</code> and <code>help.search()</code>. It’s main purpose is to parse the different ways a user might refer to an object (e.g.&nbsp;<code>?ggplot2::geom_point</code>, <code>??knn</code>, <code>?sum()</code>, <code>?sum</code>).</p>
+<!-- To implement `tldr()` in a way similar to `?`, we may want to research more modern methods of quoting (i.e. `expr()`). -->
+</section>
+<section id="help" class="level3">
+<h3 class="anchored" data-anchor-id="help"><code>help()</code></h3>
+<p>Now that we have a good grasp on what’s going on with <code>?</code>, let’s see how <code>help()</code> works. Let’s start by echoing the body of the function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>help</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">function</span> (topic, <span class="at">package =</span> <span class="cn">NULL</span>, <span class="at">lib.loc =</span> <span class="cn">NULL</span>, <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>), </span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="at">try.all.packages =</span> <span class="fu">getOption</span>(<span class="st">"help.try.all.packages"</span>), <span class="at">help_type =</span> <span class="fu">getOption</span>(<span class="st">"help_type"</span>)) </span>
+<span id="cb14-3"><a href="#cb14-3"></a>{</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"text"</span>, <span class="st">"html"</span>, <span class="st">"pdf"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5"></a>    help_type <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">length</span>(help_type)) </span>
+<span id="cb14-6"><a href="#cb14-6"></a>        <span class="st">"text"</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>    <span class="cf">else</span> <span class="fu">match.arg</span>(<span class="fu">tolower</span>(help_type), types)</span>
+<span id="cb14-8"><a href="#cb14-8"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">missing</span>(package)) </span>
+<span id="cb14-9"><a href="#cb14-9"></a>        <span class="cf">if</span> (<span class="fu">is.name</span>(y <span class="ot">&lt;-</span> <span class="fu">substitute</span>(package))) </span>
+<span id="cb14-10"><a href="#cb14-10"></a>            package <span class="ot">&lt;-</span> <span class="fu">as.character</span>(y)</span>
+<span id="cb14-11"><a href="#cb14-11"></a>    <span class="cf">if</span> (<span class="fu">missing</span>(topic)) {</span>
+<span id="cb14-12"><a href="#cb14-12"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(package)) {</span>
+<span id="cb14-13"><a href="#cb14-13"></a>            <span class="cf">if</span> (<span class="fu">interactive</span>() <span class="sc">&amp;&amp;</span> help_type <span class="sc">==</span> <span class="st">"html"</span>) {</span>
+<span id="cb14-14"><a href="#cb14-14"></a>                port <span class="ot">&lt;-</span> tools<span class="sc">::</span><span class="fu">startDynamicHelp</span>(<span class="cn">NA</span>)</span>
+<span id="cb14-15"><a href="#cb14-15"></a>                <span class="cf">if</span> (port <span class="sc">&lt;=</span> 0L) </span>
+<span id="cb14-16"><a href="#cb14-16"></a>                  <span class="fu">return</span>(<span class="fu">library</span>(<span class="at">help =</span> package, <span class="at">lib.loc =</span> lib.loc, </span>
+<span id="cb14-17"><a href="#cb14-17"></a>                    <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb14-18"><a href="#cb14-18"></a>                browser <span class="ot">&lt;-</span> <span class="cf">if</span> (.Platform<span class="sc">$</span>GUI <span class="sc">==</span> <span class="st">"AQUA"</span>) {</span>
+<span id="cb14-19"><a href="#cb14-19"></a>                  <span class="fu">get</span>(<span class="st">"aqua.browser"</span>, <span class="at">envir =</span> <span class="fu">as.environment</span>(<span class="st">"tools:RGUI"</span>))</span>
+<span id="cb14-20"><a href="#cb14-20"></a>                }</span>
+<span id="cb14-21"><a href="#cb14-21"></a>                <span class="cf">else</span> <span class="fu">getOption</span>(<span class="st">"browser"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22"></a>                <span class="fu">browseURL</span>(<span class="fu">paste0</span>(<span class="st">"http://127.0.0.1:"</span>, port, <span class="st">"/library/"</span>, </span>
+<span id="cb14-23"><a href="#cb14-23"></a>                  package, <span class="st">"/html/00Index.html"</span>), browser)</span>
+<span id="cb14-24"><a href="#cb14-24"></a>                <span class="fu">return</span>(<span class="fu">invisible</span>())</span>
+<span id="cb14-25"><a href="#cb14-25"></a>            }</span>
+<span id="cb14-26"><a href="#cb14-26"></a>            <span class="cf">else</span> <span class="fu">return</span>(<span class="fu">library</span>(<span class="at">help =</span> package, <span class="at">lib.loc =</span> lib.loc, </span>
+<span id="cb14-27"><a href="#cb14-27"></a>                <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb14-28"><a href="#cb14-28"></a>        }</span>
+<span id="cb14-29"><a href="#cb14-29"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(lib.loc)) </span>
+<span id="cb14-30"><a href="#cb14-30"></a>            <span class="fu">return</span>(<span class="fu">library</span>(<span class="at">lib.loc =</span> lib.loc))</span>
+<span id="cb14-31"><a href="#cb14-31"></a>        topic <span class="ot">&lt;-</span> <span class="st">"help"</span></span>
+<span id="cb14-32"><a href="#cb14-32"></a>        package <span class="ot">&lt;-</span> <span class="st">"utils"</span></span>
+<span id="cb14-33"><a href="#cb14-33"></a>        lib.loc <span class="ot">&lt;-</span> .Library</span>
+<span id="cb14-34"><a href="#cb14-34"></a>    }</span>
+<span id="cb14-35"><a href="#cb14-35"></a>    ischar <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(<span class="fu">is.character</span>(topic) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(topic) <span class="sc">==</span> </span>
+<span id="cb14-36"><a href="#cb14-36"></a>        1L, <span class="at">error =</span> <span class="cf">function</span>(e) <span class="cn">FALSE</span>)</span>
+<span id="cb14-37"><a href="#cb14-37"></a>    <span class="cf">if</span> (<span class="sc">!</span>ischar) {</span>
+<span id="cb14-38"><a href="#cb14-38"></a>        reserved <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"TRUE"</span>, <span class="st">"FALSE"</span>, <span class="st">"NULL"</span>, <span class="st">"Inf"</span>, <span class="st">"NaN"</span>, </span>
+<span id="cb14-39"><a href="#cb14-39"></a>            <span class="st">"NA"</span>, <span class="st">"NA_integer_"</span>, <span class="st">"NA_real_"</span>, <span class="st">"NA_complex_"</span>, <span class="st">"NA_character_"</span>)</span>
+<span id="cb14-40"><a href="#cb14-40"></a>        stopic <span class="ot">&lt;-</span> <span class="fu">deparse1</span>(<span class="fu">substitute</span>(topic))</span>
+<span id="cb14-41"><a href="#cb14-41"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.name</span>(<span class="fu">substitute</span>(topic)) <span class="sc">&amp;&amp;</span> <span class="sc">!</span>stopic <span class="sc">%in%</span> reserved) </span>
+<span id="cb14-42"><a href="#cb14-42"></a>            <span class="fu">stop</span>(<span class="st">"'topic' should be a name, length-one character vector or reserved word"</span>)</span>
+<span id="cb14-43"><a href="#cb14-43"></a>        topic <span class="ot">&lt;-</span> stopic</span>
+<span id="cb14-44"><a href="#cb14-44"></a>    }</span>
+<span id="cb14-45"><a href="#cb14-45"></a>    paths <span class="ot">&lt;-</span> <span class="fu">index.search</span>(topic, <span class="fu">find.package</span>(<span class="cf">if</span> (<span class="fu">is.null</span>(package)) </span>
+<span id="cb14-46"><a href="#cb14-46"></a>        <span class="fu">loadedNamespaces</span>()</span>
+<span id="cb14-47"><a href="#cb14-47"></a>    <span class="cf">else</span> package, lib.loc, <span class="at">verbose =</span> verbose))</span>
+<span id="cb14-48"><a href="#cb14-48"></a>    try.all.packages <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">length</span>(paths) <span class="sc">&amp;&amp;</span> <span class="fu">is.logical</span>(try.all.packages) <span class="sc">&amp;&amp;</span> </span>
+<span id="cb14-49"><a href="#cb14-49"></a>        <span class="sc">!</span><span class="fu">is.na</span>(try.all.packages) <span class="sc">&amp;&amp;</span> try.all.packages <span class="sc">&amp;&amp;</span> <span class="fu">is.null</span>(package) <span class="sc">&amp;&amp;</span> </span>
+<span id="cb14-50"><a href="#cb14-50"></a>        <span class="fu">is.null</span>(lib.loc)</span>
+<span id="cb14-51"><a href="#cb14-51"></a>    <span class="cf">if</span> (try.all.packages) {</span>
+<span id="cb14-52"><a href="#cb14-52"></a>        <span class="cf">for</span> (lib <span class="cf">in</span> <span class="fu">.libPaths</span>()) {</span>
+<span id="cb14-53"><a href="#cb14-53"></a>            packages <span class="ot">&lt;-</span> <span class="fu">.packages</span>(<span class="cn">TRUE</span>, lib)</span>
+<span id="cb14-54"><a href="#cb14-54"></a>            packages <span class="ot">&lt;-</span> packages[<span class="fu">is.na</span>(<span class="fu">match</span>(packages, <span class="fu">.packages</span>()))]</span>
+<span id="cb14-55"><a href="#cb14-55"></a>            paths <span class="ot">&lt;-</span> <span class="fu">c</span>(paths, <span class="fu">index.search</span>(topic, <span class="fu">file.path</span>(lib, </span>
+<span id="cb14-56"><a href="#cb14-56"></a>                packages)))</span>
+<span id="cb14-57"><a href="#cb14-57"></a>        }</span>
+<span id="cb14-58"><a href="#cb14-58"></a>        paths <span class="ot">&lt;-</span> paths[<span class="fu">nzchar</span>(paths)]</span>
+<span id="cb14-59"><a href="#cb14-59"></a>    }</span>
+<span id="cb14-60"><a href="#cb14-60"></a>    <span class="fu">structure</span>(<span class="fu">unique</span>(paths), <span class="at">call =</span> <span class="fu">match.call</span>(), <span class="at">topic =</span> topic, </span>
+<span id="cb14-61"><a href="#cb14-61"></a>        <span class="at">tried_all_packages =</span> try.all.packages, <span class="at">type =</span> help_type, </span>
+<span id="cb14-62"><a href="#cb14-62"></a>        <span class="at">class =</span> <span class="st">"help_files_with_topic"</span>)</span>
+<span id="cb14-63"><a href="#cb14-63"></a>}</span>
+<span id="cb14-64"><a href="#cb14-64"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x55cf7461ac50</span><span class="sc">&gt;</span></span>
+<span id="cb14-65"><a href="#cb14-65"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>utils<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Of course, we’ll break this down into more digestible chunks.</p>
+<hr>
+<p>First, we are determining what format of documentation to get. There’s weird argument matching going on, but the main idea is that help can be served up in three forms: text, html, and pdf. By default, <code>help()</code> looks at the global option <code>"help_type"</code> for this.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb15" data-startfrom="1"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="cf">function</span> (topic, <span class="at">package =</span> <span class="cn">NULL</span>, <span class="at">lib.loc =</span> <span class="cn">NULL</span>, <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>),</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="at">try.all.packages =</span> <span class="fu">getOption</span>(<span class="st">"help.try.all.packages"</span>), <span class="at">help_type =</span> <span class="fu">getOption</span>(<span class="st">"help_type"</span>)) </span>
+<span id="cb15-3"><a href="#cb15-3"></a>{</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"text"</span>, <span class="st">"html"</span>, <span class="st">"pdf"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5"></a>    help_type <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">length</span>(help_type)) </span>
+<span id="cb15-6"><a href="#cb15-6"></a>        <span class="st">"text"</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>    <span class="cf">else</span> <span class="fu">match.arg</span>(<span class="fu">tolower</span>(help_type), types)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+<!-- Next, we have some base R shenanigans. -->
+<!-- The fact that `<-` retur -->
+<p>Next, if the <code>package</code> argument is specified, we check that it is a name after it’s been quoted. If it is, the quoted argument is coerced into a string for later.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb16" data-startfrom="8"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 7;"><span id="cb16-8"><a href="#cb16-8"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">missing</span>(package)) </span>
+<span id="cb16-9"><a href="#cb16-9"></a>        <span class="cf">if</span> (<span class="fu">is.name</span>(y <span class="ot">&lt;-</span> <span class="fu">substitute</span>(package))) </span>
+<span id="cb16-10"><a href="#cb16-10"></a>            package <span class="ot">&lt;-</span> <span class="fu">as.character</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+<p>Now, we deal with the case where <code>topic</code> is not specified. This is not the typical case, <code>topic</code> is the first formal of <code>help</code>. For example, when you run <code>help(geom_point)</code> you’re setting <code>topic = geom_point</code>. However, this allows for things like <code>help(package = ggplot2)</code>.</p>
+<p>This is what’s going on in lines 13-27, <code>help()</code> is figuring out how to call <code>library()</code> correctly, given the user’s environment. It turns out that in addition to loading/attaching packages, when the <code>help</code> argument of <code>library()</code> is specified it returns information regarding the specified package (in an object of class <code>"packageInfo"</code>).</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb17" data-startfrom="11"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 10;"><span id="cb17-11"><a href="#cb17-11"></a>    <span class="cf">if</span> (<span class="fu">missing</span>(topic)) {</span>
+<span id="cb17-12"><a href="#cb17-12"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(package)) {</span>
+<span id="cb17-13"><a href="#cb17-13"></a>            <span class="cf">if</span> (<span class="fu">interactive</span>() <span class="sc">&amp;&amp;</span> help_type <span class="sc">==</span> <span class="st">"html"</span>) {</span>
+<span id="cb17-14"><a href="#cb17-14"></a>                port <span class="ot">&lt;-</span> tools<span class="sc">::</span><span class="fu">startDynamicHelp</span>(<span class="cn">NA</span>)</span>
+<span id="cb17-15"><a href="#cb17-15"></a>                <span class="cf">if</span> (port <span class="sc">&lt;=</span> 0L) </span>
+<span id="cb17-16"><a href="#cb17-16"></a>                  <span class="fu">return</span>(<span class="fu">library</span>(<span class="at">help =</span> package, <span class="at">lib.loc =</span> lib.loc, </span>
+<span id="cb17-17"><a href="#cb17-17"></a>                    <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb17-18"><a href="#cb17-18"></a>                browser <span class="ot">&lt;-</span> <span class="cf">if</span> (.Platform<span class="sc">$</span>GUI <span class="sc">==</span> <span class="st">"AQUA"</span>) {</span>
+<span id="cb17-19"><a href="#cb17-19"></a>                  <span class="fu">get</span>(<span class="st">"aqua.browser"</span>, <span class="at">envir =</span> <span class="fu">as.environment</span>(<span class="st">"tools:RGUI"</span>))</span>
+<span id="cb17-20"><a href="#cb17-20"></a>                }</span>
+<span id="cb17-21"><a href="#cb17-21"></a>                <span class="cf">else</span> <span class="fu">getOption</span>(<span class="st">"browser"</span>)</span>
+<span id="cb17-22"><a href="#cb17-22"></a>                <span class="fu">browseURL</span>(<span class="fu">paste0</span>(<span class="st">"http://127.0.0.1:"</span>, port, <span class="st">"/library/"</span>, </span>
+<span id="cb17-23"><a href="#cb17-23"></a>                  package, <span class="st">"/html/00Index.html"</span>), browser)</span>
+<span id="cb17-24"><a href="#cb17-24"></a>                <span class="fu">return</span>(<span class="fu">invisible</span>())</span>
+<span id="cb17-25"><a href="#cb17-25"></a>            }</span>
+<span id="cb17-26"><a href="#cb17-26"></a>            <span class="cf">else</span> <span class="fu">return</span>(<span class="fu">library</span>(<span class="at">help =</span> package, <span class="at">lib.loc =</span> lib.loc, </span>
+<span id="cb17-27"><a href="#cb17-27"></a>                <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb17-28"><a href="#cb17-28"></a>        }</span>
+<span id="cb17-29"><a href="#cb17-29"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(lib.loc)) </span>
+<span id="cb17-30"><a href="#cb17-30"></a>            <span class="fu">return</span>(<span class="fu">library</span>(<span class="at">lib.loc =</span> lib.loc))</span>
+<span id="cb17-31"><a href="#cb17-31"></a>        topic <span class="ot">&lt;-</span> <span class="st">"help"</span></span>
+<span id="cb17-32"><a href="#cb17-32"></a>        package <span class="ot">&lt;-</span> <span class="st">"utils"</span></span>
+<span id="cb17-33"><a href="#cb17-33"></a>        lib.loc <span class="ot">&lt;-</span> .Library</span>
+<span id="cb17-34"><a href="#cb17-34"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Note, we’re making use of the <code>lib.loc</code> argument. It specifies the location of the <code>R</code> library trees on the user’s machine. By default, its value is <code>NULL</code>—this corresponds to the libraries according to <code>.libPaths()</code>.</p>
+<hr>
+<p>Next is some simple cleaning-up of <code>topic</code> (which, at this point, we know was specified). Lines 35 and 36 are interesting, note the wrapping of the conditional in a <code>TryCatch()</code>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb18" data-startfrom="35"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 34;"><span id="cb18-35"><a href="#cb18-35"></a>    ischar <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(<span class="fu">is.character</span>(topic) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(topic) <span class="sc">==</span> </span>
+<span id="cb18-36"><a href="#cb18-36"></a>        1L, <span class="at">error =</span> <span class="cf">function</span>(e) <span class="cn">FALSE</span>)</span>
+<span id="cb18-37"><a href="#cb18-37"></a>    <span class="cf">if</span> (<span class="sc">!</span>ischar) {</span>
+<span id="cb18-38"><a href="#cb18-38"></a>        reserved <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"TRUE"</span>, <span class="st">"FALSE"</span>, <span class="st">"NULL"</span>, <span class="st">"Inf"</span>, <span class="st">"NaN"</span>, </span>
+<span id="cb18-39"><a href="#cb18-39"></a>            <span class="st">"NA"</span>, <span class="st">"NA_integer_"</span>, <span class="st">"NA_real_"</span>, <span class="st">"NA_complex_"</span>, <span class="st">"NA_character_"</span>)</span>
+<span id="cb18-40"><a href="#cb18-40"></a>        stopic <span class="ot">&lt;-</span> <span class="fu">deparse1</span>(<span class="fu">substitute</span>(topic))</span>
+<span id="cb18-41"><a href="#cb18-41"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.name</span>(<span class="fu">substitute</span>(topic)) <span class="sc">&amp;&amp;</span> <span class="sc">!</span>stopic <span class="sc">%in%</span> reserved) </span>
+<span id="cb18-42"><a href="#cb18-42"></a>            <span class="fu">stop</span>(<span class="st">"'topic' should be a name, length-one character vector or reserved word"</span>)</span>
+<span id="cb18-43"><a href="#cb18-43"></a>        topic <span class="ot">&lt;-</span> stopic</span>
+<span id="cb18-44"><a href="#cb18-44"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>After this chunk, we know that <code>topic</code> is a string of length 1.</p>
+<hr>
+<p>The next step is to use the unexported function <code>utils:::index.search()</code> to search through relevant package for <code>topic</code>. This involves either searching through the entire set of packages in <code>loadedNamespaces()</code> or the specified <code>package</code>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb19" data-startfrom="45"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 44;"><span id="cb19-45"><a href="#cb19-45"></a>    paths <span class="ot">&lt;-</span> <span class="fu">index.search</span>(topic, <span class="fu">find.package</span>(<span class="cf">if</span> (<span class="fu">is.null</span>(package)) </span>
+<span id="cb19-46"><a href="#cb19-46"></a>        <span class="fu">loadedNamespaces</span>()</span>
+<span id="cb19-47"><a href="#cb19-47"></a>    <span class="cf">else</span> package, lib.loc, <span class="at">verbose =</span> verbose))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Below, I’ve included (truncated) output from a few of these functions so that you can see what’s going on:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loadedNamespaces</span>()[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "grDevices" "digest"    "jsonlite"  "magrittr"</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">find.package</span>(<span class="fu">loadedNamespaces</span>())[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "/usr/lib/R/library/grDevices"                           </span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [2] "/usr/local/lib/R/site-library/digest"                   </span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [3] "/usr/local/lib/R/site-library/jsonlite"                 </span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="do">## [4] "/home/ubuntu/R/x86_64-pc-linux-gnu-library/4.2/magrittr"</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">:::</span><span class="fu">index.search</span>(<span class="st">"anova"</span>, <span class="fu">find.package</span>(<span class="fu">loadedNamespaces</span>()))</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "/usr/lib/R/library/stats/help/anova"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p>Next, we’re cleaning up the <code>try.all.packages</code> argument. This sequence of logical operators works together to 1.) coerce <code>try.all.packages</code> into a logical and 2.) ensure <code>try.all.packages</code> is <code>FALSE</code> if at all possible (according to the documentation, if <code>try.all.packages</code> is <code>TRUE</code> there might be performance issues).</p>
+<p>By default (and when it is called from <code>?</code>), <code>try.all.packages</code> is <code>FALSE</code>, so this isn’t of much consequence.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb21" data-startfrom="48"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 47;"><span id="cb21-48"><a href="#cb21-48"></a>    try.all.packages <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">length</span>(paths) <span class="sc">&amp;&amp;</span> <span class="fu">is.logical</span>(try.all.packages) <span class="sc">&amp;&amp;</span> </span>
+<span id="cb21-49"><a href="#cb21-49"></a>        <span class="sc">!</span><span class="fu">is.na</span>(try.all.packages) <span class="sc">&amp;&amp;</span> try.all.packages <span class="sc">&amp;&amp;</span> <span class="fu">is.null</span>(package) <span class="sc">&amp;&amp;</span> </span>
+<span id="cb21-50"><a href="#cb21-50"></a>        <span class="fu">is.null</span>(lib.loc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+<p>Here is where <code>try.all.packages</code> is used. If it is <code>TRUE</code>, an <code>index.search()</code> is performed for <code>topic</code> in every package in the<code>.libPaths()</code> directory with results being included in <code>paths</code>.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb22" data-startfrom="51"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 50;"><span id="cb22-51"><a href="#cb22-51"></a>    <span class="cf">if</span> (try.all.packages) {</span>
+<span id="cb22-52"><a href="#cb22-52"></a>        <span class="cf">for</span> (lib <span class="cf">in</span> <span class="fu">.libPaths</span>()) {</span>
+<span id="cb22-53"><a href="#cb22-53"></a>            packages <span class="ot">&lt;-</span> <span class="fu">.packages</span>(<span class="cn">TRUE</span>, lib)</span>
+<span id="cb22-54"><a href="#cb22-54"></a>            packages <span class="ot">&lt;-</span> packages[<span class="fu">is.na</span>(<span class="fu">match</span>(packages, <span class="fu">.packages</span>()))]</span>
+<span id="cb22-55"><a href="#cb22-55"></a>            paths <span class="ot">&lt;-</span> <span class="fu">c</span>(paths, <span class="fu">index.search</span>(topic, <span class="fu">file.path</span>(lib, </span>
+<span id="cb22-56"><a href="#cb22-56"></a>                packages)))</span>
+<span id="cb22-57"><a href="#cb22-57"></a>        }</span>
+<span id="cb22-58"><a href="#cb22-58"></a>        paths <span class="ot">&lt;-</span> paths[<span class="fu">nzchar</span>(paths)]</span>
+<span id="cb22-59"><a href="#cb22-59"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+<p>Finally, we have the end of <code>help()</code>. This is the code that fetches/loads the relevant documentation. If everything has gone correctly, R will try to find a way to show you the corresponding documentation. (If <code>try.all.packages</code> is <code>TRUE</code>, a search results page will be shown instead). In Rstudio, for example, the documentation file will appear in the “Help” pane.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<div class="sourceCode" id="cb23" data-startfrom="60"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r" style="counter-reset: source-line 59;"><span id="cb23-60"><a href="#cb23-60"></a>    <span class="fu">structure</span>(<span class="fu">unique</span>(paths), <span class="at">call =</span> <span class="fu">match.call</span>(), <span class="at">topic =</span> topic, </span>
+<span id="cb23-61"><a href="#cb23-61"></a>        <span class="at">tried_all_packages =</span> try.all.packages, <span class="at">type =</span> help_type, </span>
+<span id="cb23-62"><a href="#cb23-62"></a>        <span class="at">class =</span> <span class="st">"help_files_with_topic"</span>)</span>
+<span id="cb23-63"><a href="#cb23-63"></a><span class="er">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Why does this <code>structure()</code> call result in the documentation being displayed? I have no idea. I imagine it has something to do with the print method of the <code>"help_files_with_topic"</code> class— I haven’t been able to find great documentation on these details.</p>
+<hr>
+<p>Try it for yourself! Run the following code, it should bring up the documentation for <code>stats::anova()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp_pkgs <span class="ot">&lt;-</span> <span class="fu">find.package</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="cn">TRUE</span>) <span class="fu">loadedNamespaces</span>() <span class="cf">else</span> <span class="st">"stats"</span>, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lib.loc =</span> <span class="cn">NULL</span>, <span class="at">verbose =</span> <span class="fu">getOption</span>(<span class="st">"verbose"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>temp_path <span class="ot">&lt;-</span> utils<span class="sc">:::</span><span class="fu">index.search</span>(<span class="st">"anova"</span>, temp_pkgs)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">structure</span>(temp_path, <span class="at">call =</span> <span class="fu">match.call</span>(), <span class="at">topic =</span> <span class="st">"anova"</span>, </span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">tried_all_packages =</span> <span class="cn">FALSE</span>, <span class="at">type =</span> <span class="st">"html"</span>, </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">class =</span> <span class="st">"help_files_with_topic"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p>So, what have we learned? Documentation for functions of <strong>loaded</strong> packages are accessed via a combination of the functions <code>loadedNamespaces()</code>, <code>find.package()</code>, and <code>utils:::index.search()</code>. If we want to access documentation of functions for packages that are not loaded, we need to use the functions <code>.libPaths()</code>, <code>.packages()</code>, and <code>utils:::index.search()</code>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+    } else {
+      disableStylesheet(alternateStylesheets);
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Copyright 2022, James Otto</div>
+  </div>
+</footer>
+
+
+
+</body></html>

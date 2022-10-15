@@ -10,8 +10,9 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/Visualizing-BoardGameGeek-Data-with-ggdensity.html",
-      "/posts/Understanding-base-documentation-functions.html"
+      "/posts/2022-10-15-Rings-of-Power/Rings-of-Power.html",
+      "/posts/2022-02-15-Visualizing-BoardGameGeek-Data-with-ggdensity/Visualizing-BoardGameGeek-Data-with-ggdensity.html",
+      "/posts/2022-01-24-Understanding-base-documentation-functions/Understanding-base-documentation-functions.html"
     ]
   }
 ]
