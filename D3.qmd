@@ -48,6 +48,7 @@ Legacy metagame breakdown:
 </h2>
 :::
 
+
 ```{css, echo = FALSE}
 .axis text { 
   font: 13px sans-serif; 
@@ -65,12 +66,15 @@ Legacy metagame breakdown:
   text-align: center;
   font: 13px sans-serif; 
 }
+
+
 ```
 
-:::{.plot-mtg .column-screen-inset style="text-align: center;"}
+<!-- :::{.plot-mtg style="text-align: center; grid-column: screen-start-inset/page-end;"} -->
+:::{.plot-mtg .column-page style="text-align: center;"}
 :::
 
-:::{.legend .column-screen-inset style="text-align: center;"}
+:::{.legend .column-page style="text-align: center;"}
 :::
 
 :::{.buttons .column-page style="text-align: center;"}
@@ -267,8 +271,8 @@ Legacy metagame breakdown:
   // the main svg we will draw on
   var svg = d3.select(".plot-mtg")
     .append("svg")
-    .attr("width", w)
-    .attr("height", h);
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0" + " " + w + " " + h);
     
     
   // Now, need to set up a few groups
@@ -487,8 +491,8 @@ Legacy metagame breakdown:
       
   var svg_legend = d3.select(".legend")
     .append("svg")
-    .attr("width", w)
-    .attr("height", h)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0" + " " + w + " " + h);
     
   var defs = svg_legend.append("defs");
   
