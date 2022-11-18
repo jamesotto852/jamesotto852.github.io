@@ -2,32 +2,49 @@
 format: 
   html:
     code-fold: true
-    toc: true
+    toc: false
     anchor-sections: false
     code-line-numbers: false
 execute:
   echo: true
 ---
 
+<style>
+
+a {
+  color: #000294;
+  text-decoration: none;
+}
+
+body {
+  background: white;
+  color: black;
+}
+
+</style>
+
 :::{.column-page-inset-left}
 # Magic: the Gathering
 
-The plot below visualizes the most popular cards in MTG tournament play, looking specifically at legacy events
-(events in which decks can consist of most cards ever printed).
-I also have a [shiny app](https://jamesotto.app/MTG-History/) which offers a more detailed breakdown of all major formats,
+The plot below visualizes the most popular cards in MTG tournament play over time, looking specifically at legacy events
+(where decks can be made up of essentially any cards out of the 20,000 that have been printed since 1993).
+I also have a [shiny app](https://jamesotto.app/MTG-History/) which offers a more detailed breakdown of all major formats
 along with annotated timelines of major events over the last decade.
 
-The chart shows the most popular cards at a specified point in time,
+The chart shows the most popular cards during a given month,
 use the buttons below to navigate by months and years.
 For each card, there are two values being visualized:
+<ul style="margin-top: 6px;">
+<li> **Prevalence**: the proportion of decks playing at least one copy of the card (bar length and ordering) </li>
+<li> **Average Copies**: the average number of copies of the card played in decks playing at least one copy (bar color) </li>
+</ul>
 
-* **Prevalence**: the proportion of decks playing at least one copy of the card (bar length and ordering)
-* **Average Copies**: the average number of copies of the card played in decks playing at least one copy (bar color)
+Tournament data from [MTGTOP8.com](https://mtgtop8.com/), scraped with [**rvest**](https://rvest.tidyverse.org/).
 :::
 
 :::{.column-page}
 <h2 id="time">
-Legacy metagame breakdown by prevalence:
+Legacy metagame breakdown:
 </h2>
 :::
 

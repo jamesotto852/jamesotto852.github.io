@@ -24,14 +24,12 @@ An interactive timeline cataloging major events such as card printings and banni
 accompanied with a plot displaying the monthly metagame breakdown.
 Includes tournament data from October 2010 onwards, from [MTGTOP8](https://MTGTOP8.com){target="_blank" rel="noopener noreferrer"}.
 
-- [jamesotto.app/MTG-History](https://jamesotto.app/MTG-History/){target="_blank" rel="noopener noreferrer"}
+- [jamesotto.app/MTG-History <i class="fa-solid fa-link"></i>](https://jamesotto.app/MTG-History/){target="_blank" rel="noopener noreferrer"}
 :::
 
-:::{.column-screen-inset}
+:::{.column-screen-inset style="margin-bottom: 50px;"}
 ![](shiny-images/An-Interactive-History-of-MTG.png){fig-align="center"}
 :::
-
-
 
 :::{.column-page-left}
 ## [Goodreads Dashboard](https://jamesotto.app/Goodreads-Dashboard/){target="_blank" rel="noopener noreferrer"}
@@ -40,7 +38,7 @@ Explore data from any [goodreads.com](https://goodreads.com){target="_blank" rel
 See which of the the winners and nominees of various awards you have read (Hugo, Nebula, etc.). 
 Visual summaries of data coming soon!
 
-- [jamesotto.app/Goodreads-Dashboard](https://jamesotto.app/Goodreads-Dashboard/){target="_blank" rel="noopener noreferrer"}
+- [jamesotto.app/Goodreads-Dashboard <i class="fa-solid fa-link"></i>](https://jamesotto.app/Goodreads-Dashboard/){target="_blank" rel="noopener noreferrer"}
 - Data scraped with [**goodreadR**](https://github.com/jamesotto852/goodreadR){target="_blank" rel="noopener noreferrer"}
 :::
 
