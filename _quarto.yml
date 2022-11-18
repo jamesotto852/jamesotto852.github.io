@@ -28,9 +28,9 @@ website:
           file: packages.qmd
         - text: "Shiny Apps"
           file: shiny.qmd
+        - text: "D3.js"
+          file: D3.qmd
   page-footer: "Copyright 2022, James Otto" 
-  resources: 
-    - "slides/*.pdf"
 
 format:
   html:
@@ -40,6 +40,8 @@ format:
       dark: [darkly, custom-dark.scss]
     toc: true
     sidebar: false
+    resources: 
+      - "slides/*.pdf"
     
 execute: 
   freeze: auto

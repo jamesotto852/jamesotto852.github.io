@@ -1,0 +1,559 @@
+---
+format: 
+  html:
+    code-fold: true
+    toc: true
+    anchor-sections: false
+    code-line-numbers: false
+execute:
+  echo: true
+---
+
+:::{.column-page-inset-left}
+# Magic: the Gathering
+
+The plot below visualizes the most popular cards in MTG tournament play, looking specifically at legacy events
+(events in which decks can consist of most cards ever printed).
+I also have a [shiny app](https://jamesotto.app/MTG-History/) which offers a more detailed breakdown of all major formats,
+along with annotated timelines of major events over the last decade.
+
+The chart shows the most popular cards at a specified point in time,
+use the buttons below to navigate by months and years.
+For each card, there are two values being visualized:
+
+* **Prevalence**: the proportion of decks playing at least one copy of the card (bar length and ordering)
+* **Average Copies**: the average number of copies of the card played in decks playing at least one copy (bar color)
+:::
+
+:::{.column-page}
+<h2 id="time">
+Legacy metagame breakdown by prevalence:
+</h2>
+:::
+
+```{css, echo = FALSE}
+.axis text { 
+  font: 13px sans-serif; 
+}
+
+.axisWhite line{
+  stroke: white;
+}
+
+.axisWhite path{
+  stroke: white;
+}
+
+.axisWhite text{
+  text-align: center;
+  font: 13px sans-serif; 
+}
+```
+
+:::{.plot-mtg .column-screen-inset style="text-align: center;"}
+:::
+
+:::{.legend .column-screen-inset style="text-align: center;"}
+:::
+
+:::{.buttons .column-page style="text-align: center;"}
+<button type="button" id="pprev" class="btn btn-outline-secondary">
+<i class="fa-solid fa-angles-left"></i>
+</button>
+<button type="button" id="prev" class="btn btn-outline-secondary">
+<i class="fa-solid fa-angle-left"></i>
+</button>
+<button type="button" id="next" class="btn btn-outline-secondary">
+<i class="fa-solid fa-angle-right"></i>
+</button>
+<button type="button" id="nnext" class="btn btn-outline-secondary">
+<i class="fa-solid fa-angles-right"></i>
+</button>
+:::
+
+<!-- <p id="time"></p> -->
+
+
+
+:::{.column-page-inset}
+```{ojs}
+//| output: false
+//| code-summary: "D3 Code"
+{
+
+  // Using data from R code (below)
+  //  Need to transpose data (column-wise => row-wise)
+  const dataset = transpose(df_mtg);
+  
+  // no. of cards to show in plot
+  const cards = 30;
+  
+  // start at most recent month
+  var t = 0;
+  
+  // return 30 rows of data corresponding to time t
+  var get_dataset_t = function(t) {
+    return dataset.slice((t * cards), (t + 1) * cards);
+  };
+  
+  // convert date to text for header
+  var get_date = function() {
+  
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    var date = new Date(dataset_window[0].time);
+    
+    return monthNames[date.getMonth()] + ", " + date.getFullYear();
+    
+  };
+  
+  // accessor for the "key" value of our data (the card name)
+  var key = function(d) {
+    return d.card;
+  };
+  
+  // initialize data w/ time t = 0
+  var dataset_window = get_dataset_t(t);
+  
+  
+  
+  // code for drawing card art
+  // uris is object w/ elements = urls for different art formats
+  var update_img = function(uris) {
+  
+    // draw full card in bottom right, fading in quickly
+    svg.select("#card-full")
+      .selectAll("image")
+      .data([uris.png])
+      .enter()
+      .append("svg:image")
+      .attr("id", "card-full")
+      .attr("xlink:href", (d) => d)
+      .attr("x", 2 * w/3)
+      .attr("y", h/3 + 30)
+      .attr("width", w/4)
+      .style("opacity", 0)
+      .transition("card-full-in")
+      .duration(200)
+      .ease(d3.easeLinear)
+      .style("opacity", 1);
+       
+    // draw card art behind bars, fading in slower
+    svg.select("#card-art")
+      .selectAll("image")
+      .data([uris.art_crop])
+      .enter()
+      .append("svg:image")
+      .attr("clip-path", "url(#chart-area)")
+      .attr("id", "card-art")
+      .attr("xlink:href", (d) => d)
+      .attr("x", padding_left)
+      .attr("y", 6) 
+      .attr("height", h - padding_bottom)
+      .style("opacity", 0)
+      .transition("card-art-in")
+      .duration(500)
+      .ease(d3.easeLinear)
+      .style("opacity", 0.8); // was .5
+  };
+  
+  // query scryfall api for card art
+  var get_art = function(name) {
+  
+    const reg = /[^\w\s]/g
+    var url = name.replace(reg, "").replace(" ", "+").toLowerCase();
+    url = "https://api.scryfall.com/cards/named?fuzzy=" + url;
+    
+    fetch(url)
+      .then((response) => response.json())
+      // handle multifaced cards, return uris for first face
+      .then((data) => data.image_uris ?? data.card_faces[0].image_uris)
+      .then((uris) => update_img(uris))
+      .catch((error) => {
+        console.log("Issue with getting url");
+    });   
+    
+  };
+  
+  // Remove art before drawing new art
+  // transition is breaking, removed for now
+  var remove_art = function() {
+    svg.select("#card-full")
+      .selectAll("image")
+      .remove();
+    
+    svg.selectAll("#card-art")
+      .selectAll("image")
+//      .transition("card-art-out")
+//      .duration(500)
+//      .ease(d3.easelinear)
+//      .style("opacity", 0)
+      .remove();
+  };
+  
+  var mouseover_fun = function(e, d) {
+    // on mouseover, dim other bars for card art
+    d3.selectAll(".card-bars")
+      .attr("stroke-width", 0)
+      .attr("opacity", 0.4);
+  
+    // darken selected bar
+    // (alternatively, could adjust stroke-width)
+   	d3.select(this)
+      //.attr("stroke-width", 2)
+      //.attr("stroke", "white")
+   		.attr("opacity", 1)
+   		.attr("fill", "black");
+   		
+   	// finally, draw card art
+   	get_art(d.card, update_img);
+  };
+  
+  // on mouseout, return to normal
+  var mouseout_fun = function(d) {
+    d3.selectAll(".card-bars")
+      .attr("opacity", 1);
+      
+    d3.select(this)
+    	.transition()
+    	.duration(200)
+		  .attr("fill", (d) => d3.interpolateViridis(cScale(d.average)));
+		  
+    remove_art();
+  };
+
+  // Various parameters governing plot dimensions
+  const w = 1200;
+  const h = 800;
+  const padding_left = 150;
+  const padding_right = 35;
+  const padding_bottom = 35;
+  const anim_len = 1500;
+    
+  // x and y scales (simple, linear scales)
+  var xScale = d3.scaleLinear()
+    .domain([0, 1])
+    .range([padding_left, w - padding_right]);
+  
+  var yScale = d3.scaleBand()
+    .domain(d3.range(dataset_window.length))
+    .rangeRound([0, h - padding_bottom])
+    .paddingInner(0.075);
+    
+  // color scale, with compse w/ viridis
+  var cScale = d3.scaleLinear()
+    .domain([0, 4]);
+  
+  // the main svg we will draw on
+  var svg = d3.select(".plot-mtg")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+    
+    
+  // Now, need to set up a few groups
+  //  (this allows for use to draw art under the bars)
+    
+  // Group for axis needs to be first
+  svg.append("g").attr("class", "axis");
+    
+  // set up groups for card art types
+  svg.append("g").attr("id", "card-art");
+  svg.append("g").attr("id", "card-full");
+    
+  // Need clipping path (mask) for bottom edge
+  //  (Prevents bars + text going below axis)
+  //  (Also keeps card art in the right spot)
+  svg.append("clipPath")
+    .attr("id", "chart-area")
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", w - padding_right)
+    .attr("height", h - padding_bottom);
+    
+  // Draw initial bars 
+  //  if we want stroke-width on mouseover, need to initialize here
+  svg.selectAll(".card-bars")
+    .data(dataset_window, key)
+    .enter()
+    .append("rect")
+    .attr("class", "card-bars")
+    .attr("clip-path", "url(#chart-area)")
+    .attr("x", (d) => xScale(0))
+    .attr("width", (d) => xScale(d.prevalence) - xScale(0))
+    .attr("y", (d, i) => yScale(i))
+    .attr("height", yScale.bandwidth())
+    .attr("fill", (d) => d3.interpolateViridis(cScale(d.average)))
+//    .attr("stroke-width", "2")
+//    .attr("stroke", "white")
+    .on("mouseover", mouseover_fun)
+    .on("mouseout", mouseout_fun);
+    
+  // Initial titles:
+  svg.selectAll(".card-titles")
+    .data(dataset_window, key)
+    .enter()
+    .append("text")
+    .text((d) => d.card + "  ")
+    .attr("class", "card-titles")
+    .attr("clip-path", "url(#chart-area)")
+    .attr("font-size", "13px")
+    .attr("text-anchor", "end")
+    .attr("style","white-space:pre")
+    .attr("x", (d) => xScale(0))
+    .attr("y", (d, i) => yScale(i) + yScale.bandwidth() * 5/8);
+
+      
+  // x-axis with formatting:
+  var xAxis = d3.axisBottom()
+    .scale(xScale)
+    .ticks(4)
+    .tickFormat(d3.format(".0%"));
+  
+  svg.select(".axis")
+    .attr("transform", "translate(0," + (h - padding_bottom) + ")")
+    .call(xAxis);
+  
+  // Note: there is no y-axis
+  // instead, we manually handled the bar labels as "text" objects
+  // this allows for pretty transitions
+      	
+  // UI element set up:
+  // Set ">" button as disabled on start up:
+  d3.select("#next").property("disabled", true);
+  d3.select("#nnext").property("disabled", true);
+  	
+  // Set time in header
+  d3.select("#time")
+    .append("text")
+    .text(get_date());
+    
+  // When a button is pressed, start here
+  d3.selectAll("button")
+    .on("click", function() {
+     
+      // See which button was clicked
+      var buttonID = d3.select(this).attr("id");
+			
+			// logic to prevent going past bounds of data
+			if (buttonID == "prev") {
+			  if (t < 100) {
+			    t = t + 1;
+        };
+			};
+			
+		  if (buttonID == "pprev") {
+		 	  if (t <= 88) {
+		 	     t = t + 12;
+         }; 
+		 	};
+			
+		  if (buttonID == "next") {
+			  if (t > 0) {
+			    t = t - 1;
+        };
+			};
+			
+			if (buttonID == "nnext") {
+			  if (t >= 12) {
+			    t = t - 12;
+        };
+			};
+			
+			// reset data with new value of t
+			dataset_window = get_dataset_t(t);
+			
+			// re-bind new data to bars
+      var bars = svg.selectAll(".card-bars")
+        .data(dataset_window, key);
+        
+      // redraw bars
+      bars.enter()
+        .append("rect")
+        .attr("class", "card-bars")
+        .attr("clip-path", "url(#chart-area)")
+        .attr("x", (d) => xScale(0))
+				.attr("y", (d, i) => yScale(i) + h) // start with y value below axis
+        .attr("height", yScale.bandwidth())
+        .on("mouseover", mouseover_fun)
+        .on("mouseout", mouseout_fun)
+        .merge(bars)	// Now looking at ALL bars
+				.transition("bars-enter")
+				.duration(anim_len)
+        .attr("width", (d) => xScale(d.prevalence) - xScale(0))
+        .attr("y", (d, i) => yScale(i)) // update y value to be correct
+        .attr("fill", (d) => d3.interpolateViridis(cScale(d.average)));
+
+      // remove old bars
+			bars.exit()
+				.transition("bars-exit")
+				.duration(anim_len)
+				.attr("y", (d, i) => yScale(i) + h) // travel out of window
+				.remove();
+				
+				
+			// similar to bars, but now with text:
+  		var labs = svg.selectAll(".card-titles")
+        .data(dataset_window, key);
+        
+      labs.enter()
+        .append("text")
+        .text((d) => d.card + "  ")
+        .attr("class", "card-titles")
+        .attr("clip-path", "url(#chart-area)")
+        .attr("font-size", "13px")
+        .attr("text-anchor", "end")
+        .attr("style","white-space:pre")
+        .attr("x", (d) => xScale(0))
+				.attr("y", (d, i) => yScale(i) + h)
+        .merge(labs)	// Now looking at ALL text
+				.transition("labs-enter")
+				.duration(anim_len)
+        .attr("y", (d, i) => yScale(i) + yScale.bandwidth() * 5/8);
+        
+       labs.exit()
+			   .transition("labs-exit")
+				 .duration(anim_len)
+				 .attr("y", (d, i) => yScale(i) + h)
+				 .remove();
+				
+	 	   // update header with correct time:
+       d3.select("#time")
+         .select("text")
+         .remove();
+         
+       // Disable/enable buttons as necessary:
+       d3.select("#next").property("disabled", t == 0);
+       d3.select("#nnext").property("disabled", t < 12);
+       
+       d3.select("#prev").property("disabled", t == 100);
+       d3.select("#pprev").property("disabled", t > 88);
+         
+       // update month + year
+       d3.select("#time")
+         .append("text")
+         .text(get_date());
+      });
+
+}
+```
+
+
+```{ojs}
+//| output: false
+//| echo: false
+{
+  // draw legend below plot svg
+  // adapted from https://observablehq.com/@tmcw/d3-scalesequential-continuous-color-legend-example
+  const w = 1200;
+  const h = 50
+  const barHeight = 25
+  
+  const margin = ({top: 0, right: 35, bottom: 25, left: 150})
+
+  var colorScale = d3.scaleSequential(d3.interpolateViridis).domain([0, 4])
+  
+  var axisScale = d3.scaleLinear()
+    .domain(colorScale.domain())
+    .range([margin.left, w - margin.right])
+    
+  var axisBottom = g => g
+    .attr("class", "axisWhite")
+    .attr("transform", `translate(0,${h - margin.bottom})`)
+    .call(d3.axisBottom(axisScale)
+      .ticks(5)
+      .tickSize(-barHeight))
+      
+  var svg_legend = d3.select(".legend")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h)
+    
+  var defs = svg_legend.append("defs");
+  
+  var linearGradient = defs.append("linearGradient")
+      .attr("id", "linear-gradient");
+  
+  linearGradient.selectAll("stop")
+    .data(colorScale.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: colorScale(t) })))
+    .enter().append("stop")
+    .attr("offset", d => d.offset)
+    .attr("stop-color", d => d.color);
+  
+  svg_legend.append('g')
+      .attr("transform", `translate(0,${h - margin.bottom - barHeight})`)
+      .append("rect")
+      .attr('transform', `translate(${margin.left}, 0)`)
+  	.attr("width", w - margin.right - margin.left)
+  	.attr("height", barHeight)
+  	.style("fill", "url(#linear-gradient)");
+	
+  svg_legend.append('g')
+    .call(axisBottom);  
+  
+  // Color guide title
+  svg_legend.append("text")
+    .text("Avg no. of Copies:  ")
+    .attr("font-size", "13px")
+    .attr("text-anchor", "end")
+    .attr("style","white-space:pre")
+    .attr("x", margin.left)
+		.attr("y", h/3)
+}
+```
+
+
+
+```{r}
+#| message: false
+#| code-summary: "R Code (Data Wrangling)"
+
+library("tidyverse")
+# Reading in data
+# Data is scraped from MTGTOP8, details coming soon in a blog post
+df_mtg <- read_csv(here::here("posts/2022-11-25-JavaScript-and-Quarto/data/legacy.csv")) 
+
+# Helper to fix encoding of dates
+## 2000.05 => 2000-01-01
+## 2004.25 => 2000-04-01
+fix_time <- function(t) {
+  
+  year <- floor(t)
+  month <- round(20 * (t - year))
+  
+  lubridate::ymd(paste(year, month, "1"))
+  
+}
+
+# We don't want basic lands in our viz
+basics <- c("Plains", "Mountain", "Forest", "Island", "Swamp")
+
+df_mtg <-
+  df_mtg |>
+  filter(!is.na(time)) |>
+  # Only want to look at top-8 places
+  filter(place %in% c(1, 2, 5, 8)) |> 
+  mutate(time = fix_time(time)) |>
+  filter(lubridate::year(time) >= 2011) |>
+  # Don't want cards from sideboard 
+  filter(!SB) |>
+  filter(!card %in% basics) |>
+  # Find count of each card at each timepoint, regardless of place (data is grouped by place)
+  group_by(time, card) |>
+  summarize(k = n(), copies = sum(copies), decks = sum(decks), total_decks = sum(total_decks), .groups = "drop_last") |> 
+  mutate(prevalence = decks / total_decks, average = copies / decks) |>
+  # Randomized pertubation to avoid ties return > 30 rows
+  top_n(30, wt = (prevalence + rnorm(length(prevalence), sd = .000001))) |> 
+  # Break ties w/ average
+  arrange(desc(time), desc(prevalence), average) |>
+  # For extensibiliity
+  mutate(format = "legacy")
+
+# Make `df_mtg` available in ojs chunks:
+ojs_define(df_mtg = df_mtg)
+```
+:::
