@@ -28,7 +28,7 @@ Includes tournament data from October 2010 onwards, from [MTGTOP8](https://MTGTO
 :::
 
 :::{.column-screen-inset style="margin-bottom: 50px;"}
-![](shiny-images/An-Interactive-History-of-MTG.png){fig-align="center"}
+[![](shiny-images/An-Interactive-History-of-MTG.png){fig-align="center"}](https://jamesotto.app/MTG-History/){target="_blank" rel="noopener noreferrer"}
 :::
 
 :::{.column-page-left}
@@ -44,7 +44,7 @@ Visual summaries of data coming soon!
 
 :::{.column-screen-inset}
 <!-- ![](shiny-images/Goodreads-Dashboard-Detailed-Data.png){fig-align="center"} -->
-![](shiny-images/Goodreads-Dashboard-Hugo.png){fig-align="center"}
+[![](shiny-images/Goodreads-Dashboard-Hugo.png){fig-align="center"}](https://jamesotto.app/Goodreads-Dashboard/){target="_blank" rel="noopener noreferrer"}
 :::
 
 
