@@ -1,0 +1,15 @@
+---
+title: "Extending **ggplot2** with new `Geom`s and `Stat`s"
+author: 
+  - "**James Otto**"
+date: "2023-2-20"
+image: "images/extending-ggplot2-talk.png"
+---
+
+<iframe class="slide-deck" src="https://jamesotto852.github.io/extending-ggplot2/" style="width: 100%; height: 450px">
+
+</iframe>
+
+
+[Slides](https://jamesotto852.github.io/extending-ggplot2/){target="_blank" rel="noopener noreferrer"} 
+([source code](https://github.com/jamesotto852/extending-ggplot2){target="_blank" rel="noopener noreferrer"})
