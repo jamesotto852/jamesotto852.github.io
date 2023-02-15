@@ -21,25 +21,18 @@
     "text": "Goodreads Dashboard\nExplore data from any goodreads.com user profile. See which of the the winners and nominees of various awards you have read (Hugo, Nebula, etc.). Visual summaries of data coming soon!\n\njamesotto.app/Goodreads-Dashboard \nData scraped with goodreadR"
   },
   {
-    "objectID": "talks/2022-useR.html",
-    "href": "talks/2022-useR.html",
+    "objectID": "talks/ggdensity-talk.html",
+    "href": "talks/ggdensity-talk.html",
     "title": "ggdensity: Improved Bivariate Density Visualization in R",
     "section": "",
-    "text": "Event: useR! 2022\nSlides"
+    "text": "Slides (source code)\n\nJSM 2022\nuseR! 2022\nSDSS 2022"
   },
   {
-    "objectID": "talks/2022-JSM.html",
-    "href": "talks/2022-JSM.html",
-    "title": "ggdensity: Improved Bivariate Density Visualization in R",
+    "objectID": "talks/extending-ggplot2-talk.html",
+    "href": "talks/extending-ggplot2-talk.html",
+    "title": "Extending ggplot2 with new Geoms and Stats",
     "section": "",
-    "text": "Event: JSM 2022\nSlides (source)"
-  },
-  {
-    "objectID": "talks/2022-SDSS.html",
-    "href": "talks/2022-SDSS.html",
-    "title": "ggdensity: Improved Bivariate Density Visualization in R",
-    "section": "",
-    "text": "Event: SDSS 2022\nSlides"
+    "text": "Slides (source code)"
   },
   {
     "objectID": "D3.html",
@@ -60,7 +53,7 @@
     "href": "talks.html",
     "title": "Talks",
     "section": "",
-    "text": "ggdensity: Improved Bivariate Density Visualization in R\n\n\nJSM 2022\n\n\n\n\n\n\nAug 7, 2022\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\n  \n\n\n\n\nggdensity: Improved Bivariate Density Visualization in R\n\n\nuseR! 2022\n\n\n\n\n\n\nJun 21, 2022\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\n  \n\n\n\n\nggdensity: Improved Bivariate Density Visualization in R\n\n\nSDSS 2022\n\n\n\n\n\n\nJun 8, 2022\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\nNo matching items"
+    "text": "Extending ggplot2 with new Geoms and Stats\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\nJames Otto\n\n\n\n\n\n\n  \n\n\n\n\nggdensity: Improved Bivariate Density Visualization in R\n\n\n\n\n\n\n\n\n\nAug 7, 2022\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2022-10-15-Rings-of-Power/Rings-of-Power.html",
