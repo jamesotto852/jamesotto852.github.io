@@ -28,6 +28,13 @@
     "text": "Slides (source code)\n\nJSM 2022\nuseR! 2022\nSDSS 2022"
   },
   {
+    "objectID": "talks/tldr-talk.html",
+    "href": "talks/tldr-talk.html",
+    "title": "tldr: Quick Documentation in the R Console",
+    "section": "",
+    "text": "Slides (source code)\n\nJSM 2023"
+  },
+  {
     "objectID": "talks/extending-ggplot2-talk.html",
     "href": "talks/extending-ggplot2-talk.html",
     "title": "Extending ggplot2 with new Geoms and Stats",
@@ -53,7 +60,7 @@
     "href": "talks.html",
     "title": "Talks",
     "section": "",
-    "text": "Extending ggplot2 with new Geoms and Stats\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\nJames Otto\n\n\n\n\n\n\n  \n\n\n\n\nggdensity: Improved Bivariate Density Visualization in R\n\n\n\n\n\n\n\n\n\nAug 7, 2022\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\nNo matching items"
+    "text": "tldr: Quick Documentation in the R Console\n\n\n\n\n\n\n\n\n\nAug 8, 2023\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\n  \n\n\n\n\nExtending ggplot2 with new Geoms and Stats\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\nJames Otto\n\n\n\n\n\n\n  \n\n\n\n\nggdensity: Improved Bivariate Density Visualization in R\n\n\n\n\n\n\n\n\n\nAug 7, 2022\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2022-10-15-Rings-of-Power/Rings-of-Power.html",
