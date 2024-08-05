@@ -2,50 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jamesotto852.github.io/index.html</loc>
-    <lastmod>2023-08-25T15:13:09.683Z</lastmod>
+    <lastmod>2024-08-05T17:53:37.800Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/shiny.html</loc>
-    <lastmod>2023-08-25T15:13:10.467Z</lastmod>
+    <lastmod>2024-08-05T17:53:38.436Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/talks/ggdensity-talk.html</loc>
-    <lastmod>2023-08-25T15:13:11.175Z</lastmod>
+    <lastmod>2024-08-05T17:53:38.996Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/talks/tldr-talk.html</loc>
-    <lastmod>2023-08-25T15:13:11.671Z</lastmod>
+    <lastmod>2024-08-05T17:53:39.436Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/talks/tidy-MC-talk.html</loc>
+    <lastmod>2024-08-05T17:53:39.952Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/talks/extending-ggplot2-talk.html</loc>
-    <lastmod>2023-08-25T15:13:12.343Z</lastmod>
+    <lastmod>2024-08-05T17:53:40.452Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/D3.html</loc>
-    <lastmod>2023-08-25T15:13:14.139Z</lastmod>
+    <lastmod>2024-08-05T17:53:41.920Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/packages.html</loc>
-    <lastmod>2023-08-25T15:13:14.783Z</lastmod>
+    <lastmod>2024-08-05T17:53:42.452Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/talks.html</loc>
-    <lastmod>2023-08-25T15:13:15.495Z</lastmod>
+    <lastmod>2024-08-05T17:53:43.028Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/posts/2022-10-15-Rings-of-Power/Rings-of-Power.html</loc>
-    <lastmod>2023-08-25T15:13:16.671Z</lastmod>
+    <lastmod>2024-08-05T17:53:44.044Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/posts/2022-01-24-Understanding-base-documentation-functions/Understanding-base-documentation-functions.html</loc>
-    <lastmod>2023-08-25T15:13:17.971Z</lastmod>
+    <lastmod>2024-08-05T17:53:45.176Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/posts/2022-02-15-Visualizing-BoardGameGeek-Data-with-ggdensity/Visualizing-BoardGameGeek-Data-with-ggdensity.html</loc>
-    <lastmod>2023-08-25T15:13:18.983Z</lastmod>
+    <lastmod>2024-08-05T17:53:46.064Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/blog.html</loc>
-    <lastmod>2023-08-25T15:13:19.615Z</lastmod>
+    <lastmod>2024-08-05T17:53:46.556Z</lastmod>
   </url>
 </urlset>

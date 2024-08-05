@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "James Otto",
     "section": "",
-    "text": "I am a doctoral candidate studying Statistics at Baylor University. I have an MS in Statistics as well as undergraduate degrees in Statistics, Mathematics, Economics, and Management of Information Systems.\nI am very interested in computational statistics and have developed several R packages. I also enjoy exploring the connections between theoretical mathematics and statistics—especially applications of algebraic topology and functional analysis.\nWhen not working on research, I’m probably practicing aerial silks, bouldering, or reading."
+    "text": "I am a principal statistician at Alcon and hold a Ph.D. in Statistics from Baylor University. I also have an MS in Statistics as well as undergraduate degrees in Statistics, Mathematics, Economics, and Management of Information Systems.\nI am very interested in computational statistics and have developed several R packages. I also enjoy exploring the connections between theoretical mathematics and statistics—especially applications of algebraic topology and functional analysis.\nWhen not working on research, I’m probably practicing aerial silks, bouldering, or reading."
   },
   {
     "objectID": "shiny.html",
@@ -35,6 +35,13 @@
     "text": "Slides (source code)\n\nJSM 2023"
   },
   {
+    "objectID": "talks/tidy-MC-talk.html",
+    "href": "talks/tidy-MC-talk.html",
+    "title": "Combining R and SAS with tidy functional programming for clinical trial design",
+    "section": "",
+    "text": "Slides (source code)\n\n\nJSM 2024"
+  },
+  {
     "objectID": "talks/extending-ggplot2-talk.html",
     "href": "talks/extending-ggplot2-talk.html",
     "title": "Extending ggplot2 with new Geoms and Stats",
@@ -60,7 +67,7 @@
     "href": "talks.html",
     "title": "Talks",
     "section": "",
-    "text": "tldr: Quick Documentation in the R Console\n\n\n\n\n\n\n\n\n\nAug 8, 2023\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\n  \n\n\n\n\nExtending ggplot2 with new Geoms and Stats\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\nJames Otto\n\n\n\n\n\n\n  \n\n\n\n\nggdensity: Improved Bivariate Density Visualization in R\n\n\n\n\n\n\n\n\n\nAug 7, 2022\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\nNo matching items"
+    "text": "Combining R and SAS with tidy functional programming for clinical trial design\n\n\n\n\n\n\n\n\n\nAug 5, 2024\n\n\nJames Otto, Mary F. O. Rosenbloom\n\n\n\n\n\n\n  \n\n\n\n\ntldr: Quick Documentation in the R Console\n\n\n\n\n\n\n\n\n\nAug 8, 2023\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\n  \n\n\n\n\nExtending ggplot2 with new Geoms and Stats\n\n\n\n\n\n\n\n\n\nFeb 20, 2023\n\n\nJames Otto\n\n\n\n\n\n\n  \n\n\n\n\nggdensity: Improved Bivariate Density Visualization in R\n\n\n\n\n\n\n\n\n\nAug 7, 2022\n\n\nJames Otto, David Kahle\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2022-10-15-Rings-of-Power/Rings-of-Power.html",

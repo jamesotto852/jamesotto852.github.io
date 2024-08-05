@@ -2,6 +2,7 @@
   {
     "listing": "/talks.html",
     "items": [
+      "/talks/tidy-MC-talk.html",
       "/talks/tldr-talk.html",
       "/talks/extending-ggplot2-talk.html",
       "/talks/ggdensity-talk.html"
