@@ -1,0 +1,17 @@
+---
+title: "**tldr**: Quick Documentation in the R Console"
+author: 
+  - "**James Otto**"
+  - "David Kahle"
+date: "2023-8-8"
+image: "images/tldr-talk.png"
+---
+
+<iframe class="slide-deck" src="https://jamesotto852.github.io/JSM-2023/" style="width: 100%; height: 450px">
+
+</iframe>
+
+[Slides](https://jamesotto852.github.io/JSM-2023/){target="_blank" rel="noopener noreferrer"} 
+([source code](https://github.com/jamesotto852/JSM-2023){target="_blank" rel="noopener noreferrer"})
+
+* [JSM 2023](https://ww2.aievolution.com/JSMAnnual/index.cfm?do=ev.viewEv&ev=4126){target="_blank" rel="noopener noreferrer"}

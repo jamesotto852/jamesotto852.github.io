@@ -1,0 +1,18 @@
+---
+title: "Combining R and SAS with tidy functional programming for clinical trial design"
+author: 
+  - "**James Otto**"
+  - "Mary F. O. Rosenbloom"
+date: "2024-8-5"
+image: "images/tidy-MC-talk.png"
+---
+
+<iframe class="slide-deck" src="https://jamesotto852.github.io/JSM-2024/" style="width: 100%; height: 450px">
+
+</iframe>
+
+[Slides](https://jamesotto852.github.io/JSM-2024/){target="_blank" rel="noopener noreferrer"} 
+([source code](https://github.com/jamesotto852/JSM-2024){target="_blank" rel="noopener noreferrer"})
+
+<!-- * [JSM 2024](https://ww2.aievolution.com/JSMAnnual/index.cfm?do=ev.viewEv&ev=4126){target="_blank" rel="noopener noreferrer"} -->
+* JSM 2024
