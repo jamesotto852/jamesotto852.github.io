@@ -4,9 +4,6 @@ about:
   template: trestles
   image: images/profile_picture_tall.jpg
   links:
-    - icon: twitter
-      text: twitter
-      href: https://twitter.com/jamesotto852
     - icon: github
       text: Github
       href: https://github.com/jamesotto852
@@ -14,15 +11,15 @@ resources:
   - "James-Otto-Resume.pdf"
 ---
 
-I am a principal statistician at Alcon and hold a Ph.D. in Statistics from Baylor University. I also have an MS in Statistics as well as undergraduate degrees in Statistics, Mathematics, Economics, and Management of Information Systems.
+I am a principal statistician at Alcon where I work to develop Bayesian models for clinical applications, solutions for scalable clinical trial reporting, and enterprise-level infrastructure for the use and development of open source software.
 
-I am very interested in computational statistics and have developed [several R packages](packages.qmd).
-I also enjoy exploring the connections between theoretical mathematics and statistics---especially applications of algebraic topology and functional analysis.
+Outside of my work at Alcon I develop and maintain several R packages, including:
 
-When not working on research, I'm probably practicing aerial silks, bouldering, or reading.
+* [**ggdensity**](https://jamesotto852.github.io/ggdensity/)
+(bivariate density visualization with highest density regions),
+* [**ggtda**](https://github.com/tdaverse/ggtda)
+(visualizations of tools from topological data analysis), and
+* [**tldrPages**](https://github.com/jamesotto852/tldrPages)
+(short form package documentation via the R console).
 
-<!-- Here are a few of my current projects that I'm excited to be working on: -->
-
-<!-- -   [**ggdensity**](https://jamesotto852.github.io/ggdensity/): Interpretable visualizations of bivariate density estimates -->
-<!-- -   [**tldr**](https://github.com/jamesotto852/tldr): Short-form documentation in the R console -->
-<!-- -   [An Interactive History of Magic the Gathering](https://jamesotto.app/MTG-History) -->
+I hold a Ph.D. in Statistics from Baylor University and an MS in Statistics, as well as undergraduate degrees in Statistics, Mathematics, Economics, and Management of Information Systems.
