@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>James Otto – d3</title>
+<title>d3 – James Otto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,9 +17,11 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +48,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -93,23 +65,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-7fd16c57439220b9dccf536c1e3ffcff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c359f12d5271774e6eb0bb9ca8ca4cff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-7fd16c57439220b9dccf536c1e3ffcff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -118,8 +100,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
@@ -131,28 +115,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">James Otto</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-portfolio" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-portfolio" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Portfolio</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-portfolio">    
@@ -171,31 +319,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./talks.html">
- <span class="menu-text">Talks</span></a>
+    <a class="nav-link" href="./talks.html"> 
+<span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="./blog.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jamesotto852"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/jamesotto852"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/jamesotto852"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/jamesotto852"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -205,7 +352,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
 
 
 
@@ -286,10 +435,10 @@ Legacy metagame breakdown:
 </div>
 <!-- <p id="time"></p> -->
 <div class="column-page-inset">
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1" data-startfrom="102" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 101;"><span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>{</span>
+<div class="cell hidden">
+<details class="code-fold">
+<summary>D3 Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-startfrom="102" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 101;"><span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>{</span>
 <span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Using data from R code (below)</span></span>
 <span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  <span class="co">//  Need to transpose data (column-wise =&gt; row-wise)</span></span>
@@ -649,7 +798,7 @@ Legacy metagame breakdown:
 <span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>         <span class="op">.</span><span class="fu">text</span>(<span class="fu">get_date</span>())<span class="op">;</span></span>
 <span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>      })<span class="op">;</span></span>
 <span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display hidden">
 <div id="ojs-cell-1" data-nodetype="expression">
@@ -657,10 +806,10 @@ Legacy metagame breakdown:
 </div>
 </div>
 </div>
-<div class="cell">
-<details class="hidden">
+<div class="cell hidden">
+<details class="code-fold hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="469" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 468;"><span id="cb2-469"><a href="#cb2-469" aria-hidden="true" tabindex="-1"></a>{</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="469" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 468;"><span id="cb2-469"><a href="#cb2-469" aria-hidden="true" tabindex="-1"></a>{</span>
 <span id="cb2-470"><a href="#cb2-470" aria-hidden="true" tabindex="-1"></a>  <span class="co">// draw legend below plot svg</span></span>
 <span id="cb2-471"><a href="#cb2-471" aria-hidden="true" tabindex="-1"></a>  <span class="co">// adapted from https://observablehq.com/@tmcw/d3-scalesequential-continuous-color-legend-example</span></span>
 <span id="cb2-472"><a href="#cb2-472" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> w <span class="op">=</span> <span class="dv">1200</span><span class="op">;</span></span>
@@ -717,7 +866,7 @@ Legacy metagame breakdown:
 <span id="cb2-523"><a href="#cb2-523" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">"style"</span><span class="op">,</span><span class="st">"white-space:pre"</span>)</span>
 <span id="cb2-524"><a href="#cb2-524" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">attr</span>(<span class="st">"x"</span><span class="op">,</span> margin<span class="op">.</span><span class="at">left</span>)</span>
 <span id="cb2-525"><a href="#cb2-525" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span><span class="fu">attr</span>(<span class="st">"y"</span><span class="op">,</span> h<span class="op">/</span><span class="dv">3</span>)</span>
-<span id="cb2-526"><a href="#cb2-526" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-526"><a href="#cb2-526" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display hidden">
 <div id="ojs-cell-2" data-nodetype="expression">
@@ -726,9 +875,9 @@ Legacy metagame breakdown:
 </div>
 </div>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>R Code (Data Wrangling)</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading in data</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data is scraped from MTGTOP8, details coming soon in a blog post</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_mtg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"posts/2022-11-25-JavaScript-and-Quarto/data/legacy.csv"</span>)) </span>
@@ -770,7 +919,7 @@ Legacy metagame breakdown:
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">format =</span> <span class="st">"legacy"</span>)</span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Make `df_mtg` available in ojs chunks:</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">ojs_define</span>(<span class="at">df_mtg =</span> df_mtg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">ojs_define</span>(<span class="at">df_mtg =</span> df_mtg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </div>
@@ -779,9 +928,10 @@ Legacy metagame breakdown:
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"{\n\n  // Using data from R code (below)\n  //  Need to transpose data (column-wise => row-wise)\n  const dataset = transpose(df_mtg);\n  \n  // no. of cards to show in plot\n  const cards = 30;\n  \n  // start at most recent month\n  var t = 0;\n  \n  // return 30 rows of data corresponding to time t\n  var get_dataset_t = function(t) {\n    return dataset.slice((t * cards), (t + 1) * cards);\n  };\n  \n  // convert date to text for header\n  var get_date = function() {\n  \n    const monthNames = [\n      \"January\", \"February\", \"March\", \"April\", \"May\", \"June\",\n      \"July\", \"August\", \"September\", \"October\", \"November\", \"December\"\n    ];\n\n    var date = new Date(dataset_window[0].time);\n    \n    return monthNames[date.getMonth()] + \", \" + date.getFullYear();\n    \n  };\n  \n  // accessor for the \"key\" value of our data (the card name)\n  var key = function(d) {\n    return d.card;\n  };\n  \n  // initialize data w/ time t = 0\n  var dataset_window = get_dataset_t(t);\n  \n  \n  \n  // code for drawing card art\n  // uris is object w/ elements = urls for different art formats\n  var update_img = function(uris) {\n  \n    // draw full card in bottom right, fading in quickly\n    svg.select(\"#card-full\")\n      .selectAll(\"image\")\n      .data([uris.png])\n      .enter()\n      .append(\"svg:image\")\n      .attr(\"id\", \"card-full\")\n      .attr(\"xlink:href\", (d) => d)\n      .attr(\"x\", 2 * w/3)\n      .attr(\"y\", h/3 + 30)\n      .attr(\"width\", w/4)\n      .style(\"opacity\", 0)\n      .transition(\"card-full-in\")\n      .duration(200)\n      .ease(d3.easeLinear)\n      .style(\"opacity\", 1);\n       \n    // draw card art behind bars, fading in slower\n    svg.select(\"#card-art\")\n      .selectAll(\"image\")\n      .data([uris.art_crop])\n      .enter()\n      .append(\"svg:image\")\n      .attr(\"clip-path\", \"url(#chart-area)\")\n      .attr(\"id\", \"card-art\")\n      .attr(\"xlink:href\", (d) => d)\n      .attr(\"x\", padding_left)\n      .attr(\"y\", 6) \n      .attr(\"height\", h - padding_bottom)\n      .style(\"opacity\", 0)\n      .transition(\"card-art-in\")\n      .duration(500)\n      .ease(d3.easeLinear)\n      .style(\"opacity\", 0.8); // was .5\n  };\n  \n  // query scryfall api for card art\n  var get_art = function(name) {\n  \n    const reg = /[^\\w\\s]/g\n    var url = name.replace(reg, \"\").replace(\" \", \"+\").toLowerCase();\n    url = \"https://api.scryfall.com/cards/named?fuzzy=\" + url;\n    \n    fetch(url)\n      .then((response) => response.json())\n      // handle multifaced cards, return uris for first face\n      .then((data) => data.image_uris ?? data.card_faces[0].image_uris)\n      .then((uris) => update_img(uris))\n      .catch((error) => {\n        console.log(\"Issue with getting url\");\n    });   \n    \n  };\n  \n  // Remove art before drawing new art\n  // transition is breaking, removed for now\n  var remove_art = function() {\n    svg.select(\"#card-full\")\n      .selectAll(\"image\")\n      .remove();\n    \n    svg.selectAll(\"#card-art\")\n      .selectAll(\"image\")\n//      .transition(\"card-art-out\")\n//      .duration(500)\n//      .ease(d3.easelinear)\n//      .style(\"opacity\", 0)\n      .remove();\n  };\n  \n  var mouseover_fun = function(e, d) {\n    // on mouseover, dim other bars for card art\n    d3.selectAll(\".card-bars\")\n      .attr(\"stroke-width\", 0)\n      .attr(\"opacity\", 0.4);\n  \n    // darken selected bar\n    // (alternatively, could adjust stroke-width)\n   \td3.select(this)\n      //.attr(\"stroke-width\", 2)\n      //.attr(\"stroke\", \"white\")\n   \t\t.attr(\"opacity\", 1)\n   \t\t.attr(\"fill\", \"black\");\n   \t\t\n   \t// finally, draw card art\n   \tget_art(d.card, update_img);\n  };\n  \n  // on mouseout, return to normal\n  var mouseout_fun = function(d) {\n    d3.selectAll(\".card-bars\")\n      .attr(\"opacity\", 1);\n      \n    d3.select(this)\n    \t.transition()\n    \t.duration(200)\n\t\t  .attr(\"fill\", (d) => d3.interpolateViridis(cScale(d.average)));\n\t\t  \n    remove_art();\n  };\n\n  // Various parameters governing plot dimensions\n  const w = 1200;\n  const h = 800;\n  const padding_left = 150;\n  const padding_right = 35;\n  const padding_bottom = 35;\n  const anim_len = 1500;\n    \n  // x and y scales (simple, linear scales)\n  var xScale = d3.scaleLinear()\n    .domain([0, 1])\n    .range([padding_left, w - padding_right]);\n  \n  var yScale = d3.scaleBand()\n    .domain(d3.range(dataset_window.length))\n    .rangeRound([0, h - padding_bottom])\n    .paddingInner(0.075);\n    \n  // color scale, with compse w/ viridis\n  var cScale = d3.scaleLinear()\n    .domain([0, 4]);\n  \n  // the main svg we will draw on\n  var svg = d3.select(\".plot-mtg\")\n    .append(\"svg\")\n    .attr(\"preserveAspectRatio\", \"xMinYMin meet\")\n    .attr(\"viewBox\", \"0 0\" + \" \" + w + \" \" + h);\n    \n    \n  // Now, need to set up a few groups\n  //  (this allows for use to draw art under the bars)\n    \n  // Group for axis needs to be first\n  svg.append(\"g\").attr(\"class\", \"axis\");\n    \n  // set up groups for card art types\n  svg.append(\"g\").attr(\"id\", \"card-art\");\n  svg.append(\"g\").attr(\"id\", \"card-full\");\n    \n  // Need clipping path (mask) for bottom edge\n  //  (Prevents bars + text going below axis)\n  //  (Also keeps card art in the right spot)\n  svg.append(\"clipPath\")\n    .attr(\"id\", \"chart-area\")\n    .append(\"rect\")\n    .attr(\"x\", 0)\n    .attr(\"y\", 0)\n    .attr(\"width\", w - padding_right)\n    .attr(\"height\", h - padding_bottom);\n    \n  // Draw initial bars \n  //  if we want stroke-width on mouseover, need to initialize here\n  svg.selectAll(\".card-bars\")\n    .data(dataset_window, key)\n    .enter()\n    .append(\"rect\")\n    .attr(\"class\", \"card-bars\")\n    .attr(\"clip-path\", \"url(#chart-area)\")\n    .attr(\"x\", (d) => xScale(0))\n    .attr(\"width\", (d) => xScale(d.prevalence) - xScale(0))\n    .attr(\"y\", (d, i) => yScale(i))\n    .attr(\"height\", yScale.bandwidth())\n    .attr(\"fill\", (d) => d3.interpolateViridis(cScale(d.average)))\n//    .attr(\"stroke-width\", \"2\")\n//    .attr(\"stroke\", \"white\")\n    .on(\"mouseover\", mouseover_fun)\n    .on(\"mouseout\", mouseout_fun);\n    \n  // Initial titles:\n  svg.selectAll(\".card-titles\")\n    .data(dataset_window, key)\n    .enter()\n    .append(\"text\")\n    .text((d) => d.card + \"  \")\n    .attr(\"class\", \"card-titles\")\n    .attr(\"clip-path\", \"url(#chart-area)\")\n    .attr(\"font-size\", \"13px\")\n    .attr(\"text-anchor\", \"end\")\n    .attr(\"style\",\"white-space:pre\")\n    .attr(\"x\", (d) => xScale(0))\n    .attr(\"y\", (d, i) => yScale(i) + yScale.bandwidth() * 5/8);\n\n      \n  // x-axis with formatting:\n  var xAxis = d3.axisBottom()\n    .scale(xScale)\n    .ticks(4)\n    .tickFormat(d3.format(\".0%\"));\n  \n  svg.select(\".axis\")\n    .attr(\"transform\", \"translate(0,\" + (h - padding_bottom) + \")\")\n    .call(xAxis);\n  \n  // Note: there is no y-axis\n  // instead, we manually handled the bar labels as \"text\" objects\n  // this allows for pretty transitions\n      \t\n  // UI element set up:\n  // Set \">\" button as disabled on start up:\n  d3.select(\"#next\").property(\"disabled\", true);\n  d3.select(\"#nnext\").property(\"disabled\", true);\n  \t\n  // Set time in header\n  d3.select(\"#time\")\n    .append(\"text\")\n    .text(get_date());\n    \n  // When a button is pressed, start here\n  d3.selectAll(\"button\")\n    .on(\"click\", function() {\n     \n      // See which button was clicked\n      var buttonID = d3.select(this).attr(\"id\");\n\t\t\t\n\t\t\t// logic to prevent going past bounds of data\n\t\t\tif (buttonID == \"prev\") {\n\t\t\t  if (t < 100) {\n\t\t\t    t = t + 1;\n        };\n\t\t\t};\n\t\t\t\n\t\t  if (buttonID == \"pprev\") {\n\t\t \t  if (t <= 88) {\n\t\t \t     t = t + 12;\n         }; \n\t\t \t};\n\t\t\t\n\t\t  if (buttonID == \"next\") {\n\t\t\t  if (t > 0) {\n\t\t\t    t = t - 1;\n        };\n\t\t\t};\n\t\t\t\n\t\t\tif (buttonID == \"nnext\") {\n\t\t\t  if (t >= 12) {\n\t\t\t    t = t - 12;\n        };\n\t\t\t};\n\t\t\t\n\t\t\t// reset data with new value of t\n\t\t\tdataset_window = get_dataset_t(t);\n\t\t\t\n\t\t\t// re-bind new data to bars\n      var bars = svg.selectAll(\".card-bars\")\n        .data(dataset_window, key);\n        \n      // redraw bars\n      bars.enter()\n        .append(\"rect\")\n        .attr(\"class\", \"card-bars\")\n        .attr(\"clip-path\", \"url(#chart-area)\")\n        .attr(\"x\", (d) => xScale(0))\n\t\t\t\t.attr(\"y\", (d, i) => yScale(i) + h) // start with y value below axis\n        .attr(\"height\", yScale.bandwidth())\n        .on(\"mouseover\", mouseover_fun)\n        .on(\"mouseout\", mouseout_fun)\n        .merge(bars)\t// Now looking at ALL bars\n\t\t\t\t.transition(\"bars-enter\")\n\t\t\t\t.duration(anim_len)\n        .attr(\"width\", (d) => xScale(d.prevalence) - xScale(0))\n        .attr(\"y\", (d, i) => yScale(i)) // update y value to be correct\n        .attr(\"fill\", (d) => d3.interpolateViridis(cScale(d.average)));\n\n      // remove old bars\n\t\t\tbars.exit()\n\t\t\t\t.transition(\"bars-exit\")\n\t\t\t\t.duration(anim_len)\n\t\t\t\t.attr(\"y\", (d, i) => yScale(i) + h) // travel out of window\n\t\t\t\t.remove();\n\t\t\t\t\n\t\t\t\t\n\t\t\t// similar to bars, but now with text:\n  \t\tvar labs = svg.selectAll(\".card-titles\")\n        .data(dataset_window, key);\n        \n      labs.enter()\n        .append(\"text\")\n        .text((d) => d.card + \"  \")\n        .attr(\"class\", \"card-titles\")\n        .attr(\"clip-path\", \"url(#chart-area)\")\n        .attr(\"font-size\", \"13px\")\n        .attr(\"text-anchor\", \"end\")\n        .attr(\"style\",\"white-space:pre\")\n        .attr(\"x\", (d) => xScale(0))\n\t\t\t\t.attr(\"y\", (d, i) => yScale(i) + h)\n        .merge(labs)\t// Now looking at ALL text\n\t\t\t\t.transition(\"labs-enter\")\n\t\t\t\t.duration(anim_len)\n        .attr(\"y\", (d, i) => yScale(i) + yScale.bandwidth() * 5/8);\n        \n       labs.exit()\n\t\t\t   .transition(\"labs-exit\")\n\t\t\t\t .duration(anim_len)\n\t\t\t\t .attr(\"y\", (d, i) => yScale(i) + h)\n\t\t\t\t .remove();\n\t\t\t\t\n\t \t   // update header with correct time:\n       d3.select(\"#time\")\n         .select(\"text\")\n         .remove();\n         \n       // Disable/enable buttons as necessary:\n       d3.select(\"#next\").property(\"disabled\", t == 0);\n       d3.select(\"#nnext\").property(\"disabled\", t < 12);\n       \n       d3.select(\"#prev\").property(\"disabled\", t == 100);\n       d3.select(\"#pprev\").property(\"disabled\", t > 88);\n         \n       // update month + year\n       d3.select(\"#time\")\n         .append(\"text\")\n         .text(get_date());\n      });\n\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"{\n  // draw legend below plot svg\n  // adapted from https://observablehq.com/@tmcw/d3-scalesequential-continuous-color-legend-example\n  const w = 1200;\n  const h = 50\n  const barHeight = 25\n  \n  const margin = ({top: 0, right: 35, bottom: 25, left: 150})\n\n  var colorScale = d3.scaleSequential(d3.interpolateViridis).domain([0, 4])\n  \n  var axisScale = d3.scaleLinear()\n    .domain(colorScale.domain())\n    .range([margin.left, w - margin.right])\n    \n  var axisBottom = g => g\n    .attr(\"class\", \"axisWhite\")\n    .attr(\"transform\", `translate(0,${h - margin.bottom})`)\n    .call(d3.axisBottom(axisScale)\n      .ticks(5)\n      .tickSize(-barHeight))\n      \n  var svg_legend = d3.select(\".legend\")\n    .append(\"svg\")\n    .attr(\"preserveAspectRatio\", \"xMinYMin meet\")\n    .attr(\"viewBox\", \"0 0\" + \" \" + w + \" \" + h);\n    \n  var defs = svg_legend.append(\"defs\");\n  \n  var linearGradient = defs.append(\"linearGradient\")\n      .attr(\"id\", \"linear-gradient\");\n  \n  linearGradient.selectAll(\"stop\")\n    .data(colorScale.ticks().map((t, i, n) => ({ offset: `${100*i/n.length}%`, color: colorScale(t) })))\n    .enter().append(\"stop\")\n    .attr(\"offset\", d => d.offset)\n    .attr(\"stop-color\", d => d.color);\n  \n  svg_legend.append('g')\n      .attr(\"transform\", `translate(0,${h - margin.bottom - barHeight})`)\n      .append(\"rect\")\n      .attr('transform', `translate(${margin.left}, 0)`)\n  \t.attr(\"width\", w - margin.right - margin.left)\n  \t.attr(\"height\", barHeight)\n  \t.style(\"fill\", \"url(#linear-gradient)\");\n\t\n  svg_legend.append('g')\n    .call(axisBottom);  \n  \n  // Color guide title\n  svg_legend.append(\"text\")\n    .text(\"Avg no. of Copies:  \")\n    .attr(\"font-size\", \"13px\")\n    .attr(\"text-anchor\", \"end\")\n    .attr(\"style\",\"white-space:pre\")\n    .attr(\"x\", margin.left)\n\t\t.attr(\"y\", h/3)\n}\n"}]}
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IntcblxuICAvLyBVc2luZyBkYXRhIGZyb20gUiBjb2RlIChiZWxvdylcbiAgLy8gIE5lZWQgdG8gdHJhbnNwb3NlIGRhdGEgKGNvbHVtbi13aXNlID0+IHJvdy13aXNlKVxuICBjb25zdCBkYXRhc2V0ID0gdHJhbnNwb3NlKGRmX210Zyk7XG4gIFxuICAvLyBuby4gb2YgY2FyZHMgdG8gc2hvdyBpbiBwbG90XG4gIGNvbnN0IGNhcmRzID0gMzA7XG4gIFxuICAvLyBzdGFydCBhdCBtb3N0IHJlY2VudCBtb250aFxuICB2YXIgdCA9IDA7XG4gIFxuICAvLyByZXR1cm4gMzAgcm93cyBvZiBkYXRhIGNvcnJlc3BvbmRpbmcgdG8gdGltZSB0XG4gIHZhciBnZXRfZGF0YXNldF90ID0gZnVuY3Rpb24odCkge1xuICAgIHJldHVybiBkYXRhc2V0LnNsaWNlKCh0ICogY2FyZHMpLCAodCArIDEpICogY2FyZHMpO1xuICB9O1xuICBcbiAgLy8gY29udmVydCBkYXRlIHRvIHRleHQgZm9yIGhlYWRlclxuICB2YXIgZ2V0X2RhdGUgPSBmdW5jdGlvbigpIHtcbiAgXG4gICAgY29uc3QgbW9udGhOYW1lcyA9IFtcbiAgICAgIFwiSmFudWFyeVwiLCBcIkZlYnJ1YXJ5XCIsIFwiTWFyY2hcIiwgXCJBcHJpbFwiLCBcIk1heVwiLCBcIkp1bmVcIixcbiAgICAgIFwiSnVseVwiLCBcIkF1Z3VzdFwiLCBcIlNlcHRlbWJlclwiLCBcIk9jdG9iZXJcIiwgXCJOb3ZlbWJlclwiLCBcIkRlY2VtYmVyXCJcbiAgICBdO1xuXG4gICAgdmFyIGRhdGUgPSBuZXcgRGF0ZShkYXRhc2V0X3dpbmRvd1swXS50aW1lKTtcbiAgICBcbiAgICByZXR1cm4gbW9udGhOYW1lc1tkYXRlLmdldE1vbnRoKCldICsgXCIsIFwiICsgZGF0ZS5nZXRGdWxsWWVhcigpO1xuICAgIFxuICB9O1xuICBcbiAgLy8gYWNjZXNzb3IgZm9yIHRoZSBcImtleVwiIHZhbHVlIG9mIG91ciBkYXRhICh0aGUgY2FyZCBuYW1lKVxuICB2YXIga2V5ID0gZnVuY3Rpb24oZCkge1xuICAgIHJldHVybiBkLmNhcmQ7XG4gIH07XG4gIFxuICAvLyBpbml0aWFsaXplIGRhdGEgdy8gdGltZSB0ID0gMFxuICB2YXIgZGF0YXNldF93aW5kb3cgPSBnZXRfZGF0YXNldF90KHQpO1xuICBcbiAgXG4gIFxuICAvLyBjb2RlIGZvciBkcmF3aW5nIGNhcmQgYXJ0XG4gIC8vIHVyaXMgaXMgb2JqZWN0IHcvIGVsZW1lbnRzID0gdXJscyBmb3IgZGlmZmVyZW50IGFydCBmb3JtYXRzXG4gIHZhciB1cGRhdGVfaW1nID0gZnVuY3Rpb24odXJpcykge1xuICBcbiAgICAvLyBkcmF3IGZ1bGwgY2FyZCBpbiBib3R0b20gcmlnaHQsIGZhZGluZyBpbiBxdWlja2x5XG4gICAgc3ZnLnNlbGVjdChcIiNjYXJkLWZ1bGxcIilcbiAgICAgIC5zZWxlY3RBbGwoXCJpbWFnZVwiKVxuICAgICAgLmRhdGEoW3VyaXMucG5nXSlcbiAgICAgIC5lbnRlcigpXG4gICAgICAuYXBwZW5kKFwic3ZnOmltYWdlXCIpXG4gICAgICAuYXR0cihcImlkXCIsIFwiY2FyZC1mdWxsXCIpXG4gICAgICAuYXR0cihcInhsaW5rOmhyZWZcIiwgKGQpID0+IGQpXG4gICAgICAuYXR0cihcInhcIiwgMiAqIHcvMylcbiAgICAgIC5hdHRyKFwieVwiLCBoLzMgKyAzMClcbiAgICAgIC5hdHRyKFwid2lkdGhcIiwgdy80KVxuICAgICAgLnN0eWxlKFwib3BhY2l0eVwiLCAwKVxuICAgICAgLnRyYW5zaXRpb24oXCJjYXJkLWZ1bGwtaW5cIilcbiAgICAgIC5kdXJhdGlvbigyMDApXG4gICAgICAuZWFzZShkMy5lYXNlTGluZWFyKVxuICAgICAgLnN0eWxlKFwib3BhY2l0eVwiLCAxKTtcbiAgICAgICBcbiAgICAvLyBkcmF3IGNhcmQgYXJ0IGJlaGluZCBiYXJzLCBmYWRpbmcgaW4gc2xvd2VyXG4gICAgc3ZnLnNlbGVjdChcIiNjYXJkLWFydFwiKVxuICAgICAgLnNlbGVjdEFsbChcImltYWdlXCIpXG4gICAgICAuZGF0YShbdXJpcy5hcnRfY3JvcF0pXG4gICAgICAuZW50ZXIoKVxuICAgICAgLmFwcGVuZChcInN2ZzppbWFnZVwiKVxuICAgICAgLmF0dHIoXCJjbGlwLXBhdGhcIiwgXCJ1cmwoI2NoYXJ0LWFyZWEpXCIpXG4gICAgICAuYXR0cihcImlkXCIsIFwiY2FyZC1hcnRcIilcbiAgICAgIC5hdHRyKFwieGxpbms6aHJlZlwiLCAoZCkgPT4gZClcbiAgICAgIC5hdHRyKFwieFwiLCBwYWRkaW5nX2xlZnQpXG4gICAgICAuYXR0cihcInlcIiwgNikgXG4gICAgICAuYXR0cihcImhlaWdodFwiLCBoIC0gcGFkZGluZ19ib3R0b20pXG4gICAgICAuc3R5bGUoXCJvcGFjaXR5XCIsIDApXG4gICAgICAudHJhbnNpdGlvbihcImNhcmQtYXJ0LWluXCIpXG4gICAgICAuZHVyYXRpb24oNTAwKVxuICAgICAgLmVhc2UoZDMuZWFzZUxpbmVhcilcbiAgICAgIC5zdHlsZShcIm9wYWNpdHlcIiwgMC44KTsgLy8gd2FzIC41XG4gIH07XG4gIFxuICAvLyBxdWVyeSBzY3J5ZmFsbCBhcGkgZm9yIGNhcmQgYXJ0XG4gIHZhciBnZXRfYXJ0ID0gZnVuY3Rpb24obmFtZSkge1xuICBcbiAgICBjb25zdCByZWcgPSAvW15cXHdcXHNdL2dcbiAgICB2YXIgdXJsID0gbmFtZS5yZXBsYWNlKHJlZywgXCJcIikucmVwbGFjZShcIiBcIiwgXCIrXCIpLnRvTG93ZXJDYXNlKCk7XG4gICAgdXJsID0gXCJodHRwczovL2FwaS5zY3J5ZmFsbC5jb20vY2FyZHMvbmFtZWQ/ZnV6enk9XCIgKyB1cmw7XG4gICAgXG4gICAgZmV0Y2godXJsKVxuICAgICAgLnRoZW4oKHJlc3BvbnNlKSA9PiByZXNwb25zZS5qc29uKCkpXG4gICAgICAvLyBoYW5kbGUgbXVsdGlmYWNlZCBjYXJkcywgcmV0dXJuIHVyaXMgZm9yIGZpcnN0IGZhY2VcbiAgICAgIC50aGVuKChkYXRhKSA9PiBkYXRhLmltYWdlX3VyaXMgPz8gZGF0YS5jYXJkX2ZhY2VzWzBdLmltYWdlX3VyaXMpXG4gICAgICAudGhlbigodXJpcykgPT4gdXBkYXRlX2ltZyh1cmlzKSlcbiAgICAgIC5jYXRjaCgoZXJyb3IpID0+IHtcbiAgICAgICAgY29uc29sZS5sb2coXCJJc3N1ZSB3aXRoIGdldHRpbmcgdXJsXCIpO1xuICAgIH0pOyAgIFxuICAgIFxuICB9O1xuICBcbiAgLy8gUmVtb3ZlIGFydCBiZWZvcmUgZHJhd2luZyBuZXcgYXJ0XG4gIC8vIHRyYW5zaXRpb24gaXMgYnJlYWtpbmcsIHJlbW92ZWQgZm9yIG5vd1xuICB2YXIgcmVtb3ZlX2FydCA9IGZ1bmN0aW9uKCkge1xuICAgIHN2Zy5zZWxlY3QoXCIjY2FyZC1mdWxsXCIpXG4gICAgICAuc2VsZWN0QWxsKFwiaW1hZ2VcIilcbiAgICAgIC5yZW1vdmUoKTtcbiAgICBcbiAgICBzdmcuc2VsZWN0QWxsKFwiI2NhcmQtYXJ0XCIpXG4gICAgICAuc2VsZWN0QWxsKFwiaW1hZ2VcIilcbi8vICAgICAgLnRyYW5zaXRpb24oXCJjYXJkLWFydC1vdXRcIilcbi8vICAgICAgLmR1cmF0aW9uKDUwMClcbi8vICAgICAgLmVhc2UoZDMuZWFzZWxpbmVhcilcbi8vICAgICAgLnN0eWxlKFwib3BhY2l0eVwiLCAwKVxuICAgICAgLnJlbW92ZSgpO1xuICB9O1xuICBcbiAgdmFyIG1vdXNlb3Zlcl9mdW4gPSBmdW5jdGlvbihlLCBkKSB7XG4gICAgLy8gb24gbW91c2VvdmVyLCBkaW0gb3RoZXIgYmFycyBmb3IgY2FyZCBhcnRcbiAgICBkMy5zZWxlY3RBbGwoXCIuY2FyZC1iYXJzXCIpXG4gICAgICAuYXR0cihcInN0cm9rZS13aWR0aFwiLCAwKVxuICAgICAgLmF0dHIoXCJvcGFjaXR5XCIsIDAuNCk7XG4gIFxuICAgIC8vIGRhcmtlbiBzZWxlY3RlZCBiYXJcbiAgICAvLyAoYWx0ZXJuYXRpdmVseSwgY291bGQgYWRqdXN0IHN0cm9rZS13aWR0aClcbiAgIFx0ZDMuc2VsZWN0KHRoaXMpXG4gICAgICAvLy5hdHRyKFwic3Ryb2tlLXdpZHRoXCIsIDIpXG4gICAgICAvLy5hdHRyKFwic3Ryb2tlXCIsIFwid2hpdGVcIilcbiAgIFx0XHQuYXR0cihcIm9wYWNpdHlcIiwgMSlcbiAgIFx0XHQuYXR0cihcImZpbGxcIiwgXCJibGFja1wiKTtcbiAgIFx0XHRcbiAgIFx0Ly8gZmluYWxseSwgZHJhdyBjYXJkIGFydFxuICAgXHRnZXRfYXJ0KGQuY2FyZCwgdXBkYXRlX2ltZyk7XG4gIH07XG4gIFxuICAvLyBvbiBtb3VzZW91dCwgcmV0dXJuIHRvIG5vcm1hbFxuICB2YXIgbW91c2VvdXRfZnVuID0gZnVuY3Rpb24oZCkge1xuICAgIGQzLnNlbGVjdEFsbChcIi5jYXJkLWJhcnNcIilcbiAgICAgIC5hdHRyKFwib3BhY2l0eVwiLCAxKTtcbiAgICAgIFxuICAgIGQzLnNlbGVjdCh0aGlzKVxuICAgIFx0LnRyYW5zaXRpb24oKVxuICAgIFx0LmR1cmF0aW9uKDIwMClcblx0XHQgIC5hdHRyKFwiZmlsbFwiLCAoZCkgPT4gZDMuaW50ZXJwb2xhdGVWaXJpZGlzKGNTY2FsZShkLmF2ZXJhZ2UpKSk7XG5cdFx0ICBcbiAgICByZW1vdmVfYXJ0KCk7XG4gIH07XG5cbiAgLy8gVmFyaW91cyBwYXJhbWV0ZXJzIGdvdmVybmluZyBwbG90IGRpbWVuc2lvbnNcbiAgY29uc3QgdyA9IDEyMDA7XG4gIGNvbnN0IGggPSA4MDA7XG4gIGNvbnN0IHBhZGRpbmdfbGVmdCA9IDE1MDtcbiAgY29uc3QgcGFkZGluZ19yaWdodCA9IDM1O1xuICBjb25zdCBwYWRkaW5nX2JvdHRvbSA9IDM1O1xuICBjb25zdCBhbmltX2xlbiA9IDE1MDA7XG4gICAgXG4gIC8vIHggYW5kIHkgc2NhbGVzIChzaW1wbGUsIGxpbmVhciBzY2FsZXMpXG4gIHZhciB4U2NhbGUgPSBkMy5zY2FsZUxpbmVhcigpXG4gICAgLmRvbWFpbihbMCwgMV0pXG4gICAgLnJhbmdlKFtwYWRkaW5nX2xlZnQsIHcgLSBwYWRkaW5nX3JpZ2h0XSk7XG4gIFxuICB2YXIgeVNjYWxlID0gZDMuc2NhbGVCYW5kKClcbiAgICAuZG9tYWluKGQzLnJhbmdlKGRhdGFzZXRfd2luZG93Lmxlbmd0aCkpXG4gICAgLnJhbmdlUm91bmQoWzAsIGggLSBwYWRkaW5nX2JvdHRvbV0pXG4gICAgLnBhZGRpbmdJbm5lcigwLjA3NSk7XG4gICAgXG4gIC8vIGNvbG9yIHNjYWxlLCB3aXRoIGNvbXBzZSB3LyB2aXJpZGlzXG4gIHZhciBjU2NhbGUgPSBkMy5zY2FsZUxpbmVhcigpXG4gICAgLmRvbWFpbihbMCwgNF0pO1xuICBcbiAgLy8gdGhlIG1haW4gc3ZnIHdlIHdpbGwgZHJhdyBvblxuICB2YXIgc3ZnID0gZDMuc2VsZWN0KFwiLnBsb3QtbXRnXCIpXG4gICAgLmFwcGVuZChcInN2Z1wiKVxuICAgIC5hdHRyKFwicHJlc2VydmVBc3BlY3RSYXRpb1wiLCBcInhNaW5ZTWluIG1lZXRcIilcbiAgICAuYXR0cihcInZpZXdCb3hcIiwgXCIwIDBcIiArIFwiIFwiICsgdyArIFwiIFwiICsgaCk7XG4gICAgXG4gICAgXG4gIC8vIE5vdywgbmVlZCB0byBzZXQgdXAgYSBmZXcgZ3JvdXBzXG4gIC8vICAodGhpcyBhbGxvd3MgZm9yIHVzZSB0byBkcmF3IGFydCB1bmRlciB0aGUgYmFycylcbiAgICBcbiAgLy8gR3JvdXAgZm9yIGF4aXMgbmVlZHMgdG8gYmUgZmlyc3RcbiAgc3ZnLmFwcGVuZChcImdcIikuYXR0cihcImNsYXNzXCIsIFwiYXhpc1wiKTtcbiAgICBcbiAgLy8gc2V0IHVwIGdyb3VwcyBmb3IgY2FyZCBhcnQgdHlwZXNcbiAgc3ZnLmFwcGVuZChcImdcIikuYXR0cihcImlkXCIsIFwiY2FyZC1hcnRcIik7XG4gIHN2Zy5hcHBlbmQoXCJnXCIpLmF0dHIoXCJpZFwiLCBcImNhcmQtZnVsbFwiKTtcbiAgICBcbiAgLy8gTmVlZCBjbGlwcGluZyBwYXRoIChtYXNrKSBmb3IgYm90dG9tIGVkZ2VcbiAgLy8gIChQcmV2ZW50cyBiYXJzICsgdGV4dCBnb2luZyBiZWxvdyBheGlzKVxuICAvLyAgKEFsc28ga2VlcHMgY2FyZCBhcnQgaW4gdGhlIHJpZ2h0IHNwb3QpXG4gIHN2Zy5hcHBlbmQoXCJjbGlwUGF0aFwiKVxuICAgIC5hdHRyKFwiaWRcIiwgXCJjaGFydC1hcmVhXCIpXG4gICAgLmFwcGVuZChcInJlY3RcIilcbiAgICAuYXR0cihcInhcIiwgMClcbiAgICAuYXR0cihcInlcIiwgMClcbiAgICAuYXR0cihcIndpZHRoXCIsIHcgLSBwYWRkaW5nX3JpZ2h0KVxuICAgIC5hdHRyKFwiaGVpZ2h0XCIsIGggLSBwYWRkaW5nX2JvdHRvbSk7XG4gICAgXG4gIC8vIERyYXcgaW5pdGlhbCBiYXJzIFxuICAvLyAgaWYgd2Ugd2FudCBzdHJva2Utd2lkdGggb24gbW91c2VvdmVyLCBuZWVkIHRvIGluaXRpYWxpemUgaGVyZVxuICBzdmcuc2VsZWN0QWxsKFwiLmNhcmQtYmFyc1wiKVxuICAgIC5kYXRhKGRhdGFzZXRfd2luZG93LCBrZXkpXG4gICAgLmVudGVyKClcbiAgICAuYXBwZW5kKFwicmVjdFwiKVxuICAgIC5hdHRyKFwiY2xhc3NcIiwgXCJjYXJkLWJhcnNcIilcbiAgICAuYXR0cihcImNsaXAtcGF0aFwiLCBcInVybCgjY2hhcnQtYXJlYSlcIilcbiAgICAuYXR0cihcInhcIiwgKGQpID0+IHhTY2FsZSgwKSlcbiAgICAuYXR0cihcIndpZHRoXCIsIChkKSA9PiB4U2NhbGUoZC5wcmV2YWxlbmNlKSAtIHhTY2FsZSgwKSlcbiAgICAuYXR0cihcInlcIiwgKGQsIGkpID0+IHlTY2FsZShpKSlcbiAgICAuYXR0cihcImhlaWdodFwiLCB5U2NhbGUuYmFuZHdpZHRoKCkpXG4gICAgLmF0dHIoXCJmaWxsXCIsIChkKSA9PiBkMy5pbnRlcnBvbGF0ZVZpcmlkaXMoY1NjYWxlKGQuYXZlcmFnZSkpKVxuLy8gICAgLmF0dHIoXCJzdHJva2Utd2lkdGhcIiwgXCIyXCIpXG4vLyAgICAuYXR0cihcInN0cm9rZVwiLCBcIndoaXRlXCIpXG4gICAgLm9uKFwibW91c2VvdmVyXCIsIG1vdXNlb3Zlcl9mdW4pXG4gICAgLm9uKFwibW91c2VvdXRcIiwgbW91c2VvdXRfZnVuKTtcbiAgICBcbiAgLy8gSW5pdGlhbCB0aXRsZXM6XG4gIHN2Zy5zZWxlY3RBbGwoXCIuY2FyZC10aXRsZXNcIilcbiAgICAuZGF0YShkYXRhc2V0X3dpbmRvdywga2V5KVxuICAgIC5lbnRlcigpXG4gICAgLmFwcGVuZChcInRleHRcIilcbiAgICAudGV4dCgoZCkgPT4gZC5jYXJkICsgXCIgIFwiKVxuICAgIC5hdHRyKFwiY2xhc3NcIiwgXCJjYXJkLXRpdGxlc1wiKVxuICAgIC5hdHRyKFwiY2xpcC1wYXRoXCIsIFwidXJsKCNjaGFydC1hcmVhKVwiKVxuICAgIC5hdHRyKFwiZm9udC1zaXplXCIsIFwiMTNweFwiKVxuICAgIC5hdHRyKFwidGV4dC1hbmNob3JcIiwgXCJlbmRcIilcbiAgICAuYXR0cihcInN0eWxlXCIsXCJ3aGl0ZS1zcGFjZTpwcmVcIilcbiAgICAuYXR0cihcInhcIiwgKGQpID0+IHhTY2FsZSgwKSlcbiAgICAuYXR0cihcInlcIiwgKGQsIGkpID0+IHlTY2FsZShpKSArIHlTY2FsZS5iYW5kd2lkdGgoKSAqIDUvOCk7XG5cbiAgICAgIFxuICAvLyB4LWF4aXMgd2l0aCBmb3JtYXR0aW5nOlxuICB2YXIgeEF4aXMgPSBkMy5heGlzQm90dG9tKClcbiAgICAuc2NhbGUoeFNjYWxlKVxuICAgIC50aWNrcyg0KVxuICAgIC50aWNrRm9ybWF0KGQzLmZvcm1hdChcIi4wJVwiKSk7XG4gIFxuICBzdmcuc2VsZWN0KFwiLmF4aXNcIilcbiAgICAuYXR0cihcInRyYW5zZm9ybVwiLCBcInRyYW5zbGF0ZSgwLFwiICsgKGggLSBwYWRkaW5nX2JvdHRvbSkgKyBcIilcIilcbiAgICAuY2FsbCh4QXhpcyk7XG4gIFxuICAvLyBOb3RlOiB0aGVyZSBpcyBubyB5LWF4aXNcbiAgLy8gaW5zdGVhZCwgd2UgbWFudWFsbHkgaGFuZGxlZCB0aGUgYmFyIGxhYmVscyBhcyBcInRleHRcIiBvYmplY3RzXG4gIC8vIHRoaXMgYWxsb3dzIGZvciBwcmV0dHkgdHJhbnNpdGlvbnNcbiAgICAgIFx0XG4gIC8vIFVJIGVsZW1lbnQgc2V0IHVwOlxuICAvLyBTZXQgXCI+XCIgYnV0dG9uIGFzIGRpc2FibGVkIG9uIHN0YXJ0IHVwOlxuICBkMy5zZWxlY3QoXCIjbmV4dFwiKS5wcm9wZXJ0eShcImRpc2FibGVkXCIsIHRydWUpO1xuICBkMy5zZWxlY3QoXCIjbm5leHRcIikucHJvcGVydHkoXCJkaXNhYmxlZFwiLCB0cnVlKTtcbiAgXHRcbiAgLy8gU2V0IHRpbWUgaW4gaGVhZGVyXG4gIGQzLnNlbGVjdChcIiN0aW1lXCIpXG4gICAgLmFwcGVuZChcInRleHRcIilcbiAgICAudGV4dChnZXRfZGF0ZSgpKTtcbiAgICBcbiAgLy8gV2hlbiBhIGJ1dHRvbiBpcyBwcmVzc2VkLCBzdGFydCBoZXJlXG4gIGQzLnNlbGVjdEFsbChcImJ1dHRvblwiKVxuICAgIC5vbihcImNsaWNrXCIsIGZ1bmN0aW9uKCkge1xuICAgICBcbiAgICAgIC8vIFNlZSB3aGljaCBidXR0b24gd2FzIGNsaWNrZWRcbiAgICAgIHZhciBidXR0b25JRCA9IGQzLnNlbGVjdCh0aGlzKS5hdHRyKFwiaWRcIik7XG5cdFx0XHRcblx0XHRcdC8vIGxvZ2ljIHRvIHByZXZlbnQgZ29pbmcgcGFzdCBib3VuZHMgb2YgZGF0YVxuXHRcdFx0aWYgKGJ1dHRvbklEID09IFwicHJldlwiKSB7XG5cdFx0XHQgIGlmICh0IDwgMTAwKSB7XG5cdFx0XHQgICAgdCA9IHQgKyAxO1xuICAgICAgICB9O1xuXHRcdFx0fTtcblx0XHRcdFxuXHRcdCAgaWYgKGJ1dHRvbklEID09IFwicHByZXZcIikge1xuXHRcdCBcdCAgaWYgKHQgPD0gODgpIHtcblx0XHQgXHQgICAgIHQgPSB0ICsgMTI7XG4gICAgICAgICB9OyBcblx0XHQgXHR9O1xuXHRcdFx0XG5cdFx0ICBpZiAoYnV0dG9uSUQgPT0gXCJuZXh0XCIpIHtcblx0XHRcdCAgaWYgKHQgPiAwKSB7XG5cdFx0XHQgICAgdCA9IHQgLSAxO1xuICAgICAgICB9O1xuXHRcdFx0fTtcblx0XHRcdFxuXHRcdFx0aWYgKGJ1dHRvbklEID09IFwibm5leHRcIikge1xuXHRcdFx0ICBpZiAodCA+PSAxMikge1xuXHRcdFx0ICAgIHQgPSB0IC0gMTI7XG4gICAgICAgIH07XG5cdFx0XHR9O1xuXHRcdFx0XG5cdFx0XHQvLyByZXNldCBkYXRhIHdpdGggbmV3IHZhbHVlIG9mIHRcblx0XHRcdGRhdGFzZXRfd2luZG93ID0gZ2V0X2RhdGFzZXRfdCh0KTtcblx0XHRcdFxuXHRcdFx0Ly8gcmUtYmluZCBuZXcgZGF0YSB0byBiYXJzXG4gICAgICB2YXIgYmFycyA9IHN2Zy5zZWxlY3RBbGwoXCIuY2FyZC1iYXJzXCIpXG4gICAgICAgIC5kYXRhKGRhdGFzZXRfd2luZG93LCBrZXkpO1xuICAgICAgICBcbiAgICAgIC8vIHJlZHJhdyBiYXJzXG4gICAgICBiYXJzLmVudGVyKClcbiAgICAgICAgLmFwcGVuZChcInJlY3RcIilcbiAgICAgICAgLmF0dHIoXCJjbGFzc1wiLCBcImNhcmQtYmFyc1wiKVxuICAgICAgICAuYXR0cihcImNsaXAtcGF0aFwiLCBcInVybCgjY2hhcnQtYXJlYSlcIilcbiAgICAgICAgLmF0dHIoXCJ4XCIsIChkKSA9PiB4U2NhbGUoMCkpXG5cdFx0XHRcdC5hdHRyKFwieVwiLCAoZCwgaSkgPT4geVNjYWxlKGkpICsgaCkgLy8gc3RhcnQgd2l0aCB5IHZhbHVlIGJlbG93IGF4aXNcbiAgICAgICAgLmF0dHIoXCJoZWlnaHRcIiwgeVNjYWxlLmJhbmR3aWR0aCgpKVxuICAgICAgICAub24oXCJtb3VzZW92ZXJcIiwgbW91c2VvdmVyX2Z1bilcbiAgICAgICAgLm9uKFwibW91c2VvdXRcIiwgbW91c2VvdXRfZnVuKVxuICAgICAgICAubWVyZ2UoYmFycylcdC8vIE5vdyBsb29raW5nIGF0IEFMTCBiYXJzXG5cdFx0XHRcdC50cmFuc2l0aW9uKFwiYmFycy1lbnRlclwiKVxuXHRcdFx0XHQuZHVyYXRpb24oYW5pbV9sZW4pXG4gICAgICAgIC5hdHRyKFwid2lkdGhcIiwgKGQpID0+IHhTY2FsZShkLnByZXZhbGVuY2UpIC0geFNjYWxlKDApKVxuICAgICAgICAuYXR0cihcInlcIiwgKGQsIGkpID0+IHlTY2FsZShpKSkgLy8gdXBkYXRlIHkgdmFsdWUgdG8gYmUgY29ycmVjdFxuICAgICAgICAuYXR0cihcImZpbGxcIiwgKGQpID0+IGQzLmludGVycG9sYXRlVmlyaWRpcyhjU2NhbGUoZC5hdmVyYWdlKSkpO1xuXG4gICAgICAvLyByZW1vdmUgb2xkIGJhcnNcblx0XHRcdGJhcnMuZXhpdCgpXG5cdFx0XHRcdC50cmFuc2l0aW9uKFwiYmFycy1leGl0XCIpXG5cdFx0XHRcdC5kdXJhdGlvbihhbmltX2xlbilcblx0XHRcdFx0LmF0dHIoXCJ5XCIsIChkLCBpKSA9PiB5U2NhbGUoaSkgKyBoKSAvLyB0cmF2ZWwgb3V0IG9mIHdpbmRvd1xuXHRcdFx0XHQucmVtb3ZlKCk7XG5cdFx0XHRcdFxuXHRcdFx0XHRcblx0XHRcdC8vIHNpbWlsYXIgdG8gYmFycywgYnV0IG5vdyB3aXRoIHRleHQ6XG4gIFx0XHR2YXIgbGFicyA9IHN2Zy5zZWxlY3RBbGwoXCIuY2FyZC10aXRsZXNcIilcbiAgICAgICAgLmRhdGEoZGF0YXNldF93aW5kb3csIGtleSk7XG4gICAgICAgIFxuICAgICAgbGFicy5lbnRlcigpXG4gICAgICAgIC5hcHBlbmQoXCJ0ZXh0XCIpXG4gICAgICAgIC50ZXh0KChkKSA9PiBkLmNhcmQgKyBcIiAgXCIpXG4gICAgICAgIC5hdHRyKFwiY2xhc3NcIiwgXCJjYXJkLXRpdGxlc1wiKVxuICAgICAgICAuYXR0cihcImNsaXAtcGF0aFwiLCBcInVybCgjY2hhcnQtYXJlYSlcIilcbiAgICAgICAgLmF0dHIoXCJmb250LXNpemVcIiwgXCIxM3B4XCIpXG4gICAgICAgIC5hdHRyKFwidGV4dC1hbmNob3JcIiwgXCJlbmRcIilcbiAgICAgICAgLmF0dHIoXCJzdHlsZVwiLFwid2hpdGUtc3BhY2U6cHJlXCIpXG4gICAgICAgIC5hdHRyKFwieFwiLCAoZCkgPT4geFNjYWxlKDApKVxuXHRcdFx0XHQuYXR0cihcInlcIiwgKGQsIGkpID0+IHlTY2FsZShpKSArIGgpXG4gICAgICAgIC5tZXJnZShsYWJzKVx0Ly8gTm93IGxvb2tpbmcgYXQgQUxMIHRleHRcblx0XHRcdFx0LnRyYW5zaXRpb24oXCJsYWJzLWVudGVyXCIpXG5cdFx0XHRcdC5kdXJhdGlvbihhbmltX2xlbilcbiAgICAgICAgLmF0dHIoXCJ5XCIsIChkLCBpKSA9PiB5U2NhbGUoaSkgKyB5U2NhbGUuYmFuZHdpZHRoKCkgKiA1LzgpO1xuICAgICAgICBcbiAgICAgICBsYWJzLmV4aXQoKVxuXHRcdFx0ICAgLnRyYW5zaXRpb24oXCJsYWJzLWV4aXRcIilcblx0XHRcdFx0IC5kdXJhdGlvbihhbmltX2xlbilcblx0XHRcdFx0IC5hdHRyKFwieVwiLCAoZCwgaSkgPT4geVNjYWxlKGkpICsgaClcblx0XHRcdFx0IC5yZW1vdmUoKTtcblx0XHRcdFx0XG5cdCBcdCAgIC8vIHVwZGF0ZSBoZWFkZXIgd2l0aCBjb3JyZWN0IHRpbWU6XG4gICAgICAgZDMuc2VsZWN0KFwiI3RpbWVcIilcbiAgICAgICAgIC5zZWxlY3QoXCJ0ZXh0XCIpXG4gICAgICAgICAucmVtb3ZlKCk7XG4gICAgICAgICBcbiAgICAgICAvLyBEaXNhYmxlL2VuYWJsZSBidXR0b25zIGFzIG5lY2Vzc2FyeTpcbiAgICAgICBkMy5zZWxlY3QoXCIjbmV4dFwiKS5wcm9wZXJ0eShcImRpc2FibGVkXCIsIHQgPT0gMCk7XG4gICAgICAgZDMuc2VsZWN0KFwiI25uZXh0XCIpLnByb3BlcnR5KFwiZGlzYWJsZWRcIiwgdCA8IDEyKTtcbiAgICAgICBcbiAgICAgICBkMy5zZWxlY3QoXCIjcHJldlwiKS5wcm9wZXJ0eShcImRpc2FibGVkXCIsIHQgPT0gMTAwKTtcbiAgICAgICBkMy5zZWxlY3QoXCIjcHByZXZcIikucHJvcGVydHkoXCJkaXNhYmxlZFwiLCB0ID4gODgpO1xuICAgICAgICAgXG4gICAgICAgLy8gdXBkYXRlIG1vbnRoICsgeWVhclxuICAgICAgIGQzLnNlbGVjdChcIiN0aW1lXCIpXG4gICAgICAgICAuYXBwZW5kKFwidGV4dFwiKVxuICAgICAgICAgLnRleHQoZ2V0X2RhdGUoKSk7XG4gICAgICB9KTtcblxufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoie1xuICAvLyBkcmF3IGxlZ2VuZCBiZWxvdyBwbG90IHN2Z1xuICAvLyBhZGFwdGVkIGZyb20gaHR0cHM6Ly9vYnNlcnZhYmxlaHEuY29tL0B0bWN3L2QzLXNjYWxlc2VxdWVudGlhbC1jb250aW51b3VzLWNvbG9yLWxlZ2VuZC1leGFtcGxlXG4gIGNvbnN0IHcgPSAxMjAwO1xuICBjb25zdCBoID0gNTBcbiAgY29uc3QgYmFySGVpZ2h0ID0gMjVcbiAgXG4gIGNvbnN0IG1hcmdpbiA9ICh7dG9wOiAwLCByaWdodDogMzUsIGJvdHRvbTogMjUsIGxlZnQ6IDE1MH0pXG5cbiAgdmFyIGNvbG9yU2NhbGUgPSBkMy5zY2FsZVNlcXVlbnRpYWwoZDMuaW50ZXJwb2xhdGVWaXJpZGlzKS5kb21haW4oWzAsIDRdKVxuICBcbiAgdmFyIGF4aXNTY2FsZSA9IGQzLnNjYWxlTGluZWFyKClcbiAgICAuZG9tYWluKGNvbG9yU2NhbGUuZG9tYWluKCkpXG4gICAgLnJhbmdlKFttYXJnaW4ubGVmdCwgdyAtIG1hcmdpbi5yaWdodF0pXG4gICAgXG4gIHZhciBheGlzQm90dG9tID0gZyA9PiBnXG4gICAgLmF0dHIoXCJjbGFzc1wiLCBcImF4aXNXaGl0ZVwiKVxuICAgIC5hdHRyKFwidHJhbnNmb3JtXCIsIGB0cmFuc2xhdGUoMCwke2ggLSBtYXJnaW4uYm90dG9tfSlgKVxuICAgIC5jYWxsKGQzLmF4aXNCb3R0b20oYXhpc1NjYWxlKVxuICAgICAgLnRpY2tzKDUpXG4gICAgICAudGlja1NpemUoLWJhckhlaWdodCkpXG4gICAgICBcbiAgdmFyIHN2Z19sZWdlbmQgPSBkMy5zZWxlY3QoXCIubGVnZW5kXCIpXG4gICAgLmFwcGVuZChcInN2Z1wiKVxuICAgIC5hdHRyKFwicHJlc2VydmVBc3BlY3RSYXRpb1wiLCBcInhNaW5ZTWluIG1lZXRcIilcbiAgICAuYXR0cihcInZpZXdCb3hcIiwgXCIwIDBcIiArIFwiIFwiICsgdyArIFwiIFwiICsgaCk7XG4gICAgXG4gIHZhciBkZWZzID0gc3ZnX2xlZ2VuZC5hcHBlbmQoXCJkZWZzXCIpO1xuICBcbiAgdmFyIGxpbmVhckdyYWRpZW50ID0gZGVmcy5hcHBlbmQoXCJsaW5lYXJHcmFkaWVudFwiKVxuICAgICAgLmF0dHIoXCJpZFwiLCBcImxpbmVhci1ncmFkaWVudFwiKTtcbiAgXG4gIGxpbmVhckdyYWRpZW50LnNlbGVjdEFsbChcInN0b3BcIilcbiAgICAuZGF0YShjb2xvclNjYWxlLnRpY2tzKCkubWFwKCh0LCBpLCBuKSA9PiAoeyBvZmZzZXQ6IGAkezEwMCppL24ubGVuZ3RofSVgLCBjb2xvcjogY29sb3JTY2FsZSh0KSB9KSkpXG4gICAgLmVudGVyKCkuYXBwZW5kKFwic3RvcFwiKVxuICAgIC5hdHRyKFwib2Zmc2V0XCIsIGQgPT4gZC5vZmZzZXQpXG4gICAgLmF0dHIoXCJzdG9wLWNvbG9yXCIsIGQgPT4gZC5jb2xvcik7XG4gIFxuICBzdmdfbGVnZW5kLmFwcGVuZCgnZycpXG4gICAgICAuYXR0cihcInRyYW5zZm9ybVwiLCBgdHJhbnNsYXRlKDAsJHtoIC0gbWFyZ2luLmJvdHRvbSAtIGJhckhlaWdodH0pYClcbiAgICAgIC5hcHBlbmQoXCJyZWN0XCIpXG4gICAgICAuYXR0cigndHJhbnNmb3JtJywgYHRyYW5zbGF0ZSgke21hcmdpbi5sZWZ0fSwgMClgKVxuICBcdC5hdHRyKFwid2lkdGhcIiwgdyAtIG1hcmdpbi5yaWdodCAtIG1hcmdpbi5sZWZ0KVxuICBcdC5hdHRyKFwiaGVpZ2h0XCIsIGJhckhlaWdodClcbiAgXHQuc3R5bGUoXCJmaWxsXCIsIFwidXJsKCNsaW5lYXItZ3JhZGllbnQpXCIpO1xuXHRcbiAgc3ZnX2xlZ2VuZC5hcHBlbmQoJ2cnKVxuICAgIC5jYWxsKGF4aXNCb3R0b20pOyAgXG4gIFxuICAvLyBDb2xvciBndWlkZSB0aXRsZVxuICBzdmdfbGVnZW5kLmFwcGVuZChcInRleHRcIilcbiAgICAudGV4dChcIkF2ZyBuby4gb2YgQ29waWVzOiAgXCIpXG4gICAgLmF0dHIoXCJmb250LXNpemVcIiwgXCIxM3B4XCIpXG4gICAgLmF0dHIoXCJ0ZXh0LWFuY2hvclwiLCBcImVuZFwiKVxuICAgIC5hdHRyKFwic3R5bGVcIixcIndoaXRlLXNwYWNlOnByZVwiKVxuICAgIC5hdHRyKFwieFwiLCBtYXJnaW4ubGVmdClcblx0XHQuYXR0cihcInlcIiwgaC8zKVxufVxuIn1dfQ==
 </script>
 <script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
 window._ojs.paths.runtimeToDoc = "../..";
 window._ojs.paths.runtimeToRoot = "../..";
 window._ojs.paths.docToRoot = "";
@@ -789,252 +939,426 @@ window._ojs.selfContained = false;
 window._ojs.runtime.interpretFromScriptTags();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  let localAlternateSentinel = 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
-    };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jamesotto852\.github\.io\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">Copyright 2022, James Otto</div>
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2022, James Otto</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
+
 
 
 
