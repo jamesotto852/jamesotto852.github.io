@@ -2,54 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jamesotto852.github.io/talks.html</loc>
-    <lastmod>2026-04-20T22:28:17.417Z</lastmod>
+    <lastmod>2025-02-17T02:05:25.979Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/talks/tidy-MC-talk.html</loc>
-    <lastmod>2026-04-20T22:28:17.540Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/talks/extending-ggplot2-talk.html</loc>
-    <lastmod>2026-04-20T22:28:17.420Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/posts/2022-10-15-Rings-of-Power/Rings-of-Power.html</loc>
-    <lastmod>2026-04-20T22:28:17.056Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/posts/2022-01-24-Understanding-base-documentation-functions/Understanding-base-documentation-functions.html</loc>
-    <lastmod>2026-04-20T22:28:16.574Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/index.html</loc>
-    <lastmod>2026-04-20T22:39:41.709Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/blog.html</loc>
-    <lastmod>2026-04-20T22:28:16.437Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/D3.html</loc>
-    <lastmod>2026-04-20T22:28:16.065Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/packages.html</loc>
-    <lastmod>2026-04-20T22:28:16.564Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/posts/2022-02-15-Visualizing-BoardGameGeek-Data-with-ggdensity/Visualizing-BoardGameGeek-Data-with-ggdensity.html</loc>
-    <lastmod>2026-04-20T22:28:16.579Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/shiny.html</loc>
-    <lastmod>2026-04-20T22:28:17.415Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jamesotto852.github.io/talks/ggdensity-talk.html</loc>
-    <lastmod>2026-04-20T22:28:17.422Z</lastmod>
+    <lastmod>2025-02-17T02:05:26.001Z</lastmod>
   </url>
   <url>
     <loc>https://jamesotto852.github.io/talks/tldr-talk.html</loc>
-    <lastmod>2026-04-20T22:28:17.542Z</lastmod>
+    <lastmod>2025-02-17T02:05:26.001Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/talks/extending-ggplot2-talk.html</loc>
+    <lastmod>2025-02-17T02:05:25.979Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/packages.html</loc>
+    <lastmod>2025-02-17T02:05:25.877Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/posts/2022-10-15-Rings-of-Power/Rings-of-Power.html</loc>
+    <lastmod>2025-02-17T02:05:25.926Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/shiny.html</loc>
+    <lastmod>2025-02-17T02:05:25.979Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/index.html</loc>
+    <lastmod>2026-08-03T01:47:23.399Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/posts/2022-02-15-Visualizing-BoardGameGeek-Data-with-ggdensity/Visualizing-BoardGameGeek-Data-with-ggdensity.html</loc>
+    <lastmod>2025-02-17T02:05:25.878Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/posts/2022-01-24-Understanding-base-documentation-functions/Understanding-base-documentation-functions.html</loc>
+    <lastmod>2025-02-17T02:05:25.878Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/D3.html</loc>
+    <lastmod>2025-02-17T02:05:25.838Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/talks/ggdensity-talk.html</loc>
+    <lastmod>2025-02-17T02:05:25.979Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/talks/layer-extension-reflections.html</loc>
+    <lastmod>2026-08-03T02:03:29.416Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jamesotto852.github.io/blog.html</loc>
+    <lastmod>2025-02-17T02:05:25.851Z</lastmod>
   </url>
 </urlset>
