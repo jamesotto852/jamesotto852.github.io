@@ -1,0 +1,22 @@
+---
+title: "Reflections on a layer extension workshop"
+author: 
+  - "**James Otto**"
+date: "2026-3-10"
+image: "images/ggdensity-talk.png"
+toc: false
+---
+
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe src="https://www.youtube.com/embed/6ojrqaiK9B4?rel=0" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe></div>
+
+<div style = "height: 100px;"> </div>
+
+## Slides used as reference during discussion:
+
+<iframe class="slide-deck" src="https://jamesotto852.github.io/extending-ggplot2/" style="width: 100%; height: 450px">
+
+</iframe>
+
+
+[Slides](https://jamesotto852.github.io/extending-ggplot2/){target="_blank" rel="noopener noreferrer"} 
+([source code](https://github.com/jamesotto852/extending-ggplot2){target="_blank" rel="noopener noreferrer"})
