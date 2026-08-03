@@ -3,7 +3,7 @@ title: "Reflections on a layer extension workshop"
 author: 
   - "**James Otto**"
 date: "2026-3-10"
-image: "images/ggdensity-talk.png"
+image: "images/extending-ggplot2-talk.png"
 toc: false
 ---
 
